@@ -69,7 +69,7 @@ const AppState = {
 // ========== STORAGE KEYS ==========
 const STORAGE_KEY_HISTORY = 'lifedash_history';
 const STORAGE_KEY_CONFIG = 'lifedash_config';
-const AUTO_JSON_PATH = 'life_dashboard_data.json';
+const AUTO_JSON_PATH = 'life_dashboard.json';
 
 // ========== UTILITY FUNCTIONS ==========
 
@@ -170,7 +170,7 @@ function exportToJSON() {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = `life_dashboard_${todayStr()}.json`;
+  a.download = `life_dashboard.json`;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
@@ -2269,7 +2269,7 @@ function renderDataPage() {
       <div class="stat-card" style="--stat-color: var(--accent-green)">
         <div class="stat-label">Storage</div>
         <div class="stat-value">Local</div>
-        <div class="stat-sub">localStorage + JSON export</div>
+        <div class="stat-sub">localStorage + auto-load JSON</div>
       </div>
     </div>
 
@@ -2279,7 +2279,7 @@ function renderDataPage() {
           <div class="card-title"><span class="icon">⬇️</span> Export Data</div>
         </div>
         <p style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:16px">
-          Download all your data as a JSON file. This includes history and configuration.
+          Download all your data as <strong>life_dashboard.json</strong>. Place this file in the same folder as index.html to auto-load on startup.
         </p>
         <button class="btn btn-primary" onclick="exportToJSON()">⬇ Export JSON</button>
       </div>
@@ -2370,15 +2370,15 @@ async function tryAutoLoadJSON() {
     if (response.ok) {
       const data = await response.json();
       if (data.history) {
-        // Merge: local data takes precedence for same dates
-        const merged = { ...data.history, ...AppState.history };
-        AppState.history = merged;
+        // JSON file takes precedence: its data overrides localStorage for same dates
+        AppState.history = { ...AppState.history, ...data.history };
       }
-      if (data.config && Object.keys(AppState.config.activities).length === 0) {
+      if (data.config) {
         AppState.config = data.config;
       }
       saveToLocalStorage();
-      console.log('Auto-loaded data from JSON file');
+      console.log('Auto-loaded data from ' + AUTO_JSON_PATH);
+      showToast('Data loaded from life_dashboard.json', 'success');
       return true;
     }
   } catch (e) {
