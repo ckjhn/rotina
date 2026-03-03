@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "exportDate": "2026-03-03T02:05:33.098Z",
+  "exportDate": "2026-03-03T15:15:03.469Z",
   "config": {
     "activities": [
       {
@@ -192,8 +192,8 @@
           "detail": "30 words"
         },
         "social": {
-          "done": false,
-          "detail": ""
+          "done": true,
+          "detail": "Shopping with family"
         }
       },
       "studies": {}
@@ -210,10 +210,19 @@
         },
         "social": {
           "done": true,
-          "detail": "Shopping with family"
+          "detail": "Call with friends"
+        },
+        "work": {
+          "done": true,
+          "detail": "Prolagos [Programador I]"
         }
       },
-      "studies": {}
+      "studies": {
+        "college": {
+          "done": true,
+          "detail": "Exam [8,0/8,0]"
+        }
+      }
     },
     "2026-03-03": {
       "activities": {
@@ -227,17 +236,21 @@
         },
         "anki": {
           "done": true,
-          "detail": "30 words"
+          "detail": "18 words"
         },
         "social": {
           "done": true,
           "detail": "Call with friends"
+        },
+        "philosophy": {
+          "done": true,
+          "detail": "Stoicism Practice"
         }
       },
       "studies": {
         "college": {
           "done": true,
-          "detail": "Exam [8,0/8,0]"
+          "detail": "Sylabus Organization"
         }
       }
     }
