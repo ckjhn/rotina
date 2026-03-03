@@ -1,6 +1,6 @@
 {
   "version": "1.1",
-  "exportDate": "2026-03-03T02:05:33.098Z",
+  "exportDate": "2026-03-03T17:47:29.984Z",
   "config": {
     "activities": [
       {
@@ -232,6 +232,10 @@
         "social": {
           "done": true,
           "detail": "Call with friends"
+        },
+        "philosophy": {
+          "done": true,
+          "detail": "Stoicism Practice"
         }
       },
       "studies": {
@@ -243,5 +247,30 @@
     }
   },
   "goals": [],
-  "objectives": []
+  "objectives": [
+    {
+      "id": "obj_mmawg1hg7wc2w",
+      "name": "English Class",
+      "description": "",
+      "type": "value",
+      "createdAt": "2026-03-03",
+      "archived": false,
+      "targetValue": 20,
+      "currentValue": 0,
+      "unit": "",
+      "valueHistory": []
+    },
+    {
+      "id": "obj_mmawhh0g15qh5",
+      "name": "Mineração de Sentenças",
+      "description": "",
+      "type": "value",
+      "createdAt": "2026-03-03",
+      "archived": false,
+      "targetValue": 180,
+      "currentValue": 0,
+      "unit": "words",
+      "valueHistory": []
+    }
+  ]
 }
