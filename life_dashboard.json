@@ -1,6 +1,6 @@
 {
   "version": "1.1",
-  "exportDate": "2026-03-03T17:47:29.984Z",
+  "exportDate": "2026-03-03T21:38:37.760Z",
   "config": {
     "activities": [
       {
@@ -192,8 +192,8 @@
           "detail": "30 words"
         },
         "social": {
-          "done": false,
-          "detail": ""
+          "done": true,
+          "detail": "Shopping with family"
         }
       },
       "studies": {}
@@ -210,10 +210,19 @@
         },
         "social": {
           "done": true,
-          "detail": "Shopping with family"
+          "detail": "Call with friends"
+        },
+        "work": {
+          "done": true,
+          "detail": "Prolagos [Programador I]"
         }
       },
-      "studies": {}
+      "studies": {
+        "college": {
+          "done": true,
+          "detail": "Exam [8,0/8,0]"
+        }
+      }
     },
     "2026-03-03": {
       "activities": {
@@ -236,12 +245,28 @@
         "philosophy": {
           "done": true,
           "detail": "Stoicism Practice"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "Young Sheldon T5 E6"
+        },
+        "language_class": {
+          "done": false,
+          "detail": ""
+        },
+        "scientia_momentum": {
+          "done": true,
+          "detail": "Scientia Momentum"
         }
       },
       "studies": {
         "college": {
           "done": true,
-          "detail": "Exam [8,0/8,0]"
+          "detail": "Sylabus Organization"
+        },
+        "course": {
+          "done": true,
+          "detail": "Programação Orientada a Objeto - Python"
         }
       }
     }
