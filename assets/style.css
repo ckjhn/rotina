@@ -1369,3 +1369,559 @@ body::before {
   border-color: var(--accent-green);
   color: var(--bg-primary);
 }
+
+/* ============================================
+   GOALS & OBJECTIVES SYSTEM
+   ============================================ */
+
+/* Goal/Objective Cards */
+.go-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: all var(--transition-normal);
+  position: relative;
+}
+
+.go-card:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: var(--shadow-md);
+}
+
+.go-card.archived {
+  opacity: 0.5;
+}
+
+.go-card-accent {
+  height: 3px;
+  background: var(--accent-primary);
+}
+
+.go-card.type-goal .go-card-accent {
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-green));
+}
+
+.go-card.type-objective-list .go-card-accent {
+  background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+}
+
+.go-card.type-objective-value .go-card-accent {
+  background: linear-gradient(90deg, var(--accent-orange), var(--accent-warning));
+}
+
+.go-card-body {
+  padding: 20px;
+}
+
+.go-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  gap: 12px;
+}
+
+.go-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.3;
+  flex: 1;
+}
+
+.go-card-badges {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.go-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 12px;
+  white-space: nowrap;
+}
+
+.go-badge-goal {
+  background: var(--accent-primary-dim);
+  color: var(--accent-primary);
+}
+
+.go-badge-obj-list {
+  background: var(--accent-blue-dim);
+  color: var(--accent-blue);
+}
+
+.go-badge-obj-value {
+  background: var(--accent-orange-dim);
+  color: var(--accent-orange);
+}
+
+.go-badge-complete {
+  background: var(--accent-green-dim);
+  color: var(--accent-green);
+}
+
+.go-badge-archived {
+  background: rgba(255,255,255,0.05);
+  color: var(--text-muted);
+}
+
+.go-card-description {
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+/* Big progress ring */
+.go-progress-ring-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.go-progress-ring {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+}
+
+.go-progress-ring svg {
+  transform: rotate(-90deg);
+}
+
+.go-progress-ring circle {
+  fill: none;
+  stroke-width: 5;
+}
+
+.go-progress-ring .ring-bg {
+  stroke: rgba(255, 255, 255, 0.06);
+}
+
+.go-progress-ring .ring-fill {
+  stroke: var(--ring-color, var(--accent-primary));
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.go-progress-ring-pct {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.go-progress-info {
+  flex: 1;
+}
+
+.go-progress-main {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin-bottom: 2px;
+}
+
+.go-progress-sub {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* Step list inside a goal/objective card */
+.go-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 14px;
+}
+
+.go-step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.go-step:hover {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: var(--bg-tertiary);
+}
+
+.go-step.done {
+  border-color: rgba(52, 211, 153, 0.15);
+  background: rgba(52, 211, 153, 0.04);
+}
+
+.go-step.done .go-step-text {
+  color: var(--text-muted);
+  text-decoration: line-through;
+  text-decoration-color: rgba(255,255,255,0.15);
+}
+
+.go-step-check {
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  border: 2px solid var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+  font-size: 0.7rem;
+  color: transparent;
+}
+
+.go-step.done .go-step-check {
+  background: var(--accent-green);
+  border-color: var(--accent-green);
+  color: var(--bg-primary);
+}
+
+.go-step-text {
+  flex: 1;
+  color: var(--text-secondary);
+  min-width: 0;
+}
+
+.go-step-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+/* Value input row (for daily tracker) */
+.go-value-input-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-md);
+  margin-bottom: 8px;
+}
+
+.go-value-input-row .go-value-label {
+  flex: 1;
+  font-size: 0.88rem;
+  font-weight: 500;
+  min-width: 0;
+}
+
+.go-value-input-row .go-value-label .go-value-progress-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-left: 8px;
+}
+
+.go-value-input {
+  width: 80px;
+  padding: 6px 10px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  text-align: center;
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+
+.go-value-input:focus {
+  border-color: var(--accent-primary);
+}
+
+.go-value-add-btn {
+  padding: 6px 14px;
+  background: var(--accent-primary);
+  color: var(--bg-primary);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.go-value-add-btn:hover {
+  background: #3dbdb5;
+  box-shadow: 0 0 12px rgba(78, 205, 196, 0.3);
+}
+
+/* Mini progress bar for daily tracker */
+.go-mini-progress {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 6px;
+}
+
+.go-mini-progress-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.5s ease;
+}
+
+/* Card actions */
+.go-card-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-primary);
+}
+
+.go-card-actions .btn {
+  font-size: 0.76rem;
+  padding: 4px 10px;
+}
+
+/* Goals grid layout */
+.go-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 900px) {
+  .go-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Create form styles (inside modal) */
+.go-form-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.go-form-step-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.go-form-step-row .form-input {
+  flex: 1;
+}
+
+.go-form-step-remove {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-primary);
+  background: var(--bg-tertiary);
+  color: var(--accent-secondary);
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.go-form-step-remove:hover {
+  background: var(--accent-secondary-dim);
+}
+
+.go-form-add-step {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px;
+  border: 1px dashed var(--border-primary);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-muted);
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  width: 100%;
+}
+
+.go-form-add-step:hover {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  background: var(--accent-primary-dim);
+}
+
+/* Daily tracker section for goals */
+.go-daily-section {
+  margin-top: 24px;
+}
+
+.go-daily-section .card-header {
+  margin-bottom: 14px;
+}
+
+.go-daily-items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.go-daily-item {
+  background: var(--bg-input);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  transition: all var(--transition-fast);
+}
+
+.go-daily-item:hover {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.go-daily-item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  gap: 10px;
+}
+
+.go-daily-item-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.go-daily-item-pct {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* Type selector toggle */
+.go-type-selector {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.go-type-option {
+  flex: 1;
+  padding: 14px 16px;
+  background: var(--bg-input);
+  border: 2px solid var(--border-primary);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: center;
+}
+
+.go-type-option:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.go-type-option.selected {
+  border-color: var(--accent-primary);
+  background: var(--accent-primary-dim);
+}
+
+.go-type-option-icon {
+  font-size: 1.5rem;
+  margin-bottom: 6px;
+}
+
+.go-type-option-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.go-type-option-desc {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+/* Filter tabs for goals page */
+.go-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Value objective history list */
+.go-value-history {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-top: 8px;
+  max-height: 120px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.go-value-history-entry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 10px;
+  background: rgba(255,255,255,0.02);
+  border-radius: var(--radius-sm);
+  font-size: 0.78rem;
+}
+
+.go-value-history-entry .date {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--text-muted);
+  font-size: 0.72rem;
+}
+
+.go-value-history-entry .amount {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--accent-primary);
+  font-weight: 600;
+}
+
+.go-value-history-entry .remove-entry {
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.7rem;
+  padding: 2px 4px;
+  border-radius: 3px;
+  transition: all var(--transition-fast);
+}
+
+.go-value-history-entry .remove-entry:hover {
+  color: var(--accent-secondary);
+  background: var(--accent-secondary-dim);
+}

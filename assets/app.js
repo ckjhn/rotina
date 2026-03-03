@@ -61,6 +61,8 @@ const AppState = {
     activities: [],
     studies: [],
   },
+  goals: [],           // Array of goal objects
+  objectives: [],      // Array of objective objects
   comparisonMode: 'week',
   comparisonDateA: null,
   comparisonDateB: null,
@@ -69,6 +71,8 @@ const AppState = {
 // ========== STORAGE KEYS ==========
 const STORAGE_KEY_HISTORY = 'lifedash_history';
 const STORAGE_KEY_CONFIG = 'lifedash_config';
+const STORAGE_KEY_GOALS = 'lifedash_goals';
+const STORAGE_KEY_OBJECTIVES = 'lifedash_objectives';
 const AUTO_JSON_PATH = 'life_dashboard.json';
 
 // ========== UTILITY FUNCTIONS ==========
@@ -141,6 +145,8 @@ function saveToLocalStorage() {
   try {
     localStorage.setItem(STORAGE_KEY_HISTORY, JSON.stringify(AppState.history));
     localStorage.setItem(STORAGE_KEY_CONFIG, JSON.stringify(AppState.config));
+    localStorage.setItem(STORAGE_KEY_GOALS, JSON.stringify(AppState.goals));
+    localStorage.setItem(STORAGE_KEY_OBJECTIVES, JSON.stringify(AppState.objectives));
   } catch (e) {
     console.warn('localStorage save failed:', e);
   }
@@ -150,8 +156,12 @@ function loadFromLocalStorage() {
   try {
     const hist = localStorage.getItem(STORAGE_KEY_HISTORY);
     const conf = localStorage.getItem(STORAGE_KEY_CONFIG);
+    const goals = localStorage.getItem(STORAGE_KEY_GOALS);
+    const objectives = localStorage.getItem(STORAGE_KEY_OBJECTIVES);
     if (hist) AppState.history = JSON.parse(hist);
     if (conf) AppState.config = JSON.parse(conf);
+    if (goals) AppState.goals = JSON.parse(goals);
+    if (objectives) AppState.objectives = JSON.parse(objectives);
     return !!(hist || conf);
   } catch (e) {
     console.warn('localStorage load failed:', e);
@@ -161,10 +171,12 @@ function loadFromLocalStorage() {
 
 function exportToJSON() {
   const data = {
-    version: '1.0',
+    version: '1.1',
     exportDate: new Date().toISOString(),
     config: AppState.config,
     history: AppState.history,
+    goals: AppState.goals,
+    objectives: AppState.objectives,
   };
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
@@ -190,6 +202,12 @@ function importFromJSON(file) {
         if (data.config) {
           AppState.config = data.config;
           applyConfig();
+        }
+        if (data.goals) {
+          AppState.goals = data.goals;
+        }
+        if (data.objectives) {
+          AppState.objectives = data.objectives;
         }
         saveToLocalStorage();
         resolve(data);
@@ -596,6 +614,7 @@ function renderPage(pageId) {
 
   switch (pageId) {
     case 'today': renderTodayPage(); break;
+    case 'goals': renderGoalsPage(); break;
     case 'activities-dash': renderActivitiesDashboard(); break;
     case 'studies-dash': renderStudiesDashboard(); break;
     case 'comparison': renderComparisonPage(); break;
@@ -610,6 +629,7 @@ function renderPage(pageId) {
 function getPageTitle(pageId) {
   const titles = {
     'today': 'Daily Tracker',
+    'goals': 'Goals & Objectives',
     'activities-dash': 'Activities Dashboard',
     'studies-dash': 'Studies Dashboard',
     'comparison': 'Comparison View',
@@ -706,6 +726,8 @@ function renderTodayPage() {
     <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:8px;">
       <button class="btn" onclick="exportToJSON()">⬇ Export JSON</button>
     </div>
+
+    ${renderDailyGoalsSection(date)}
   `;
 }
 
@@ -2352,14 +2374,923 @@ function clearAllData() {
   if (confirm('FACTORY RESET: Delete ALL data and configuration? This cannot be undone.')) {
     localStorage.removeItem(STORAGE_KEY_HISTORY);
     localStorage.removeItem(STORAGE_KEY_CONFIG);
+    localStorage.removeItem(STORAGE_KEY_GOALS);
+    localStorage.removeItem(STORAGE_KEY_OBJECTIVES);
     AppState.history = {};
     AppState.config = { activities: [], studies: [] };
+    AppState.goals = [];
+    AppState.objectives = [];
     initConfig();
     saveToLocalStorage();
     showToast('Factory reset complete', 'warning');
     renderPage('today');
   }
 }
+
+// ========== GOALS & OBJECTIVES SYSTEM ==========
+
+// --- ID generation ---
+function generateId(prefix) {
+  return prefix + '_' + Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
+}
+
+// --- Modal helpers ---
+function openModal(html) {
+  const overlay = document.getElementById('modal-overlay');
+  const container = document.getElementById('modal-container');
+  if (overlay && container) {
+    container.innerHTML = html;
+    overlay.classList.add('active');
+  }
+}
+
+function closeModal() {
+  const overlay = document.getElementById('modal-overlay');
+  if (overlay) overlay.classList.remove('active');
+}
+
+// Close modal on overlay click
+document.addEventListener('click', (e) => {
+  if (e.target.id === 'modal-overlay') closeModal();
+});
+
+// --- Goal CRUD ---
+function createGoal(name, description, steps) {
+  const goal = {
+    id: generateId('goal'),
+    name,
+    description: description || '',
+    steps: steps.map((text, i) => ({ id: 's' + i, text, done: false, doneDate: null })),
+    createdAt: todayStr(),
+    archived: false,
+  };
+  AppState.goals.push(goal);
+  saveToLocalStorage();
+  return goal;
+}
+
+function toggleGoalStep(goalId, stepId) {
+  const goal = AppState.goals.find(g => g.id === goalId);
+  if (!goal) return;
+  const step = goal.steps.find(s => s.id === stepId);
+  if (!step) return;
+  step.done = !step.done;
+  step.doneDate = step.done ? todayStr() : null;
+  saveToLocalStorage();
+}
+
+function getGoalProgress(goal) {
+  if (!goal.steps || goal.steps.length === 0) return { done: 0, total: 0, pct: 0 };
+  const done = goal.steps.filter(s => s.done).length;
+  return { done, total: goal.steps.length, pct: Math.round((done / goal.steps.length) * 100) };
+}
+
+function archiveGoal(goalId) {
+  const goal = AppState.goals.find(g => g.id === goalId);
+  if (goal) {
+    goal.archived = !goal.archived;
+    saveToLocalStorage();
+    renderPage(AppState.currentPage);
+    showToast(goal.archived ? 'Goal archived' : 'Goal restored', 'info');
+  }
+}
+
+function deleteGoal(goalId) {
+  if (!confirm('Delete this goal permanently?')) return;
+  AppState.goals = AppState.goals.filter(g => g.id !== goalId);
+  saveToLocalStorage();
+  renderPage(AppState.currentPage);
+  showToast('Goal deleted', 'warning');
+}
+
+// --- Objective CRUD ---
+function createObjective(name, description, type, steps, targetValue, unit) {
+  const obj = {
+    id: generateId('obj'),
+    name,
+    description: description || '',
+    type, // 'list' or 'value'
+    createdAt: todayStr(),
+    archived: false,
+  };
+  if (type === 'list') {
+    obj.steps = steps.map((text, i) => ({ id: 's' + i, text, done: false, doneDate: null }));
+  } else {
+    obj.targetValue = parseFloat(targetValue) || 0;
+    obj.currentValue = 0;
+    obj.unit = unit || '';
+    obj.valueHistory = [];
+  }
+  AppState.objectives.push(obj);
+  saveToLocalStorage();
+  return obj;
+}
+
+function toggleObjectiveStep(objId, stepId) {
+  const obj = AppState.objectives.find(o => o.id === objId);
+  if (!obj || obj.type !== 'list') return;
+  const step = obj.steps.find(s => s.id === stepId);
+  if (!step) return;
+  step.done = !step.done;
+  step.doneDate = step.done ? todayStr() : null;
+  saveToLocalStorage();
+}
+
+function addObjectiveValue(objId, amount, date) {
+  const obj = AppState.objectives.find(o => o.id === objId);
+  if (!obj || obj.type !== 'value') return;
+  const val = parseFloat(amount);
+  if (isNaN(val) || val === 0) return;
+  obj.valueHistory.push({ date: date || todayStr(), amount: val });
+  obj.currentValue = obj.valueHistory.reduce((sum, v) => sum + v.amount, 0);
+  saveToLocalStorage();
+}
+
+function removeObjectiveValueEntry(objId, index) {
+  const obj = AppState.objectives.find(o => o.id === objId);
+  if (!obj || obj.type !== 'value') return;
+  obj.valueHistory.splice(index, 1);
+  obj.currentValue = obj.valueHistory.reduce((sum, v) => sum + v.amount, 0);
+  saveToLocalStorage();
+  renderPage(AppState.currentPage);
+}
+
+function getObjectiveProgress(obj) {
+  if (obj.type === 'list') {
+    if (!obj.steps || obj.steps.length === 0) return { done: 0, total: 0, pct: 0 };
+    const done = obj.steps.filter(s => s.done).length;
+    return { done, total: obj.steps.length, pct: Math.round((done / obj.steps.length) * 100) };
+  } else {
+    const target = obj.targetValue || 1;
+    const current = obj.currentValue || 0;
+    return { done: current, total: target, pct: Math.min(100, Math.round((current / target) * 100)) };
+  }
+}
+
+function archiveObjective(objId) {
+  const obj = AppState.objectives.find(o => o.id === objId);
+  if (obj) {
+    obj.archived = !obj.archived;
+    saveToLocalStorage();
+    renderPage(AppState.currentPage);
+    showToast(obj.archived ? 'Objective archived' : 'Objective restored', 'info');
+  }
+}
+
+function deleteObjective(objId) {
+  if (!confirm('Delete this objective permanently?')) return;
+  AppState.objectives = AppState.objectives.filter(o => o.id !== objId);
+  saveToLocalStorage();
+  renderPage(AppState.currentPage);
+  showToast('Objective deleted', 'warning');
+}
+
+// --- Progress Ring SVG helper ---
+function renderProgressRing(pct, color, size) {
+  size = size || 56;
+  const r = (size - 10) / 2;
+  const circ = 2 * Math.PI * r;
+  const offset = circ - (pct / 100) * circ;
+  return `
+    <div class="go-progress-ring" style="width:${size}px;height:${size}px">
+      <svg width="${size}" height="${size}">
+        <circle class="ring-bg" cx="${size/2}" cy="${size/2}" r="${r}"/>
+        <circle class="ring-fill" cx="${size/2}" cy="${size/2}" r="${r}"
+          stroke-dasharray="${circ}" stroke-dashoffset="${offset}"
+          style="--ring-color:${color}"/>
+      </svg>
+      <span class="go-progress-ring-pct">${pct}%</span>
+    </div>
+  `;
+}
+
+// --- Render Goals & Objectives Management Page ---
+function renderGoalsPage() {
+  const container = document.getElementById('page-goals');
+
+  const activeGoals = AppState.goals.filter(g => !g.archived);
+  const archivedGoals = AppState.goals.filter(g => g.archived);
+  const activeObjectives = AppState.objectives.filter(o => !o.archived);
+  const archivedObjectives = AppState.objectives.filter(o => o.archived);
+
+  const totalGoals = AppState.goals.length;
+  const completedGoals = AppState.goals.filter(g => getGoalProgress(g).pct === 100).length;
+  const totalObj = AppState.objectives.length;
+  const completedObj = AppState.objectives.filter(o => getObjectiveProgress(o).pct >= 100).length;
+
+  const goalsCardsHtml = activeGoals.length > 0
+    ? activeGoals.map(g => renderGoalCard(g)).join('')
+    : '<div class="empty-state"><div class="empty-state-icon">\uD83C\uDFAF</div><div class="empty-state-text">No active goals. Create one to get started!</div></div>';
+
+  const objCardsHtml = activeObjectives.length > 0
+    ? activeObjectives.map(o => renderObjectiveCard(o)).join('')
+    : '<div class="empty-state"><div class="empty-state-icon">\uD83D\uDCCC</div><div class="empty-state-text">No active objectives. Create one to start tracking!</div></div>';
+
+  let archivedHtml = '';
+  if (archivedGoals.length > 0 || archivedObjectives.length > 0) {
+    archivedHtml = `
+      <div class="card" style="margin-top:24px">
+        <div class="card-header collapsible-header" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'':'none'">
+          <div class="card-title"><span class="icon">\uD83D\uDCE6</span> Archived (${archivedGoals.length + archivedObjectives.length})</div>
+          <span style="font-size:0.78rem;color:var(--text-muted)">click to toggle</span>
+        </div>
+        <div style="display:none">
+          <div class="go-grid" style="margin-top:16px;padding:0 24px 24px">
+            ${archivedGoals.map(g => renderGoalCard(g)).join('')}
+            ${archivedObjectives.map(o => renderObjectiveCard(o)).join('')}
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  container.innerHTML = `
+    <div class="stats-grid">
+      <div class="stat-card" style="--stat-color: var(--accent-primary)">
+        <div class="stat-label">Total Goals</div>
+        <div class="stat-value">${totalGoals}</div>
+        <div class="stat-sub">${completedGoals} completed</div>
+      </div>
+      <div class="stat-card" style="--stat-color: var(--accent-blue)">
+        <div class="stat-label">Total Objectives</div>
+        <div class="stat-value">${totalObj}</div>
+        <div class="stat-sub">${completedObj} completed</div>
+      </div>
+      <div class="stat-card" style="--stat-color: var(--accent-green)">
+        <div class="stat-label">Active</div>
+        <div class="stat-value">${activeGoals.length + activeObjectives.length}</div>
+        <div class="stat-sub">in progress</div>
+      </div>
+      <div class="stat-card" style="--stat-color: var(--accent-purple)">
+        <div class="stat-label">Archived</div>
+        <div class="stat-value">${archivedGoals.length + archivedObjectives.length}</div>
+        <div class="stat-sub">finished or paused</div>
+      </div>
+    </div>
+
+    <div class="go-filter-bar">
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-primary" onclick="openCreateGoalModal()">+ New Goal</button>
+        <button class="btn" onclick="openCreateObjectiveModal()">+ New Objective</button>
+      </div>
+    </div>
+
+    <h3 style="font-size:0.8rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-secondary);font-family:'JetBrains Mono',monospace;margin-bottom:14px">\uD83C\uDFAF Goals</h3>
+    <div class="go-grid">${goalsCardsHtml}</div>
+
+    <h3 style="font-size:0.8rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-secondary);font-family:'JetBrains Mono',monospace;margin:28px 0 14px">\uD83D\uDCCC Objectives</h3>
+    <div class="go-grid">${objCardsHtml}</div>
+
+    ${archivedHtml}
+  `;
+}
+
+function renderGoalCard(goal) {
+  const progress = getGoalProgress(goal);
+  const isComplete = progress.pct === 100;
+  const color = isComplete ? 'var(--accent-green)' : 'var(--accent-primary)';
+
+  const stepsHtml = goal.steps.map(step => `
+    <div class="go-step ${step.done ? 'done' : ''}" onclick="toggleGoalStep('${goal.id}','${step.id}');renderPage('goals')">
+      <div class="go-step-check">\u2713</div>
+      <span class="go-step-text">${escapeHtml(step.text)}</span>
+      ${step.doneDate ? `<span class="go-step-date">${formatDateShort(step.doneDate)}</span>` : ''}
+    </div>
+  `).join('');
+
+  return `
+    <div class="go-card type-goal ${goal.archived ? 'archived' : ''}">
+      <div class="go-card-accent"></div>
+      <div class="go-card-body">
+        <div class="go-card-header">
+          <div class="go-card-title">${escapeHtml(goal.name)}</div>
+          <div class="go-card-badges">
+            <span class="go-badge go-badge-goal">Goal</span>
+            ${isComplete ? '<span class="go-badge go-badge-complete">Complete</span>' : ''}
+            ${goal.archived ? '<span class="go-badge go-badge-archived">Archived</span>' : ''}
+          </div>
+        </div>
+        ${goal.description ? `<div class="go-card-description">${escapeHtml(goal.description)}</div>` : ''}
+        <div class="go-progress-ring-wrapper">
+          ${renderProgressRing(progress.pct, color)}
+          <div class="go-progress-info">
+            <div class="go-progress-main">${progress.done} / ${progress.total}</div>
+            <div class="go-progress-sub">steps completed</div>
+          </div>
+        </div>
+        <div class="go-steps scroll-inner" style="max-height:240px">${stepsHtml}</div>
+        <div class="go-card-actions">
+          <button class="btn btn-sm" onclick="openEditGoalModal('${goal.id}')">Edit</button>
+          <button class="btn btn-sm" onclick="archiveGoal('${goal.id}')">${goal.archived ? 'Restore' : 'Archive'}</button>
+          <button class="btn btn-sm btn-danger" onclick="deleteGoal('${goal.id}')">Delete</button>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderObjectiveCard(obj) {
+  const progress = getObjectiveProgress(obj);
+  const isComplete = progress.pct >= 100;
+  const isValue = obj.type === 'value';
+  const color = isComplete ? 'var(--accent-green)' : isValue ? 'var(--accent-orange)' : 'var(--accent-blue)';
+  const badgeClass = isValue ? 'go-badge-obj-value' : 'go-badge-obj-list';
+  const badgeLabel = isValue ? 'Value' : 'List';
+
+  let contentHtml = '';
+  if (isValue) {
+    const unit = obj.unit ? ` ${escapeHtml(obj.unit)}` : '';
+    contentHtml = `
+      <div class="go-progress-ring-wrapper">
+        ${renderProgressRing(progress.pct, color)}
+        <div class="go-progress-info">
+          <div class="go-progress-main">${progress.done}${unit} / ${progress.total}${unit}</div>
+          <div class="go-progress-sub">${progress.pct}% completed${isComplete ? ' \u2014 Done!' : ''}</div>
+        </div>
+      </div>
+      ${obj.valueHistory && obj.valueHistory.length > 0 ? `
+        <div class="go-value-history">
+          ${obj.valueHistory.slice().reverse().slice(0, 10).map((entry, revIdx) => {
+            const realIdx = obj.valueHistory.length - 1 - revIdx;
+            return `
+              <div class="go-value-history-entry">
+                <span class="date">${formatDateShort(entry.date)}</span>
+                <span class="amount">+${entry.amount}${unit}</span>
+                <span class="remove-entry" onclick="event.stopPropagation();removeObjectiveValueEntry('${obj.id}',${realIdx})">\u2715</span>
+              </div>
+            `;
+          }).join('')}
+          ${obj.valueHistory.length > 10 ? '<div style="text-align:center;font-size:0.72rem;color:var(--text-muted);padding:4px">...and more</div>' : ''}
+        </div>
+      ` : ''}
+    `;
+  } else {
+    const stepsHtml = obj.steps.map(step => `
+      <div class="go-step ${step.done ? 'done' : ''}" onclick="toggleObjectiveStep('${obj.id}','${step.id}');renderPage('goals')">
+        <div class="go-step-check">\u2713</div>
+        <span class="go-step-text">${escapeHtml(step.text)}</span>
+        ${step.doneDate ? `<span class="go-step-date">${formatDateShort(step.doneDate)}</span>` : ''}
+      </div>
+    `).join('');
+    contentHtml = `
+      <div class="go-progress-ring-wrapper">
+        ${renderProgressRing(progress.pct, color)}
+        <div class="go-progress-info">
+          <div class="go-progress-main">${progress.done} / ${progress.total}</div>
+          <div class="go-progress-sub">steps completed</div>
+        </div>
+      </div>
+      <div class="go-steps scroll-inner" style="max-height:240px">${stepsHtml}</div>
+    `;
+  }
+
+  return `
+    <div class="go-card type-objective-${obj.type} ${obj.archived ? 'archived' : ''}">
+      <div class="go-card-accent"></div>
+      <div class="go-card-body">
+        <div class="go-card-header">
+          <div class="go-card-title">${escapeHtml(obj.name)}</div>
+          <div class="go-card-badges">
+            <span class="go-badge ${badgeClass}">${badgeLabel}</span>
+            ${isComplete ? '<span class="go-badge go-badge-complete">Complete</span>' : ''}
+            ${obj.archived ? '<span class="go-badge go-badge-archived">Archived</span>' : ''}
+          </div>
+        </div>
+        ${obj.description ? `<div class="go-card-description">${escapeHtml(obj.description)}</div>` : ''}
+        ${contentHtml}
+        <div class="go-card-actions">
+          <button class="btn btn-sm" onclick="openEditObjectiveModal('${obj.id}')">Edit</button>
+          <button class="btn btn-sm" onclick="archiveObjective('${obj.id}')">${obj.archived ? 'Restore' : 'Archive'}</button>
+          <button class="btn btn-sm btn-danger" onclick="deleteObjective('${obj.id}')">Delete</button>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// --- Daily Tracker Goals/Objectives Section ---
+function renderDailyGoalsSection(date) {
+  const activeGoals = AppState.goals.filter(g => !g.archived);
+  const activeObjectives = AppState.objectives.filter(o => !o.archived);
+
+  if (activeGoals.length === 0 && activeObjectives.length === 0) return '';
+
+  let itemsHtml = '';
+
+  // Render active goals
+  activeGoals.forEach(goal => {
+    const progress = getGoalProgress(goal);
+    const isComplete = progress.pct === 100;
+    const color = isComplete ? 'var(--accent-green)' : 'var(--accent-primary)';
+    const pendingSteps = goal.steps.filter(s => !s.done);
+    const completedSteps = goal.steps.filter(s => s.done);
+
+    itemsHtml += `
+      <div class="go-daily-item">
+        <div class="go-daily-item-header">
+          <div class="go-daily-item-name">
+            <span class="go-badge go-badge-goal" style="font-size:0.58rem">Goal</span>
+            ${escapeHtml(goal.name)}
+          </div>
+          <div class="go-daily-item-pct">${progress.done}/${progress.total} (${progress.pct}%)</div>
+        </div>
+        <div class="go-mini-progress">
+          <div class="go-mini-progress-fill" style="width:${progress.pct}%;background:${color}"></div>
+        </div>
+        <div class="go-steps" style="margin-top:10px;margin-bottom:0">
+          ${pendingSteps.map(step => `
+            <div class="go-step" onclick="toggleGoalStep('${goal.id}','${step.id}');renderPage('today')">
+              <div class="go-step-check">\u2713</div>
+              <span class="go-step-text">${escapeHtml(step.text)}</span>
+            </div>
+          `).join('')}
+          ${completedSteps.length > 0 && pendingSteps.length > 0 ? `
+            <div style="font-size:0.72rem;color:var(--text-muted);padding:4px 0;cursor:pointer"
+              onclick="var el=this.nextElementSibling;el.style.display=el.style.display==='none'?'flex':'none';this.textContent=el.style.display==='none'?'Show ${completedSteps.length} completed...':'Hide completed'">
+              Show ${completedSteps.length} completed...
+            </div>
+            <div style="display:none;flex-direction:column;gap:4px">
+              ${completedSteps.map(step => `
+                <div class="go-step done" onclick="toggleGoalStep('${goal.id}','${step.id}');renderPage('today')">
+                  <div class="go-step-check">\u2713</div>
+                  <span class="go-step-text">${escapeHtml(step.text)}</span>
+                </div>
+              `).join('')}
+            </div>
+          ` : ''}
+          ${completedSteps.length > 0 && pendingSteps.length === 0 ? `
+            <div style="text-align:center;padding:8px;color:var(--accent-green);font-size:0.85rem;font-weight:600">\u2714 Goal complete!</div>
+          ` : ''}
+        </div>
+      </div>
+    `;
+  });
+
+  // Render active objectives
+  activeObjectives.forEach(obj => {
+    const progress = getObjectiveProgress(obj);
+    const isComplete = progress.pct >= 100;
+    const isValue = obj.type === 'value';
+    const color = isComplete ? 'var(--accent-green)' : isValue ? 'var(--accent-orange)' : 'var(--accent-blue)';
+    const badgeClass = isValue ? 'go-badge-obj-value' : 'go-badge-obj-list';
+    const badgeLabel = isValue ? 'Value' : 'List';
+
+    if (isValue) {
+      const unit = obj.unit ? ` ${escapeHtml(obj.unit)}` : '';
+      const todayEntry = obj.valueHistory.find(v => v.date === date);
+
+      itemsHtml += `
+        <div class="go-daily-item">
+          <div class="go-daily-item-header">
+            <div class="go-daily-item-name">
+              <span class="go-badge ${badgeClass}" style="font-size:0.58rem">${badgeLabel}</span>
+              ${escapeHtml(obj.name)}
+            </div>
+            <div class="go-daily-item-pct">${progress.done}${unit} / ${progress.total}${unit} (${progress.pct}%)</div>
+          </div>
+          <div class="go-mini-progress">
+            <div class="go-mini-progress-fill" style="width:${progress.pct}%;background:${color}"></div>
+          </div>
+          <div class="go-value-input-row" style="margin-top:10px;margin-bottom:0">
+            <div class="go-value-label">
+              Add progress${todayEntry ? `<span class="go-value-progress-text">(today: +${todayEntry.amount}${unit})</span>` : ''}
+            </div>
+            <input type="number" class="go-value-input" id="go-val-${obj.id}" placeholder="0" min="0" step="any">
+            <button class="go-value-add-btn" onclick="dailyAddObjectiveValue('${obj.id}','${date}')">Save</button>
+          </div>
+          ${isComplete ? '<div style="text-align:center;padding:6px;color:var(--accent-green);font-size:0.85rem;font-weight:600;margin-top:4px">\u2714 Objective reached!</div>' : ''}
+        </div>
+      `;
+    } else {
+      const pendingSteps = obj.steps.filter(s => !s.done);
+      const completedSteps = obj.steps.filter(s => s.done);
+
+      itemsHtml += `
+        <div class="go-daily-item">
+          <div class="go-daily-item-header">
+            <div class="go-daily-item-name">
+              <span class="go-badge ${badgeClass}" style="font-size:0.58rem">${badgeLabel}</span>
+              ${escapeHtml(obj.name)}
+            </div>
+            <div class="go-daily-item-pct">${progress.done}/${progress.total} (${progress.pct}%)</div>
+          </div>
+          <div class="go-mini-progress">
+            <div class="go-mini-progress-fill" style="width:${progress.pct}%;background:${color}"></div>
+          </div>
+          <div class="go-steps" style="margin-top:10px;margin-bottom:0">
+            ${pendingSteps.map(step => `
+              <div class="go-step" onclick="toggleObjectiveStep('${obj.id}','${step.id}');renderPage('today')">
+                <div class="go-step-check">\u2713</div>
+                <span class="go-step-text">${escapeHtml(step.text)}</span>
+              </div>
+            `).join('')}
+            ${completedSteps.length > 0 && pendingSteps.length > 0 ? `
+              <div style="font-size:0.72rem;color:var(--text-muted);padding:4px 0;cursor:pointer"
+                onclick="var el=this.nextElementSibling;el.style.display=el.style.display==='none'?'flex':'none';this.textContent=el.style.display==='none'?'Show ${completedSteps.length} completed...':'Hide completed'">
+                Show ${completedSteps.length} completed...
+              </div>
+              <div style="display:none;flex-direction:column;gap:4px">
+                ${completedSteps.map(step => `
+                  <div class="go-step done" onclick="toggleObjectiveStep('${obj.id}','${step.id}');renderPage('today')">
+                    <div class="go-step-check">\u2713</div>
+                    <span class="go-step-text">${escapeHtml(step.text)}</span>
+                  </div>
+                `).join('')}
+              </div>
+            ` : ''}
+            ${completedSteps.length > 0 && pendingSteps.length === 0 ? `
+              <div style="text-align:center;padding:8px;color:var(--accent-green);font-size:0.85rem;font-weight:600">\u2714 Objective complete!</div>
+            ` : ''}
+          </div>
+        </div>
+      `;
+    }
+  });
+
+  return `
+    <div class="go-daily-section">
+      <div class="card" style="margin-top:24px">
+        <div class="card-header">
+          <div class="card-title"><span class="icon">\uD83C\uDFAF</span> Goals & Objectives</div>
+          <span style="font-size:0.78rem;color:var(--text-muted)">${activeGoals.length + activeObjectives.length} active</span>
+        </div>
+        <div class="go-daily-items scroll-inner" style="max-height:600px">
+          ${itemsHtml}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function dailyAddObjectiveValue(objId, date) {
+  const input = document.getElementById('go-val-' + objId);
+  if (!input) return;
+  const val = parseFloat(input.value);
+  if (isNaN(val) || val === 0) {
+    showToast('Enter a valid number', 'warning');
+    return;
+  }
+  addObjectiveValue(objId, val, date);
+  showToast(`Added +${val} to objective`, 'success');
+  renderPage('today');
+}
+
+// --- Create/Edit Goal Modal ---
+function openCreateGoalModal() {
+  const html = `
+    <div class="modal-header">
+      <div class="modal-title">Create New Goal</div>
+      <button class="modal-close" onclick="closeModal()">\u2715</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">Goal Name *</label>
+        <input type="text" class="form-input" id="modal-goal-name" placeholder="e.g., Learn Piano">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Description</label>
+        <input type="text" class="form-input" id="modal-goal-desc" placeholder="Brief description (optional)">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Steps (what needs to be done)</label>
+        <div class="go-form-steps" id="modal-goal-steps">
+          <div class="go-form-step-row">
+            <input type="text" class="form-input" placeholder="Step 1..." data-step>
+            <button class="go-form-step-remove" onclick="this.parentElement.remove()" title="Remove">\u2715</button>
+          </div>
+          <div class="go-form-step-row">
+            <input type="text" class="form-input" placeholder="Step 2..." data-step>
+            <button class="go-form-step-remove" onclick="this.parentElement.remove()" title="Remove">\u2715</button>
+          </div>
+          <div class="go-form-step-row">
+            <input type="text" class="form-input" placeholder="Step 3..." data-step>
+            <button class="go-form-step-remove" onclick="this.parentElement.remove()" title="Remove">\u2715</button>
+          </div>
+        </div>
+        <button class="go-form-add-step" onclick="addModalStepRow('modal-goal-steps')">+ Add Step</button>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="submitCreateGoal()">Create Goal</button>
+    </div>
+  `;
+  openModal(html);
+}
+
+function openEditGoalModal(goalId) {
+  const goal = AppState.goals.find(g => g.id === goalId);
+  if (!goal) return;
+
+  const stepsHtml = goal.steps.map(step => `
+    <div class="go-form-step-row">
+      <input type="text" class="form-input" value="${escapeHtml(step.text)}" data-step data-done="${step.done}" data-done-date="${step.doneDate || ''}">
+      <button class="go-form-step-remove" onclick="this.parentElement.remove()" title="Remove">\u2715</button>
+    </div>
+  `).join('');
+
+  const html = `
+    <div class="modal-header">
+      <div class="modal-title">Edit Goal</div>
+      <button class="modal-close" onclick="closeModal()">\u2715</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">Goal Name *</label>
+        <input type="text" class="form-input" id="modal-goal-name" value="${escapeHtml(goal.name)}">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Description</label>
+        <input type="text" class="form-input" id="modal-goal-desc" value="${escapeHtml(goal.description)}">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Steps</label>
+        <div class="go-form-steps" id="modal-goal-steps">${stepsHtml}</div>
+        <button class="go-form-add-step" onclick="addModalStepRow('modal-goal-steps')">+ Add Step</button>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="submitEditGoal('${goal.id}')">Save Changes</button>
+    </div>
+  `;
+  openModal(html);
+}
+
+function addModalStepRow(containerId) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  const count = container.querySelectorAll('.go-form-step-row').length + 1;
+  const row = document.createElement('div');
+  row.className = 'go-form-step-row';
+  row.innerHTML = `
+    <input type="text" class="form-input" placeholder="Step ${count}..." data-step>
+    <button class="go-form-step-remove" onclick="this.parentElement.remove()" title="Remove">\u2715</button>
+  `;
+  container.appendChild(row);
+  row.querySelector('input').focus();
+}
+
+function submitCreateGoal() {
+  const name = document.getElementById('modal-goal-name')?.value.trim();
+  if (!name) { showToast('Please enter a goal name', 'warning'); return; }
+
+  const desc = document.getElementById('modal-goal-desc')?.value.trim() || '';
+  const stepInputs = document.querySelectorAll('#modal-goal-steps [data-step]');
+  const steps = [];
+  stepInputs.forEach(input => {
+    const text = input.value.trim();
+    if (text) steps.push(text);
+  });
+
+  if (steps.length === 0) { showToast('Add at least one step', 'warning'); return; }
+
+  createGoal(name, desc, steps);
+  closeModal();
+  showToast('Goal "' + name + '" created!', 'success');
+  renderPage('goals');
+}
+
+function submitEditGoal(goalId) {
+  const goal = AppState.goals.find(g => g.id === goalId);
+  if (!goal) return;
+
+  const name = document.getElementById('modal-goal-name')?.value.trim();
+  if (!name) { showToast('Please enter a goal name', 'warning'); return; }
+
+  goal.name = name;
+  goal.description = document.getElementById('modal-goal-desc')?.value.trim() || '';
+
+  const stepInputs = document.querySelectorAll('#modal-goal-steps [data-step]');
+  const newSteps = [];
+  stepInputs.forEach((input, i) => {
+    const text = input.value.trim();
+    if (text) {
+      newSteps.push({
+        id: 's' + i,
+        text,
+        done: input.dataset.done === 'true',
+        doneDate: input.dataset.doneDate || null,
+      });
+    }
+  });
+
+  if (newSteps.length === 0) { showToast('Add at least one step', 'warning'); return; }
+
+  goal.steps = newSteps;
+  saveToLocalStorage();
+  closeModal();
+  showToast('Goal updated', 'success');
+  renderPage('goals');
+}
+
+// --- Create/Edit Objective Modal ---
+let _modalObjType = 'list';
+
+function openCreateObjectiveModal() {
+  _modalObjType = 'list';
+  const html = `
+    <div class="modal-header">
+      <div class="modal-title">Create New Objective</div>
+      <button class="modal-close" onclick="closeModal()">\u2715</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">Objective Name *</label>
+        <input type="text" class="form-input" id="modal-obj-name" placeholder="e.g., No sweets for 30 days">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Description</label>
+        <input type="text" class="form-input" id="modal-obj-desc" placeholder="Brief description (optional)">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Type</label>
+        <div class="go-type-selector" id="modal-obj-type-sel">
+          <div class="go-type-option selected" onclick="selectObjType('list')" data-type="list">
+            <div class="go-type-option-icon">\uD83D\uDCCB</div>
+            <div class="go-type-option-label">List</div>
+            <div class="go-type-option-desc">Checklist of steps</div>
+          </div>
+          <div class="go-type-option" onclick="selectObjType('value')" data-type="value">
+            <div class="go-type-option-icon">\uD83D\uDCCA</div>
+            <div class="go-type-option-label">Value</div>
+            <div class="go-type-option-desc">Track number to a target</div>
+          </div>
+        </div>
+      </div>
+      <div id="modal-obj-list-fields">
+        <div class="form-group">
+          <label class="form-label">Steps</label>
+          <div class="go-form-steps" id="modal-obj-steps">
+            <div class="go-form-step-row">
+              <input type="text" class="form-input" placeholder="Step 1..." data-step>
+              <button class="go-form-step-remove" onclick="this.parentElement.remove()" title="Remove">\u2715</button>
+            </div>
+            <div class="go-form-step-row">
+              <input type="text" class="form-input" placeholder="Step 2..." data-step>
+              <button class="go-form-step-remove" onclick="this.parentElement.remove()" title="Remove">\u2715</button>
+            </div>
+          </div>
+          <button class="go-form-add-step" onclick="addModalStepRow('modal-obj-steps')">+ Add Step</button>
+        </div>
+      </div>
+      <div id="modal-obj-value-fields" style="display:none">
+        <div class="form-group">
+          <label class="form-label">Target Value *</label>
+          <input type="number" class="form-input" id="modal-obj-target" placeholder="e.g., 30" min="1" step="any">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Unit (optional)</label>
+          <input type="text" class="form-input" id="modal-obj-unit" placeholder="e.g., days, km, pages...">
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="submitCreateObjective()">Create Objective</button>
+    </div>
+  `;
+  openModal(html);
+}
+
+function selectObjType(type) {
+  _modalObjType = type;
+  document.querySelectorAll('#modal-obj-type-sel .go-type-option').forEach(el => {
+    el.classList.toggle('selected', el.dataset.type === type);
+  });
+  document.getElementById('modal-obj-list-fields').style.display = type === 'list' ? '' : 'none';
+  document.getElementById('modal-obj-value-fields').style.display = type === 'value' ? '' : 'none';
+}
+
+function submitCreateObjective() {
+  const name = document.getElementById('modal-obj-name')?.value.trim();
+  if (!name) { showToast('Please enter an objective name', 'warning'); return; }
+
+  const desc = document.getElementById('modal-obj-desc')?.value.trim() || '';
+
+  if (_modalObjType === 'list') {
+    const stepInputs = document.querySelectorAll('#modal-obj-steps [data-step]');
+    const steps = [];
+    stepInputs.forEach(input => {
+      const text = input.value.trim();
+      if (text) steps.push(text);
+    });
+    if (steps.length === 0) { showToast('Add at least one step', 'warning'); return; }
+    createObjective(name, desc, 'list', steps, null, null);
+  } else {
+    const target = document.getElementById('modal-obj-target')?.value;
+    if (!target || parseFloat(target) <= 0) { showToast('Enter a valid target value', 'warning'); return; }
+    const unit = document.getElementById('modal-obj-unit')?.value.trim() || '';
+    createObjective(name, desc, 'value', null, target, unit);
+  }
+
+  closeModal();
+  showToast('Objective "' + name + '" created!', 'success');
+  renderPage('goals');
+}
+
+function openEditObjectiveModal(objId) {
+  const obj = AppState.objectives.find(o => o.id === objId);
+  if (!obj) return;
+
+  const isValue = obj.type === 'value';
+
+  let fieldsHtml = '';
+  if (isValue) {
+    fieldsHtml = `
+      <div class="form-group">
+        <label class="form-label">Target Value</label>
+        <input type="number" class="form-input" id="modal-obj-target" value="${obj.targetValue}" min="1" step="any">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Unit</label>
+        <input type="text" class="form-input" id="modal-obj-unit" value="${escapeHtml(obj.unit || '')}">
+      </div>
+    `;
+  } else {
+    const stepsHtml = obj.steps.map(step => `
+      <div class="go-form-step-row">
+        <input type="text" class="form-input" value="${escapeHtml(step.text)}" data-step data-done="${step.done}" data-done-date="${step.doneDate || ''}">
+        <button class="go-form-step-remove" onclick="this.parentElement.remove()" title="Remove">\u2715</button>
+      </div>
+    `).join('');
+    fieldsHtml = `
+      <div class="form-group">
+        <label class="form-label">Steps</label>
+        <div class="go-form-steps" id="modal-obj-steps">${stepsHtml}</div>
+        <button class="go-form-add-step" onclick="addModalStepRow('modal-obj-steps')">+ Add Step</button>
+      </div>
+    `;
+  }
+
+  const html = `
+    <div class="modal-header">
+      <div class="modal-title">Edit Objective</div>
+      <button class="modal-close" onclick="closeModal()">\u2715</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">Objective Name *</label>
+        <input type="text" class="form-input" id="modal-obj-name" value="${escapeHtml(obj.name)}">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Description</label>
+        <input type="text" class="form-input" id="modal-obj-desc" value="${escapeHtml(obj.description || '')}">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Type</label>
+        <div class="go-badge ${isValue ? 'go-badge-obj-value' : 'go-badge-obj-list'}" style="display:inline-block">${isValue ? 'Value' : 'List'}</div>
+      </div>
+      ${fieldsHtml}
+    </div>
+    <div class="modal-footer">
+      <button class="btn" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="submitEditObjective('${obj.id}')">Save Changes</button>
+    </div>
+  `;
+  openModal(html);
+}
+
+function submitEditObjective(objId) {
+  const obj = AppState.objectives.find(o => o.id === objId);
+  if (!obj) return;
+
+  const name = document.getElementById('modal-obj-name')?.value.trim();
+  if (!name) { showToast('Please enter an objective name', 'warning'); return; }
+
+  obj.name = name;
+  obj.description = document.getElementById('modal-obj-desc')?.value.trim() || '';
+
+  if (obj.type === 'value') {
+    const target = document.getElementById('modal-obj-target')?.value;
+    if (target && parseFloat(target) > 0) {
+      obj.targetValue = parseFloat(target);
+    }
+    obj.unit = document.getElementById('modal-obj-unit')?.value.trim() || '';
+  } else {
+    const stepInputs = document.querySelectorAll('#modal-obj-steps [data-step]');
+    const newSteps = [];
+    stepInputs.forEach((input, i) => {
+      const text = input.value.trim();
+      if (text) {
+        newSteps.push({
+          id: 's' + i,
+          text,
+          done: input.dataset.done === 'true',
+          doneDate: input.dataset.doneDate || null,
+        });
+      }
+    });
+    if (newSteps.length === 0) { showToast('Add at least one step', 'warning'); return; }
+    obj.steps = newSteps;
+  }
+
+  saveToLocalStorage();
+  closeModal();
+  showToast('Objective updated', 'success');
+  renderPage('goals');
+}
+
 
 // ========== AUTO-LOAD LOGIC ==========
 
@@ -2375,6 +3306,12 @@ async function tryAutoLoadJSON() {
       }
       if (data.config) {
         AppState.config = data.config;
+      }
+      if (data.goals) {
+        AppState.goals = data.goals;
+      }
+      if (data.objectives) {
+        AppState.objectives = data.objectives;
       }
       saveToLocalStorage();
       console.log('Auto-loaded data from ' + AUTO_JSON_PATH);

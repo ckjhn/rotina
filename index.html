@@ -13,7 +13,7 @@
     <!-- ===== SIDEBAR ===== -->
     <aside class="sidebar">
       <div class="sidebar-header">
-        <div class="sidebar-logo">System v1.0</div>
+        <div class="sidebar-logo">System v1.1</div>
         <div class="sidebar-title">Life Dashboard</div>
       </div>
       
@@ -22,6 +22,12 @@
         <div class="nav-item active" data-page="today">
           <span class="nav-icon">📋</span>
           <span>Daily Tracker</span>
+        </div>
+        
+        <div class="nav-section-label">Goals</div>
+        <div class="nav-item" data-page="goals">
+          <span class="nav-icon">🎯</span>
+          <span>Goals & Objectives</span>
         </div>
         
         <div class="nav-section-label">Dashboards</div>
@@ -82,6 +88,7 @@
       <!-- Page Content -->
       <div class="page-content">
         <section class="page-section active" id="page-today"></section>
+        <section class="page-section" id="page-goals"></section>
         <section class="page-section" id="page-activities-dash"></section>
         <section class="page-section" id="page-studies-dash"></section>
         <section class="page-section" id="page-comparison"></section>
@@ -96,6 +103,11 @@
 
   <!-- Toast Notifications -->
   <div class="toast-container" id="toast-container"></div>
+
+  <!-- Modal Overlay -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal" id="modal-container"></div>
+  </div>
 
   <!-- App Script -->
   <script src="assets/app.js"></script>
