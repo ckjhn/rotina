@@ -1,6 +1,6 @@
 {
   "version": "1.1",
-  "exportDate": "2026-03-03T21:38:37.760Z",
+  "exportDate": "2026-03-03T21:42:16.089Z",
   "config": {
     "activities": [
       {
@@ -267,6 +267,14 @@
         "course": {
           "done": true,
           "detail": "Programação Orientada a Objeto - Python"
+        },
+        "linguistics": {
+          "done": true,
+          "detail": "Immersion"
+        },
+        "reading_writing": {
+          "done": false,
+          "detail": ""
         }
       }
     }
