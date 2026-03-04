@@ -2147,9 +2147,12 @@ function renderSettingsPage() {
         <div class="config-item-name">${item.name}</div>
         <div class="config-item-desc">Placeholder: ${item.placeholder}</div>
       </div>
-      <select class="form-select priority-select" onchange="updateItemFrequency('activities', ${idx}, this.value)">
-        ${FREQUENCY_OPTIONS.map(f => `<option value="${f.value}" ${item.frequency === f.value ? 'selected' : ''}>${f.label}</option>`).join('')}
-      </select>
+      <div class="config-item-actions">
+        <select class="form-select priority-select" onchange="updateItemFrequency('activities', ${idx}, this.value)">
+          ${FREQUENCY_OPTIONS.map(f => `<option value="${f.value}" ${item.frequency === f.value ? 'selected' : ''}>${f.label}</option>`).join('')}
+        </select>
+        <button class="btn btn-delete-config" onclick="deleteConfigItem('activities', ${idx})" title="Delete ${item.name}">🗑️</button>
+      </div>
     </div>
   `).join('');
 
@@ -2159,9 +2162,12 @@ function renderSettingsPage() {
         <div class="config-item-name">${item.name}</div>
         <div class="config-item-desc">Placeholder: ${item.placeholder}</div>
       </div>
-      <select class="form-select priority-select" onchange="updateItemFrequency('studies', ${idx}, this.value)">
-        ${FREQUENCY_OPTIONS.map(f => `<option value="${f.value}" ${item.frequency === f.value ? 'selected' : ''}>${f.label}</option>`).join('')}
-      </select>
+      <div class="config-item-actions">
+        <select class="form-select priority-select" onchange="updateItemFrequency('studies', ${idx}, this.value)">
+          ${FREQUENCY_OPTIONS.map(f => `<option value="${f.value}" ${item.frequency === f.value ? 'selected' : ''}>${f.label}</option>`).join('')}
+        </select>
+        <button class="btn btn-delete-config" onclick="deleteConfigItem('studies', ${idx})" title="Delete ${item.name}">🗑️</button>
+      </div>
     </div>
   `).join('');
 
@@ -2266,6 +2272,18 @@ function resetConfig() {
     AppState.config.studies = deepClone(DEFAULT_STUDIES);
     saveToLocalStorage();
     showToast('Configuration reset to defaults', 'success');
+    renderSettingsPage();
+  }
+}
+
+function deleteConfigItem(category, index) {
+  const item = AppState.config[category][index];
+  if (!item) return;
+  const label = category === 'activities' ? 'activity' : 'study';
+  if (confirm(`Delete "${item.name}" from ${label} list?\n\nThis removes it from the configuration. Historical data for this item will be preserved.`)) {
+    AppState.config[category].splice(index, 1);
+    saveToLocalStorage();
+    showToast(`Deleted "${item.name}"`, 'success');
     renderSettingsPage();
   }
 }
