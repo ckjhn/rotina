@@ -1,6 +1,6 @@
 {
   "version": "1.1",
-  "exportDate": "2026-03-04T19:27:53.905Z",
+  "exportDate": "2026-03-04T20:16:50.682Z",
   "config": {
     "activities": [
       {
@@ -126,23 +126,7 @@
         "id": "coding",
         "name": "Coding / Programming",
         "placeholder": "content / topic",
-        "frequency": "biweekly",
-        "category": "studies",
-        "group": "mandatory"
-      },
-      {
-        "id": "interchange",
-        "name": "Interchange / Scholarship",
-        "placeholder": "content",
-        "frequency": "monthly",
-        "category": "studies",
-        "group": "mandatory"
-      },
-      {
-        "id": "exterior_job",
-        "name": "Exterior Job / Emigration",
-        "placeholder": "content",
-        "frequency": "monthly",
+        "frequency": "weekly",
         "category": "studies",
         "group": "mandatory"
       },
@@ -177,6 +161,14 @@
         "frequency": "optional",
         "category": "studies",
         "group": "optional"
+      },
+      {
+        "id": "exterior_job_emigration_or_interchange_scholarship",
+        "name": "Exterior Job / Emigration or Interchange / Scholarship",
+        "placeholder": "content",
+        "frequency": "monthly",
+        "category": "studies",
+        "group": "mandatory"
       }
     ]
   },
@@ -311,6 +303,14 @@
         "anki": {
           "done": true,
           "detail": "20 words"
+        },
+        "reading": {
+          "done": true,
+          "detail": "Three Body Problem"
+        },
+        "physical_training": {
+          "done": true,
+          "detail": "Gym"
         }
       },
       "studies": {
@@ -319,8 +319,20 @@
           "detail": "Python - Programação Orientada a Objetos"
         },
         "college": {
-          "done": true,
+          "done": false,
           "detail": ""
+        },
+        "coding": {
+          "done": true,
+          "detail": "Python - Programação Orientada a Objetos"
+        },
+        "linguistics": {
+          "done": true,
+          "detail": "Immersion"
+        },
+        "reading_writing": {
+          "done": true,
+          "detail": "Three Body Problem"
         }
       }
     }
