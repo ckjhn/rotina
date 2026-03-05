@@ -1,6 +1,6 @@
 {
   "version": "1.1",
-  "exportDate": "2026-03-05T11:05:34.608Z",
+  "exportDate": "2026-03-05T16:20:36.685Z",
   "config": {
     "activities": [
       {
@@ -298,7 +298,7 @@
         },
         "language_immersion": {
           "done": true,
-          "detail": "Young Sheldon T5 E7 [en]"
+          "detail": "Young Sheldon T5 E7-8 [en]"
         },
         "anki": {
           "done": true,
@@ -341,9 +341,34 @@
         "work": {
           "done": true,
           "detail": "Prolagos [Programador I]"
+        },
+        "philosophy": {
+          "done": true,
+          "detail": "Stoicism Practice"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "Young Sheldon T5 E12 [en]"
+        },
+        "social": {
+          "done": true,
+          "detail": "Work Conversation"
+        },
+        "anki": {
+          "done": true,
+          "detail": "17 words"
         }
       },
-      "studies": {}
+      "studies": {
+        "college": {
+          "done": false,
+          "detail": ""
+        },
+        "linguistics": {
+          "done": true,
+          "detail": "Immersion"
+        }
+      }
     }
   },
   "goals": [],
