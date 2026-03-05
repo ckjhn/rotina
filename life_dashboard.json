@@ -1,6 +1,6 @@
 {
   "version": "1.1",
-  "exportDate": "2026-03-04T20:16:50.682Z",
+  "exportDate": "2026-03-05T11:05:34.608Z",
   "config": {
     "activities": [
       {
@@ -305,12 +305,12 @@
           "detail": "20 words"
         },
         "reading": {
-          "done": true,
-          "detail": "Three Body Problem"
+          "done": false,
+          "detail": ""
         },
         "physical_training": {
           "done": true,
-          "detail": "Gym"
+          "detail": "Gym [Chest and Triceps]"
         }
       },
       "studies": {
@@ -331,10 +331,19 @@
           "detail": "Immersion"
         },
         "reading_writing": {
-          "done": true,
-          "detail": "Three Body Problem"
+          "done": false,
+          "detail": ""
         }
       }
+    },
+    "2026-03-05": {
+      "activities": {
+        "work": {
+          "done": true,
+          "detail": "Prolagos [Programador I]"
+        }
+      },
+      "studies": {}
     }
   },
   "goals": [],
