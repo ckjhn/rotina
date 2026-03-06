@@ -103,7 +103,7 @@ body::before {
 /* Sidebar */
 .sidebar {
   width: 260px;
-  min-height: 100vh;
+  height: 100vh;
   background: var(--bg-secondary);
   border-right: 1px solid var(--border-primary);
   display: flex;
@@ -114,11 +114,13 @@ body::before {
   bottom: 0;
   z-index: 100;
   transition: transform var(--transition-slow);
+  overflow: hidden;
 }
 
 .sidebar-header {
   padding: 24px 20px;
   border-bottom: 1px solid var(--border-primary);
+  flex-shrink: 0;
 }
 
 .sidebar-logo {
@@ -142,6 +144,8 @@ body::before {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  overflow-y: auto;
+  min-height: 0;
 }
 
 .nav-section-label {
@@ -189,6 +193,7 @@ body::before {
 .sidebar-footer {
   padding: 16px 12px;
   border-top: 1px solid var(--border-primary);
+  flex-shrink: 0;
 }
 
 .sidebar-footer .nav-item {
@@ -1952,4 +1957,479 @@ body::before {
 .go-value-history-entry .remove-entry:hover {
   color: var(--accent-secondary);
   background: var(--accent-secondary-dim);
+}
+
+/* ========== ANKI STATS BAR ========== */
+
+.anki-stats-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, rgba(78,205,196,0.08), rgba(108,159,255,0.05));
+  border: 1px solid rgba(78,205,196,0.15);
+  border-radius: var(--radius-md);
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.anki-stat {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+}
+
+.anki-stat-icon {
+  font-size: 1.1rem;
+}
+
+.anki-stat-label {
+  color: var(--text-secondary);
+}
+
+.anki-stat-value {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--accent-primary);
+  font-weight: 600;
+}
+
+/* ========== SCHEDULE TAGS & OFF DAY ========== */
+
+.schedule-off-tag {
+  font-size: 0.62rem;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.04);
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.activity-item.off-day {
+  opacity: 0.5;
+}
+
+.activity-item.off-day.completed {
+  opacity: 0.85;
+}
+
+/* ========== CALENDAR & EVENTS ========== */
+
+.cal-events-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cal-event {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 16px;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--accent-blue);
+  transition: all var(--transition-fast);
+}
+
+.cal-event:hover {
+  background: var(--bg-card-hover);
+}
+
+.cal-event.cal-urgent {
+  border-left-color: var(--accent-secondary);
+  background: rgba(255,107,107,0.06);
+}
+
+.cal-event.cal-soon {
+  border-left-color: var(--accent-orange);
+  background: rgba(251,146,60,0.04);
+}
+
+.cal-event.cal-week {
+  border-left-color: var(--accent-warning);
+}
+
+.cal-event.cal-past {
+  opacity: 0.5;
+  border-left-color: var(--text-muted);
+}
+
+.cal-event-date {
+  text-align: center;
+  min-width: 44px;
+}
+
+.cal-event-day {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.cal-event-month {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.cal-event-info {
+  flex: 1;
+}
+
+.cal-event-title {
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--text-primary);
+}
+
+.cal-event-desc {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.cal-event-cat {
+  display: inline-block;
+  font-size: 0.62rem;
+  padding: 1px 8px;
+  border-radius: 10px;
+  background: var(--accent-blue-dim);
+  color: var(--accent-blue);
+  margin-top: 4px;
+}
+
+.cal-event-countdown {
+  text-align: center;
+  min-width: 60px;
+}
+
+.cal-event-days-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--accent-primary);
+}
+
+.cal-event-actions {
+  display: flex;
+  gap: 4px;
+}
+
+/* Mini Calendar */
+.mini-calendar {
+  padding: 12px;
+}
+
+.mini-cal-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  margin-bottom: 4px;
+}
+
+.mini-cal-day-label {
+  text-align: center;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  padding: 4px;
+}
+
+.mini-cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.mini-cal-cell {
+  text-align: center;
+  padding: 8px 4px;
+  font-size: 0.78rem;
+  font-family: 'JetBrains Mono', monospace;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  color: var(--text-secondary);
+  position: relative;
+}
+
+.mini-cal-cell:hover:not(.empty) {
+  background: var(--bg-card-hover);
+}
+
+.mini-cal-cell.today {
+  background: var(--accent-primary-dim);
+  color: var(--accent-primary);
+  font-weight: 700;
+}
+
+.mini-cal-cell.has-event::after {
+  content: '';
+  position: absolute;
+  bottom: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent-orange);
+}
+
+.mini-cal-cell.has-activity {
+  color: var(--text-primary);
+}
+
+.mini-cal-cell.empty {
+  cursor: default;
+}
+
+/* Calendar Popup */
+.cal-popup-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cal-popup-item {
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  background: var(--bg-tertiary);
+  border-left: 3px solid var(--accent-blue);
+}
+
+.cal-popup-item.cal-popup-today {
+  border-left-color: var(--accent-secondary);
+  background: rgba(255,107,107,0.08);
+}
+
+.cal-popup-item.cal-popup-tomorrow {
+  border-left-color: var(--accent-orange);
+  background: rgba(251,146,60,0.06);
+}
+
+.cal-popup-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.cal-popup-days {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.cal-popup-item-meta {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.cal-popup-item-desc {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+/* ========== POMODORO / STUDY MODE ========== */
+
+.pomodoro-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-lg);
+}
+
+.pomodoro-phase-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 24px;
+}
+
+.pomodoro-timer-ring {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: conic-gradient(
+    var(--pom-color, var(--accent-primary)) var(--pom-progress, 0%),
+    rgba(255,255,255,0.04) var(--pom-progress, 0%)
+  );
+  padding: 8px;
+  margin-bottom: 20px;
+}
+
+.pomodoro-timer-display {
+  width: 204px;
+  height: 204px;
+  border-radius: 50%;
+  background: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 3.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 4px;
+}
+
+.pomodoro-cycles {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.pom-cycle-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--text-muted);
+  transition: all var(--transition-normal);
+}
+
+.pom-cycle-dot.active {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 8px rgba(78,205,196,0.4);
+}
+
+.pom-cycle-dot.filled {
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
+}
+
+.pomodoro-controls {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.pom-btn-main {
+  min-width: 120px;
+  font-size: 1rem;
+  padding: 10px 24px;
+}
+
+.pom-history-entry {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: rgba(255,255,255,0.02);
+  border-radius: var(--radius-sm);
+  margin-bottom: 4px;
+}
+
+.pom-hist-subject {
+  font-size: 0.85rem;
+  color: var(--text-primary);
+}
+
+.pom-hist-stats {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--accent-primary);
+}
+
+/* ========== SCHEDULE CONFIG ========== */
+
+.schedule-config-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.schedule-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: rgba(255,255,255,0.02);
+  border-radius: var(--radius-sm);
+  gap: 12px;
+}
+
+.schedule-item-name {
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.schedule-days {
+  display: flex;
+  gap: 3px;
+}
+
+.schedule-day-btn {
+  width: 32px;
+  height: 28px;
+  border: 1px solid var(--border-primary);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.65rem;
+  font-family: 'JetBrains Mono', monospace;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.schedule-day-btn.active {
+  background: var(--accent-primary-dim);
+  color: var(--accent-primary);
+  border-color: rgba(78,205,196,0.3);
+  font-weight: 600;
+}
+
+.schedule-day-btn:hover {
+  background: var(--bg-card-hover);
+}
+
+/* ========== TRACKER CARD TYPE ========== */
+
+.go-card.type-tracker .go-card-accent {
+  background: var(--accent-orange);
+}
+
+/* ========== RESPONSIVE ADJUSTMENTS ========== */
+
+@media (max-width: 768px) {
+  .anki-stats-bar {
+    gap: 10px;
+    padding: 10px 14px;
+  }
+  .anki-stat {
+    font-size: 0.75rem;
+  }
+  .pomodoro-timer-ring {
+    width: 180px;
+    height: 180px;
+  }
+  .pomodoro-timer-display {
+    width: 164px;
+    height: 164px;
+    font-size: 2.5rem;
+  }
+  .schedule-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .cal-event {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
 }

@@ -32,13 +32,6 @@
         "category": "activities"
       },
       {
-        "id": "philosophy",
-        "name": "Philosophy",
-        "placeholder": "Stoicism",
-        "frequency": "daily",
-        "category": "activities"
-      },
-      {
         "id": "scientia_momentum",
         "name": "Scientia Momentum / College",
         "placeholder": "one / other / both",
@@ -79,6 +72,14 @@
         "placeholder": "what kind of contact?",
         "frequency": "daily",
         "category": "activities"
+      },
+      {
+        "id": "philosophy_practice",
+        "name": "Philosophy Practice",
+        "placeholder": "name",
+        "frequency": "daily",
+        "category": "activities",
+        "group": "mandatory"
       }
     ],
     "studies": [
@@ -186,6 +187,11 @@
         "category": "studies",
         "group": "mandatory"
       }
+    ],
+    "_deletedIds": [
+      "exterior_job",
+      "interchange",
+      "philosophy"
     ]
   },
   "history": {
@@ -401,6 +407,172 @@
           "detail": "Three Body Problem"
         }
       }
+    },
+    "2026-03-04": {
+      "activities": {
+        "work": {
+          "done": true,
+          "detail": "Prolagos [Programador I]"
+        },
+        "hobby": {
+          "done": true,
+          "detail": "Gaming"
+        },
+        "scientia_momentum": {
+          "done": true,
+          "detail": "Scientia Momentum"
+        },
+        "philosophy": {
+          "done": true,
+          "detail": "Stoicism Practice"
+        },
+        "social": {
+          "done": true,
+          "detail": "Work Conversation"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "Young Sheldon T5 E7-8 [en]"
+        },
+        "anki": {
+          "done": true,
+          "detail": "20 words"
+        },
+        "reading": {
+          "done": false,
+          "detail": ""
+        },
+        "physical_training": {
+          "done": true,
+          "detail": "Gym [Chest and Triceps]"
+        }
+      },
+      "studies": {
+        "course": {
+          "done": true,
+          "detail": "Python - Programação Orientada a Objetos"
+        },
+        "college": {
+          "done": false,
+          "detail": ""
+        },
+        "coding": {
+          "done": true,
+          "detail": "Python - Programação Orientada a Objetos"
+        },
+        "linguistics": {
+          "done": true,
+          "detail": "Immersion"
+        },
+        "reading_writing": {
+          "done": false,
+          "detail": ""
+        }
+      }
+    },
+    "2026-03-05": {
+      "activities": {
+        "work": {
+          "done": true,
+          "detail": "Prolagos [Programador I]"
+        },
+        "philosophy": {
+          "done": true,
+          "detail": "Stoicism Practice"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "Young Sheldon T5 E12 [en]"
+        },
+        "social": {
+          "done": true,
+          "detail": "Work Conversation"
+        },
+        "anki": {
+          "done": true,
+          "detail": "17 words"
+        },
+        "physical_training": {
+          "done": true,
+          "detail": "Gym [Back and Biceps]"
+        },
+        "reading": {
+          "done": true,
+          "detail": "Three Body Problem"
+        },
+        "hobby": {
+          "done": true,
+          "detail": "Gaming"
+        },
+        "scientia_momentum": {
+          "done": false,
+          "detail": ""
+        }
+      },
+      "studies": {
+        "college": {
+          "done": false,
+          "detail": ""
+        },
+        "linguistics": {
+          "done": true,
+          "detail": "Immersion"
+        },
+        "reading_writing": {
+          "done": true,
+          "detail": "Three Body Problem"
+        },
+        "course": {
+          "done": false,
+          "detail": ""
+        }
+      }
+    },
+    "2026-03-06": {
+      "activities": {
+        "scientia_momentum": {
+          "done": true,
+          "detail": "Scientia Momentum"
+        },
+        "work": {
+          "done": true,
+          "detail": "Prolagos [Programador I]"
+        },
+        "hobby": {
+          "done": true,
+          "detail": "Gaming"
+        },
+        "philosophy": {
+          "done": true,
+          "detail": "Stoicism Practice"
+        },
+        "anki": {
+          "done": true,
+          "detail": "19 words"
+        },
+        "philosophy_practice": {
+          "done": true,
+          "detail": "Stoicism"
+        },
+        "social": {
+          "done": true,
+          "detail": "Work Conversation"
+        },
+        "mining_sentences": {
+          "done": true,
+          "detail": "10"
+        }
+      },
+      "studies": {
+        "course": {
+          "done": true,
+          "detail": "Python - Programação Orientada a Objetos"
+        },
+        "coding": {
+          "done": true,
+          "detail": "Python - Programação Orientada a Objetos"
+        }
+      }
     }
   },
   "goals": [],
@@ -425,9 +597,116 @@
       "createdAt": "2026-03-03",
       "archived": false,
       "targetValue": 180,
-      "currentValue": 0,
+      "currentValue": 10,
       "unit": "words",
-      "valueHistory": []
+      "valueHistory": [
+        {
+          "date": "2026-03-06",
+          "amount": 10
+        }
+      ]
     }
-  ]
+  ],
+  "calendarEvents": [],
+  "trackers": [
+    {
+      "id": "trk_mmeyics2mz8z3",
+      "name": "Three Body Problem (book)",
+      "description": "",
+      "targetValue": 320,
+      "currentValue": 0,
+      "unit": "pages",
+      "history": [],
+      "archived": false,
+      "createdAt": "2026-03-06"
+    },
+    {
+      "id": "trk_mmeyj2kdtn340",
+      "name": "Travel",
+      "description": "Money for leave the country and live for 3 months on the exterior",
+      "targetValue": 50000,
+      "currentValue": 0,
+      "unit": "R$",
+      "history": [],
+      "archived": false,
+      "createdAt": "2026-03-06"
+    },
+    {
+      "id": "trk_mmeyjkza9qjnf",
+      "name": "Emergency Money",
+      "description": "",
+      "targetValue": 3000,
+      "currentValue": 0,
+      "unit": "R$",
+      "history": [],
+      "archived": false,
+      "createdAt": "2026-03-06"
+    },
+    {
+      "id": "trk_mmeykmcq0heqy",
+      "name": "Investment",
+      "description": "",
+      "targetValue": 1000,
+      "currentValue": 0,
+      "unit": "R$",
+      "history": [],
+      "archived": false,
+      "createdAt": "2026-03-06"
+    }
+  ],
+  "schedules": {
+    "work": {
+      "days": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "physical_training": {
+      "days": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    "mining_sentences": {
+      "days": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "language_class": {
+      "days": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "social": {
+      "days": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    }
+  },
+  "pomodoroConfig": {
+    "workMinutes": 30,
+    "shortBreakMinutes": 5,
+    "longBreakMinutes": 30,
+    "cyclesBeforeLong": 4
+  },
+  "pomodoroHistory": []
 }
