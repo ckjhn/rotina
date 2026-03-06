@@ -63,6 +63,16 @@ const AppState = {
   },
   goals: [],           // Array of goal objects
   objectives: [],      // Array of objective objects
+  calendarEvents: [],  // Array of calendar events with date, title, description
+  trackers: [],        // Progress trackers (money, books, etc.)
+  schedules: {},       // Activity schedule overrides { activityId: { days: [1,2,3,4,5], exceptions: [] } }
+  pomodoroConfig: {    // Pomodoro timer settings
+    workMinutes: 30,
+    shortBreakMinutes: 5,
+    longBreakMinutes: 30,
+    cyclesBeforeLong: 4,
+  },
+  pomodoroHistory: [], // { date, subject, cycles, totalMinutes }
   comparisonMode: 'week',
   comparisonDateA: null,
   comparisonDateB: null,
@@ -73,6 +83,11 @@ const STORAGE_KEY_HISTORY = 'lifedash_history';
 const STORAGE_KEY_CONFIG = 'lifedash_config';
 const STORAGE_KEY_GOALS = 'lifedash_goals';
 const STORAGE_KEY_OBJECTIVES = 'lifedash_objectives';
+const STORAGE_KEY_CALENDAR = 'lifedash_calendar';
+const STORAGE_KEY_TRACKERS = 'lifedash_trackers';
+const STORAGE_KEY_SCHEDULES = 'lifedash_schedules';
+const STORAGE_KEY_POMODORO_CFG = 'lifedash_pomodoro_config';
+const STORAGE_KEY_POMODORO_HIST = 'lifedash_pomodoro_history';
 const AUTO_JSON_PATH = 'life_dashboard.json';
 
 // ========== UTILITY FUNCTIONS ==========
@@ -147,6 +162,11 @@ function saveToLocalStorage() {
     localStorage.setItem(STORAGE_KEY_CONFIG, JSON.stringify(AppState.config));
     localStorage.setItem(STORAGE_KEY_GOALS, JSON.stringify(AppState.goals));
     localStorage.setItem(STORAGE_KEY_OBJECTIVES, JSON.stringify(AppState.objectives));
+    localStorage.setItem(STORAGE_KEY_CALENDAR, JSON.stringify(AppState.calendarEvents));
+    localStorage.setItem(STORAGE_KEY_TRACKERS, JSON.stringify(AppState.trackers));
+    localStorage.setItem(STORAGE_KEY_SCHEDULES, JSON.stringify(AppState.schedules));
+    localStorage.setItem(STORAGE_KEY_POMODORO_CFG, JSON.stringify(AppState.pomodoroConfig));
+    localStorage.setItem(STORAGE_KEY_POMODORO_HIST, JSON.stringify(AppState.pomodoroHistory));
   } catch (e) {
     console.warn('localStorage save failed:', e);
   }
@@ -158,10 +178,20 @@ function loadFromLocalStorage() {
     const conf = localStorage.getItem(STORAGE_KEY_CONFIG);
     const goals = localStorage.getItem(STORAGE_KEY_GOALS);
     const objectives = localStorage.getItem(STORAGE_KEY_OBJECTIVES);
+    const calendar = localStorage.getItem(STORAGE_KEY_CALENDAR);
+    const trackers = localStorage.getItem(STORAGE_KEY_TRACKERS);
+    const schedules = localStorage.getItem(STORAGE_KEY_SCHEDULES);
+    const pomCfg = localStorage.getItem(STORAGE_KEY_POMODORO_CFG);
+    const pomHist = localStorage.getItem(STORAGE_KEY_POMODORO_HIST);
     if (hist) AppState.history = JSON.parse(hist);
     if (conf) AppState.config = JSON.parse(conf);
     if (goals) AppState.goals = JSON.parse(goals);
     if (objectives) AppState.objectives = JSON.parse(objectives);
+    if (calendar) AppState.calendarEvents = JSON.parse(calendar);
+    if (trackers) AppState.trackers = JSON.parse(trackers);
+    if (schedules) AppState.schedules = JSON.parse(schedules);
+    if (pomCfg) AppState.pomodoroConfig = JSON.parse(pomCfg);
+    if (pomHist) AppState.pomodoroHistory = JSON.parse(pomHist);
     return !!(hist || conf);
   } catch (e) {
     console.warn('localStorage load failed:', e);
@@ -171,12 +201,17 @@ function loadFromLocalStorage() {
 
 function exportToJSON() {
   const data = {
-    version: '1.1',
+    version: '2.0',
     exportDate: new Date().toISOString(),
     config: AppState.config,
     history: AppState.history,
     goals: AppState.goals,
     objectives: AppState.objectives,
+    calendarEvents: AppState.calendarEvents,
+    trackers: AppState.trackers,
+    schedules: AppState.schedules,
+    pomodoroConfig: AppState.pomodoroConfig,
+    pomodoroHistory: AppState.pomodoroHistory,
   };
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
@@ -209,6 +244,21 @@ function importFromJSON(file) {
         if (data.objectives) {
           AppState.objectives = data.objectives;
         }
+        if (data.calendarEvents) {
+          AppState.calendarEvents = data.calendarEvents;
+        }
+        if (data.trackers) {
+          AppState.trackers = data.trackers;
+        }
+        if (data.schedules) {
+          AppState.schedules = data.schedules;
+        }
+        if (data.pomodoroConfig) {
+          AppState.pomodoroConfig = data.pomodoroConfig;
+        }
+        if (data.pomodoroHistory) {
+          AppState.pomodoroHistory = data.pomodoroHistory;
+        }
         saveToLocalStorage();
         resolve(data);
         showToast('Data imported successfully', 'success');
@@ -231,14 +281,18 @@ function initConfig() {
   if (!AppState.config.studies || AppState.config.studies.length === 0) {
     AppState.config.studies = deepClone(DEFAULT_STUDIES);
   }
-  // Merge any new items from defaults that might not exist in saved config
+  // Track deleted items so defaults don't re-appear
+  if (!AppState.config._deletedIds) {
+    AppState.config._deletedIds = [];
+  }
+  // Only merge NEW items from defaults that haven't been explicitly deleted
   DEFAULT_ACTIVITIES.forEach(da => {
-    if (!AppState.config.activities.find(a => a.id === da.id)) {
+    if (!AppState.config.activities.find(a => a.id === da.id) && !AppState.config._deletedIds.includes(da.id)) {
       AppState.config.activities.push(deepClone(da));
     }
   });
   DEFAULT_STUDIES.forEach(ds => {
-    if (!AppState.config.studies.find(s => s.id === ds.id)) {
+    if (!AppState.config.studies.find(s => s.id === ds.id) && !AppState.config._deletedIds.includes(ds.id)) {
       AppState.config.studies.push(deepClone(ds));
     }
   });
@@ -615,6 +669,9 @@ function renderPage(pageId) {
   switch (pageId) {
     case 'today': renderTodayPage(); break;
     case 'goals': renderGoalsPage(); break;
+    case 'calendar': renderCalendarPage(); break;
+    case 'trackers': renderTrackersPage(); break;
+    case 'pomodoro': renderPomodoroPage(); break;
     case 'activities-dash': renderActivitiesDashboard(); break;
     case 'studies-dash': renderStudiesDashboard(); break;
     case 'comparison': renderComparisonPage(); break;
@@ -630,6 +687,9 @@ function getPageTitle(pageId) {
   const titles = {
     'today': 'Daily Tracker',
     'goals': 'Goals & Objectives',
+    'calendar': 'Calendar & Events',
+    'trackers': 'Progress Trackers',
+    'pomodoro': 'Study Mode',
     'activities-dash': 'Activities Dashboard',
     'studies-dash': 'Studies Dashboard',
     'comparison': 'Comparison View',
@@ -662,6 +722,13 @@ function renderTodayPage() {
     ? insights.map(i => `<div class="ai-insight ${i.type}"><span class="ai-insight-icon">${i.icon}</span><div class="ai-insight-text">${i.text}</div></div>`).join('')
     : '<div class="ai-insight success"><span class="ai-insight-icon">✨</span><div class="ai-insight-text">Everything looks great! Keep going.</div></div>';
 
+  // Anki word counter
+  const ankiStats = calcAnkiStats();
+
+  // Day of week label for schedule
+  const dayOfWeek = new Date(date + 'T12:00:00').getDay(); // 0=Sun
+  const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
   container.innerHTML = `
     <div class="date-nav">
       <button class="date-nav-btn" onclick="navigateDate(-1)">◀</button>
@@ -693,6 +760,16 @@ function renderTodayPage() {
         <div class="stat-sub">consecutive 80%+ days</div>
       </div>
     </div>
+
+    ${ankiStats.totalWords > 0 ? `
+    <div class="anki-stats-bar">
+      <div class="anki-stat"><span class="anki-stat-icon">📇</span><span class="anki-stat-label">Anki Total:</span><span class="anki-stat-value">${ankiStats.totalWords} words</span></div>
+      <div class="anki-stat"><span class="anki-stat-label">This week:</span><span class="anki-stat-value">${ankiStats.weekWords} words</span></div>
+      <div class="anki-stat"><span class="anki-stat-label">This month:</span><span class="anki-stat-value">${ankiStats.monthWords} words</span></div>
+      <div class="anki-stat"><span class="anki-stat-label">Streak:</span><span class="anki-stat-value">${ankiStats.streak}d</span></div>
+      <div class="anki-stat"><span class="anki-stat-label">Avg/day:</span><span class="anki-stat-value">${ankiStats.avgPerDay}</span></div>
+    </div>
+    ` : ''}
 
     <div class="ai-panel" style="margin-bottom: 24px;">
       <div class="ai-header">
@@ -728,19 +805,31 @@ function renderTodayPage() {
     </div>
 
     ${renderDailyGoalsSection(date)}
+    ${renderDailyTrackersSection()}
   `;
 }
 
 function renderChecklist(items, date, category) {
+  const dayOfWeek = new Date(date + 'T12:00:00').getDay(); // 0=Sun
   return items.map(item => {
     const status = getItemStatus(date, category, item.id);
     const freqMeta = FREQUENCY_META[item.frequency];
+    const schedule = AppState.schedules[item.id];
+    let scheduleTag = '';
+    let isOffDay = false;
+    if (schedule && schedule.days && schedule.days.length > 0 && schedule.days.length < 7) {
+      isOffDay = !schedule.days.includes(dayOfWeek);
+      if (isOffDay) {
+        scheduleTag = '<span class="schedule-off-tag">Off day</span>';
+      }
+    }
     return `
-      <div class="activity-item ${status.done ? 'completed' : ''}" data-id="${item.id}" data-category="${category}">
+      <div class="activity-item ${status.done ? 'completed' : ''} ${isOffDay ? 'off-day' : ''}" data-id="${item.id}" data-category="${category}">
         <div class="check-box" onclick="toggleItem('${date}','${category}','${item.id}')">✓</div>
         <div class="activity-info">
           <span class="activity-name">${item.name}</span>
           <span class="activity-tag ${freqMeta.tagClass}">${freqMeta.label}</span>
+          ${scheduleTag}
         </div>
         <input type="text" class="activity-detail-input" placeholder="${item.placeholder}"
           value="${escapeHtml(status.detail)}"
@@ -2147,9 +2236,12 @@ function renderSettingsPage() {
         <div class="config-item-name">${item.name}</div>
         <div class="config-item-desc">Placeholder: ${item.placeholder}</div>
       </div>
-      <select class="form-select priority-select" onchange="updateItemFrequency('activities', ${idx}, this.value)">
-        ${FREQUENCY_OPTIONS.map(f => `<option value="${f.value}" ${item.frequency === f.value ? 'selected' : ''}>${f.label}</option>`).join('')}
-      </select>
+      <div class="config-item-actions">
+        <select class="form-select priority-select" onchange="updateItemFrequency('activities', ${idx}, this.value)">
+          ${FREQUENCY_OPTIONS.map(f => `<option value="${f.value}" ${item.frequency === f.value ? 'selected' : ''}>${f.label}</option>`).join('')}
+        </select>
+        <button class="btn btn-delete-config" onclick="deleteConfigItem('activities', ${idx})" title="Delete ${item.name}">🗑️</button>
+      </div>
     </div>
   `).join('');
 
@@ -2159,9 +2251,12 @@ function renderSettingsPage() {
         <div class="config-item-name">${item.name}</div>
         <div class="config-item-desc">Placeholder: ${item.placeholder}</div>
       </div>
-      <select class="form-select priority-select" onchange="updateItemFrequency('studies', ${idx}, this.value)">
-        ${FREQUENCY_OPTIONS.map(f => `<option value="${f.value}" ${item.frequency === f.value ? 'selected' : ''}>${f.label}</option>`).join('')}
-      </select>
+      <div class="config-item-actions">
+        <select class="form-select priority-select" onchange="updateItemFrequency('studies', ${idx}, this.value)">
+          ${FREQUENCY_OPTIONS.map(f => `<option value="${f.value}" ${item.frequency === f.value ? 'selected' : ''}>${f.label}</option>`).join('')}
+        </select>
+        <button class="btn btn-delete-config" onclick="deleteConfigItem('studies', ${idx})" title="Delete ${item.name}">🗑️</button>
+      </div>
     </div>
   `).join('');
 
@@ -2222,6 +2317,18 @@ function renderSettingsPage() {
       </p>
       <button class="btn btn-danger" onclick="resetConfig()">Reset to Defaults</button>
     </div>
+
+    <div class="card" style="margin-top:24px">
+      <div class="card-header">
+        <div class="card-title"><span class="icon">📅</span> Activity Schedules</div>
+      </div>
+      <p style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:16px">
+        Set which days each activity is expected. Off-days will be marked lighter in the daily tracker but can still be completed as exceptions.
+      </p>
+      <div class="schedule-config-list">
+        ${renderScheduleConfig()}
+      </div>
+    </div>
   `;
 }
 
@@ -2264,8 +2371,26 @@ function resetConfig() {
   if (confirm('Reset all configuration to defaults? Your history data will be preserved.')) {
     AppState.config.activities = deepClone(DEFAULT_ACTIVITIES);
     AppState.config.studies = deepClone(DEFAULT_STUDIES);
+    AppState.config._deletedIds = [];
     saveToLocalStorage();
     showToast('Configuration reset to defaults', 'success');
+    renderSettingsPage();
+  }
+}
+
+function deleteConfigItem(category, index) {
+  const item = AppState.config[category][index];
+  if (!item) return;
+  const label = category === 'activities' ? 'activity' : 'study';
+  if (confirm(`Delete "${item.name}" from ${label} list?\n\nThis removes it from the configuration. Historical data for this item will be preserved.`)) {
+    // Track deletion so initConfig doesn't re-add it
+    if (!AppState.config._deletedIds) AppState.config._deletedIds = [];
+    if (!AppState.config._deletedIds.includes(item.id)) {
+      AppState.config._deletedIds.push(item.id);
+    }
+    AppState.config[category].splice(index, 1);
+    saveToLocalStorage();
+    showToast(`Deleted "${item.name}"`, 'success');
     renderSettingsPage();
   }
 }
@@ -2376,10 +2501,20 @@ function clearAllData() {
     localStorage.removeItem(STORAGE_KEY_CONFIG);
     localStorage.removeItem(STORAGE_KEY_GOALS);
     localStorage.removeItem(STORAGE_KEY_OBJECTIVES);
+    localStorage.removeItem(STORAGE_KEY_CALENDAR);
+    localStorage.removeItem(STORAGE_KEY_TRACKERS);
+    localStorage.removeItem(STORAGE_KEY_SCHEDULES);
+    localStorage.removeItem(STORAGE_KEY_POMODORO_CFG);
+    localStorage.removeItem(STORAGE_KEY_POMODORO_HIST);
     AppState.history = {};
     AppState.config = { activities: [], studies: [] };
     AppState.goals = [];
     AppState.objectives = [];
+    AppState.calendarEvents = [];
+    AppState.trackers = [];
+    AppState.schedules = {};
+    AppState.pomodoroConfig = { workMinutes: 30, shortBreakMinutes: 5, longBreakMinutes: 30, cyclesBeforeLong: 4 };
+    AppState.pomodoroHistory = [];
     initConfig();
     saveToLocalStorage();
     showToast('Factory reset complete', 'warning');
@@ -3292,26 +3427,1054 @@ function submitEditObjective(objId) {
 }
 
 
-// ========== AUTO-LOAD LOGIC ==========
+// ========== ANKI WORD COUNTER ==========
+
+function calcAnkiStats() {
+  const today = todayStr();
+  const dates = Object.keys(AppState.history).sort();
+  let totalWords = 0;
+  let weekWords = 0;
+  let monthWords = 0;
+  let streak = 0;
+  const weekRange = getWeekRange(today);
+  const monthRange = getMonthRange(today);
+  
+  // Collect all anki entries
+  const ankiEntries = [];
+  dates.forEach(date => {
+    const record = AppState.history[date];
+    const ankiData = record.activities?.anki;
+    if (ankiData && ankiData.done) {
+      const words = parseAnkiWords(ankiData.detail);
+      totalWords += words;
+      ankiEntries.push({ date, words });
+      if (date >= weekRange.start && date <= weekRange.end) weekWords += words;
+      if (date >= monthRange.start && date <= monthRange.end) monthWords += words;
+    }
+  });
+
+  // Calculate streak
+  let checkDate = today;
+  while (true) {
+    const record = AppState.history[checkDate];
+    if (record?.activities?.anki?.done) {
+      streak++;
+      checkDate = addDays(checkDate, -1);
+    } else {
+      break;
+    }
+    if (streak > 365) break;
+  }
+
+  const daysTracked = ankiEntries.length;
+  const avgPerDay = daysTracked > 0 ? Math.round(totalWords / daysTracked) : 0;
+
+  return { totalWords, weekWords, monthWords, streak, avgPerDay, entries: ankiEntries };
+}
+
+function parseAnkiWords(detail) {
+  if (!detail) return 0;
+  const match = detail.match(/(\d+)\s*(?:words?|palavras?|w)/i);
+  if (match) return parseInt(match[1]);
+  const numMatch = detail.match(/^(\d+)$/);
+  if (numMatch) return parseInt(numMatch[1]);
+  if (detail.toLowerCase() === 'done') return 0;
+  return 0;
+}
+
+// ========== CALENDAR & EVENTS SYSTEM ==========
+
+function renderCalendarPage() {
+  const container = document.getElementById('page-calendar');
+  const today = todayStr();
+  const events = AppState.calendarEvents || [];
+  
+  // Sort events by date
+  const sortedEvents = [...events].sort((a, b) => a.date.localeCompare(b.date));
+  const upcoming = sortedEvents.filter(e => e.date >= today);
+  const past = sortedEvents.filter(e => e.date < today).reverse();
+
+  const upcomingHtml = upcoming.length > 0 ? upcoming.map((evt, i) => {
+    const daysUntil = daysBetween(today, evt.date);
+    const urgencyClass = daysUntil <= 1 ? 'cal-urgent' : daysUntil <= 3 ? 'cal-soon' : daysUntil <= 7 ? 'cal-week' : '';
+    const daysLabel = daysUntil === 0 ? 'TODAY' : daysUntil === 1 ? 'Tomorrow' : `${daysUntil} days`;
+    return `
+      <div class="cal-event ${urgencyClass}">
+        <div class="cal-event-date">
+          <div class="cal-event-day">${new Date(evt.date + 'T12:00:00').getDate()}</div>
+          <div class="cal-event-month">${new Date(evt.date + 'T12:00:00').toLocaleDateString('en-US', {month:'short'})}</div>
+        </div>
+        <div class="cal-event-info">
+          <div class="cal-event-title">${escapeHtml(evt.title)}</div>
+          ${evt.description ? `<div class="cal-event-desc">${escapeHtml(evt.description)}</div>` : ''}
+          ${evt.category ? `<span class="cal-event-cat">${escapeHtml(evt.category)}</span>` : ''}
+        </div>
+        <div class="cal-event-countdown">
+          <div class="cal-event-days-num">${daysLabel}</div>
+        </div>
+        <div class="cal-event-actions">
+          <button class="btn btn-sm" onclick="editCalendarEvent(${events.indexOf(evt)})">Edit</button>
+          <button class="btn btn-sm btn-danger" onclick="deleteCalendarEvent(${events.indexOf(evt)})">✕</button>
+        </div>
+      </div>
+    `;
+  }).join('') : '<div class="empty-state"><div class="empty-state-icon">📅</div><div class="empty-state-text">No upcoming events</div></div>';
+
+  const pastHtml = past.length > 0 ? past.slice(0, 20).map(evt => `
+    <div class="cal-event cal-past">
+      <div class="cal-event-date">
+        <div class="cal-event-day">${new Date(evt.date + 'T12:00:00').getDate()}</div>
+        <div class="cal-event-month">${new Date(evt.date + 'T12:00:00').toLocaleDateString('en-US', {month:'short'})}</div>
+      </div>
+      <div class="cal-event-info">
+        <div class="cal-event-title">${escapeHtml(evt.title)}</div>
+        ${evt.description ? `<div class="cal-event-desc">${escapeHtml(evt.description)}</div>` : ''}
+      </div>
+      <div class="cal-event-actions">
+        <button class="btn btn-sm btn-danger" onclick="deleteCalendarEvent(${events.indexOf(evt)})">✕</button>
+      </div>
+    </div>
+  `).join('') : '';
+
+  // Mini calendar view for current month
+  const miniCalHtml = renderMiniCalendar(today);
+
+  container.innerHTML = `
+    <div class="stats-grid" style="grid-template-columns: repeat(3, 1fr)">
+      <div class="stat-card" style="--stat-color: var(--accent-primary)">
+        <div class="stat-label">Upcoming</div>
+        <div class="stat-value">${upcoming.length}</div>
+        <div class="stat-sub">events ahead</div>
+      </div>
+      <div class="stat-card" style="--stat-color: var(--accent-orange)">
+        <div class="stat-label">This Week</div>
+        <div class="stat-value">${upcoming.filter(e => daysBetween(today, e.date) <= 7).length}</div>
+        <div class="stat-sub">coming up soon</div>
+      </div>
+      <div class="stat-card" style="--stat-color: var(--accent-secondary)">
+        <div class="stat-label">Urgent</div>
+        <div class="stat-value">${upcoming.filter(e => daysBetween(today, e.date) <= 2).length}</div>
+        <div class="stat-sub">within 2 days</div>
+      </div>
+    </div>
+
+    <div class="go-filter-bar">
+      <button class="btn btn-primary" onclick="openCreateEventModal()">+ New Event</button>
+    </div>
+
+    <div class="dashboard-grid">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title"><span class="icon">📅</span> Mini Calendar</div>
+        </div>
+        <div class="mini-calendar">${miniCalHtml}</div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title"><span class="icon">🔔</span> Upcoming Events</div>
+          <span style="font-size:0.78rem;color:var(--text-muted)">${upcoming.length} events</span>
+        </div>
+        <div class="cal-events-list scroll-inner" style="max-height:500px">${upcomingHtml}</div>
+      </div>
+    </div>
+
+    ${past.length > 0 ? `
+    <div class="card" style="margin-top:20px">
+      <div class="card-header collapsible-header" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'':'none'">
+        <div class="card-title"><span class="icon">📜</span> Past Events (${past.length})</div>
+        <span style="font-size:0.78rem;color:var(--text-muted)">click to toggle</span>
+      </div>
+      <div style="display:none">
+        <div class="cal-events-list" style="padding:0 24px 24px">${pastHtml}</div>
+      </div>
+    </div>` : ''}
+  `;
+}
+
+function renderMiniCalendar(dateStr) {
+  const d = new Date(dateStr + 'T12:00:00');
+  const year = d.getFullYear();
+  const month = d.getMonth();
+  const today = todayStr();
+  const firstDay = new Date(year, month, 1).getDay();
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const events = AppState.calendarEvents || [];
+
+  let html = '<div class="mini-cal-header">';
+  ['S','M','T','W','T','F','S'].forEach(d => { html += `<div class="mini-cal-day-label">${d}</div>`; });
+  html += '</div><div class="mini-cal-grid">';
+
+  for (let i = 0; i < firstDay; i++) html += '<div class="mini-cal-cell empty"></div>';
+  for (let day = 1; day <= daysInMonth; day++) {
+    const dateKey = `${year}-${String(month+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+    const isToday = dateKey === today;
+    const hasEvent = events.some(e => e.date === dateKey);
+    const hasActivity = !!AppState.history[dateKey];
+    html += `<div class="mini-cal-cell ${isToday ? 'today' : ''} ${hasEvent ? 'has-event' : ''} ${hasActivity ? 'has-activity' : ''}"
+      onclick="jumpToDate('${dateKey}');renderPage('today')">${day}</div>`;
+  }
+  html += '</div>';
+  return html;
+}
+
+function openCreateEventModal(prefillDate) {
+  const html = `
+    <div class="modal-header">
+      <div class="modal-title">New Calendar Event</div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">Title *</label>
+        <input type="text" class="form-input" id="modal-evt-title" placeholder="e.g., Midterm Exam">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Date *</label>
+        <input type="date" class="form-input" id="modal-evt-date" value="${prefillDate || todayStr()}">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Category</label>
+        <select class="form-select" id="modal-evt-category">
+          <option value="">None</option>
+          <option value="Exam">Exam</option>
+          <option value="Deadline">Deadline</option>
+          <option value="Meeting">Meeting</option>
+          <option value="Event">Event</option>
+          <option value="Personal">Personal</option>
+          <option value="Work">Work</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Description</label>
+        <input type="text" class="form-input" id="modal-evt-desc" placeholder="Optional details...">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Notify days before</label>
+        <input type="number" class="form-input" id="modal-evt-notify" value="3" min="0" max="30">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="submitCreateEvent()">Create Event</button>
+    </div>
+  `;
+  openModal(html);
+}
+
+function submitCreateEvent() {
+  const title = document.getElementById('modal-evt-title')?.value.trim();
+  const date = document.getElementById('modal-evt-date')?.value;
+  const category = document.getElementById('modal-evt-category')?.value || '';
+  const description = document.getElementById('modal-evt-desc')?.value.trim() || '';
+  const notifyDays = parseInt(document.getElementById('modal-evt-notify')?.value) || 3;
+
+  if (!title) { showToast('Enter an event title', 'warning'); return; }
+  if (!date) { showToast('Select a date', 'warning'); return; }
+
+  if (!AppState.calendarEvents) AppState.calendarEvents = [];
+  AppState.calendarEvents.push({
+    id: generateId('evt'),
+    title, date, category, description, notifyDays, createdAt: todayStr()
+  });
+  saveToLocalStorage();
+  closeModal();
+  showToast(`Event "${title}" created`, 'success');
+  renderPage('calendar');
+}
+
+function editCalendarEvent(index) {
+  const evt = AppState.calendarEvents[index];
+  if (!evt) return;
+  const html = `
+    <div class="modal-header">
+      <div class="modal-title">Edit Event</div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">Title *</label>
+        <input type="text" class="form-input" id="modal-evt-title" value="${escapeHtml(evt.title)}">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Date *</label>
+        <input type="date" class="form-input" id="modal-evt-date" value="${evt.date}">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Category</label>
+        <select class="form-select" id="modal-evt-category">
+          <option value="" ${!evt.category ? 'selected' : ''}>None</option>
+          <option value="Exam" ${evt.category === 'Exam' ? 'selected' : ''}>Exam</option>
+          <option value="Deadline" ${evt.category === 'Deadline' ? 'selected' : ''}>Deadline</option>
+          <option value="Meeting" ${evt.category === 'Meeting' ? 'selected' : ''}>Meeting</option>
+          <option value="Event" ${evt.category === 'Event' ? 'selected' : ''}>Event</option>
+          <option value="Personal" ${evt.category === 'Personal' ? 'selected' : ''}>Personal</option>
+          <option value="Work" ${evt.category === 'Work' ? 'selected' : ''}>Work</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Description</label>
+        <input type="text" class="form-input" id="modal-evt-desc" value="${escapeHtml(evt.description || '')}">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Notify days before</label>
+        <input type="number" class="form-input" id="modal-evt-notify" value="${evt.notifyDays || 3}" min="0" max="30">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="submitEditEvent(${index})">Save</button>
+    </div>
+  `;
+  openModal(html);
+}
+
+function submitEditEvent(index) {
+  const title = document.getElementById('modal-evt-title')?.value.trim();
+  const date = document.getElementById('modal-evt-date')?.value;
+  if (!title || !date) { showToast('Title and date required', 'warning'); return; }
+
+  AppState.calendarEvents[index].title = title;
+  AppState.calendarEvents[index].date = date;
+  AppState.calendarEvents[index].category = document.getElementById('modal-evt-category')?.value || '';
+  AppState.calendarEvents[index].description = document.getElementById('modal-evt-desc')?.value.trim() || '';
+  AppState.calendarEvents[index].notifyDays = parseInt(document.getElementById('modal-evt-notify')?.value) || 3;
+  saveToLocalStorage();
+  closeModal();
+  showToast('Event updated', 'success');
+  renderPage('calendar');
+}
+
+function deleteCalendarEvent(index) {
+  if (!confirm('Delete this event?')) return;
+  AppState.calendarEvents.splice(index, 1);
+  saveToLocalStorage();
+  showToast('Event deleted', 'warning');
+  renderPage('calendar');
+}
+
+function checkCalendarNotifications() {
+  const today = todayStr();
+  const events = AppState.calendarEvents || [];
+  const notifications = [];
+
+  events.forEach(evt => {
+    if (evt.date < today) return; // past events
+    const daysUntil = daysBetween(today, evt.date);
+    const notifyDays = evt.notifyDays || 3;
+    if (daysUntil <= notifyDays) {
+      notifications.push({
+        title: evt.title,
+        date: evt.date,
+        daysUntil,
+        category: evt.category || '',
+        description: evt.description || '',
+      });
+    }
+  });
+
+  if (notifications.length > 0) {
+    showCalendarPopup(notifications);
+  }
+}
+
+function showCalendarPopup(notifications) {
+  const itemsHtml = notifications.map(n => {
+    const urgency = n.daysUntil === 0 ? 'cal-popup-today' : n.daysUntil <= 1 ? 'cal-popup-tomorrow' : 'cal-popup-soon';
+    const daysText = n.daysUntil === 0 ? '🔴 TODAY' : n.daysUntil === 1 ? '🟡 Tomorrow' : `📅 ${n.daysUntil} days`;
+    return `
+      <div class="cal-popup-item ${urgency}">
+        <div class="cal-popup-item-header">
+          <strong>${escapeHtml(n.title)}</strong>
+          <span class="cal-popup-days">${daysText}</span>
+        </div>
+        <div class="cal-popup-item-meta">
+          ${formatDate(n.date)}${n.category ? ` · ${n.category}` : ''}
+        </div>
+        ${n.description ? `<div class="cal-popup-item-desc">${escapeHtml(n.description)}</div>` : ''}
+      </div>
+    `;
+  }).join('');
+
+  const html = `
+    <div class="modal-header" style="border-bottom-color:var(--accent-orange)">
+      <div class="modal-title">🔔 Upcoming Events</div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:16px">
+        You have ${notifications.length} event${notifications.length > 1 ? 's' : ''} coming up soon:
+      </p>
+      <div class="cal-popup-list">${itemsHtml}</div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" onclick="closeModal()">Dismiss</button>
+      <button class="btn btn-primary" onclick="closeModal();renderPage('calendar')">View Calendar</button>
+    </div>
+  `;
+  openModal(html);
+}
+
+// ========== PROGRESS TRACKERS SYSTEM ==========
+
+function renderTrackersPage() {
+  const container = document.getElementById('page-trackers');
+  const trackers = AppState.trackers || [];
+  const active = trackers.filter(t => !t.archived);
+  const archived = trackers.filter(t => t.archived);
+
+  const trackersHtml = active.length > 0 ? active.map((t, idx) => renderTrackerCard(t, trackers.indexOf(t))).join('') :
+    '<div class="empty-state"><div class="empty-state-icon">📊</div><div class="empty-state-text">No trackers yet. Create one to visualize your progress!</div></div>';
+
+  container.innerHTML = `
+    <div class="stats-grid" style="grid-template-columns: repeat(3, 1fr)">
+      <div class="stat-card" style="--stat-color: var(--accent-primary)">
+        <div class="stat-label">Active Trackers</div>
+        <div class="stat-value">${active.length}</div>
+      </div>
+      <div class="stat-card" style="--stat-color: var(--accent-green)">
+        <div class="stat-label">Completed</div>
+        <div class="stat-value">${active.filter(t => (t.currentValue || 0) >= (t.targetValue || 1)).length}</div>
+      </div>
+      <div class="stat-card" style="--stat-color: var(--accent-purple)">
+        <div class="stat-label">Archived</div>
+        <div class="stat-value">${archived.length}</div>
+      </div>
+    </div>
+
+    <div class="go-filter-bar">
+      <button class="btn btn-primary" onclick="openCreateTrackerModal()">+ New Tracker</button>
+    </div>
+
+    <div class="go-grid">${trackersHtml}</div>
+
+    ${archived.length > 0 ? `
+    <div class="card" style="margin-top:24px">
+      <div class="card-header collapsible-header" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'':'none'">
+        <div class="card-title"><span class="icon">📦</span> Archived (${archived.length})</div>
+        <span style="font-size:0.78rem;color:var(--text-muted)">click to toggle</span>
+      </div>
+      <div style="display:none"><div class="go-grid" style="padding:16px 24px">
+        ${archived.map((t, i) => renderTrackerCard(t, trackers.indexOf(t))).join('')}
+      </div></div>
+    </div>` : ''}
+  `;
+}
+
+function renderTrackerCard(tracker, index) {
+  const current = tracker.currentValue || 0;
+  const target = tracker.targetValue || 1;
+  const pct = Math.min(100, Math.round((current / target) * 100));
+  const isComplete = pct >= 100;
+  const color = isComplete ? 'var(--accent-green)' : 'var(--accent-orange)';
+  const unit = tracker.unit ? ` ${escapeHtml(tracker.unit)}` : '';
+  const remaining = Math.max(0, target - current);
+
+  return `
+    <div class="go-card type-tracker ${tracker.archived ? 'archived' : ''}">
+      <div class="go-card-accent" style="background:${color}"></div>
+      <div class="go-card-body">
+        <div class="go-card-header">
+          <div class="go-card-title">${escapeHtml(tracker.name)}</div>
+          <div class="go-card-badges">
+            <span class="go-badge" style="background:var(--accent-orange-dim);color:var(--accent-orange)">Tracker</span>
+            ${isComplete ? '<span class="go-badge go-badge-complete">Complete</span>' : ''}
+          </div>
+        </div>
+        ${tracker.description ? `<div class="go-card-description">${escapeHtml(tracker.description)}</div>` : ''}
+        <div class="go-progress-ring-wrapper">
+          ${renderProgressRing(pct, color)}
+          <div class="go-progress-info">
+            <div class="go-progress-main">${current}${unit} / ${target}${unit}</div>
+            <div class="go-progress-sub">${remaining > 0 ? `${remaining}${unit} remaining` : 'Complete!'}</div>
+          </div>
+        </div>
+        ${!tracker.archived ? `
+        <div class="go-value-input-row" style="margin-top:10px">
+          <div class="go-value-label">Update progress</div>
+          <input type="number" class="go-value-input" id="tracker-val-${index}" placeholder="0" step="any">
+          <button class="go-value-add-btn" onclick="addTrackerValue(${index})">+ Add</button>
+          <button class="go-value-add-btn" style="background:var(--accent-blue)" onclick="setTrackerValue(${index})">= Set</button>
+        </div>` : ''}
+        ${tracker.history && tracker.history.length > 0 ? `
+          <div class="go-value-history">
+            ${tracker.history.slice().reverse().slice(0, 8).map((entry, revIdx) => {
+              const unit2 = tracker.unit ? ` ${escapeHtml(tracker.unit)}` : '';
+              return `<div class="go-value-history-entry">
+                <span class="date">${formatDateShort(entry.date)}</span>
+                <span class="amount">${entry.type === 'set' ? '=' : '+'}${entry.amount}${unit2}</span>
+              </div>`;
+            }).join('')}
+          </div>
+        ` : ''}
+        <div class="go-card-actions">
+          <button class="btn btn-sm" onclick="editTracker(${index})">Edit</button>
+          <button class="btn btn-sm" onclick="archiveTracker(${index})">${tracker.archived ? 'Restore' : 'Archive'}</button>
+          <button class="btn btn-sm btn-danger" onclick="deleteTracker(${index})">Delete</button>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderDailyTrackersSection() {
+  const trackers = (AppState.trackers || []).filter(t => !t.archived);
+  if (trackers.length === 0) return '';
+
+  const html = trackers.map(t => {
+    const pct = Math.min(100, Math.round(((t.currentValue||0) / (t.targetValue||1)) * 100));
+    const unit = t.unit ? ` ${escapeHtml(t.unit)}` : '';
+    const color = pct >= 100 ? 'var(--accent-green)' : 'var(--accent-orange)';
+    return `
+      <div class="go-daily-item">
+        <div class="go-daily-item-header">
+          <div class="go-daily-item-name">
+            <span class="go-badge" style="background:var(--accent-orange-dim);color:var(--accent-orange);font-size:0.58rem">Tracker</span>
+            ${escapeHtml(t.name)}
+          </div>
+          <div class="go-daily-item-pct">${t.currentValue||0}${unit} / ${t.targetValue}${unit} (${pct}%)</div>
+        </div>
+        <div class="go-mini-progress">
+          <div class="go-mini-progress-fill" style="width:${pct}%;background:${color}"></div>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  return `
+    <div class="card" style="margin-top:24px">
+      <div class="card-header">
+        <div class="card-title"><span class="icon">📊</span> Trackers</div>
+        <span style="font-size:0.78rem;color:var(--text-muted);cursor:pointer" onclick="renderPage('trackers')">View All →</span>
+      </div>
+      <div class="go-daily-items">${html}</div>
+    </div>
+  `;
+}
+
+function openCreateTrackerModal() {
+  const html = `
+    <div class="modal-header">
+      <div class="modal-title">New Progress Tracker</div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">Name *</label>
+        <input type="text" class="form-input" id="modal-trk-name" placeholder="e.g., Three Body Problem (book)">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Description</label>
+        <input type="text" class="form-input" id="modal-trk-desc" placeholder="Optional description">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Target Value *</label>
+        <input type="number" class="form-input" id="modal-trk-target" placeholder="e.g., 400" min="1" step="any">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Current Value</label>
+        <input type="number" class="form-input" id="modal-trk-current" placeholder="0" min="0" step="any" value="0">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Unit</label>
+        <input type="text" class="form-input" id="modal-trk-unit" placeholder="e.g., pages, R$, km...">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="submitCreateTracker()">Create</button>
+    </div>
+  `;
+  openModal(html);
+}
+
+function submitCreateTracker() {
+  const name = document.getElementById('modal-trk-name')?.value.trim();
+  const target = parseFloat(document.getElementById('modal-trk-target')?.value);
+  if (!name) { showToast('Enter a name', 'warning'); return; }
+  if (!target || target <= 0) { showToast('Enter a valid target', 'warning'); return; }
+
+  const current = parseFloat(document.getElementById('modal-trk-current')?.value) || 0;
+  const tracker = {
+    id: generateId('trk'),
+    name,
+    description: document.getElementById('modal-trk-desc')?.value.trim() || '',
+    targetValue: target,
+    currentValue: current,
+    unit: document.getElementById('modal-trk-unit')?.value.trim() || '',
+    history: current > 0 ? [{ date: todayStr(), amount: current, type: 'set' }] : [],
+    archived: false,
+    createdAt: todayStr(),
+  };
+
+  if (!AppState.trackers) AppState.trackers = [];
+  AppState.trackers.push(tracker);
+  saveToLocalStorage();
+  closeModal();
+  showToast(`Tracker "${name}" created`, 'success');
+  renderPage('trackers');
+}
+
+function addTrackerValue(index) {
+  const input = document.getElementById('tracker-val-' + index);
+  if (!input) return;
+  const val = parseFloat(input.value);
+  if (isNaN(val) || val === 0) { showToast('Enter a valid number', 'warning'); return; }
+  const t = AppState.trackers[index];
+  t.currentValue = (t.currentValue || 0) + val;
+  if (!t.history) t.history = [];
+  t.history.push({ date: todayStr(), amount: val, type: 'add' });
+  saveToLocalStorage();
+  showToast(`Added +${val} to ${t.name}`, 'success');
+  renderPage(AppState.currentPage);
+}
+
+function setTrackerValue(index) {
+  const input = document.getElementById('tracker-val-' + index);
+  if (!input) return;
+  const val = parseFloat(input.value);
+  if (isNaN(val)) { showToast('Enter a valid number', 'warning'); return; }
+  const t = AppState.trackers[index];
+  t.currentValue = val;
+  if (!t.history) t.history = [];
+  t.history.push({ date: todayStr(), amount: val, type: 'set' });
+  saveToLocalStorage();
+  showToast(`Set ${t.name} to ${val}`, 'success');
+  renderPage(AppState.currentPage);
+}
+
+function editTracker(index) {
+  const t = AppState.trackers[index];
+  if (!t) return;
+  const html = `
+    <div class="modal-header">
+      <div class="modal-title">Edit Tracker</div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">Name *</label>
+        <input type="text" class="form-input" id="modal-trk-name" value="${escapeHtml(t.name)}">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Description</label>
+        <input type="text" class="form-input" id="modal-trk-desc" value="${escapeHtml(t.description || '')}">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Target Value</label>
+        <input type="number" class="form-input" id="modal-trk-target" value="${t.targetValue}" min="1" step="any">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Unit</label>
+        <input type="text" class="form-input" id="modal-trk-unit" value="${escapeHtml(t.unit || '')}">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="submitEditTracker(${index})">Save</button>
+    </div>
+  `;
+  openModal(html);
+}
+
+function submitEditTracker(index) {
+  const t = AppState.trackers[index];
+  const name = document.getElementById('modal-trk-name')?.value.trim();
+  if (!name) { showToast('Enter a name', 'warning'); return; }
+  t.name = name;
+  t.description = document.getElementById('modal-trk-desc')?.value.trim() || '';
+  const target = parseFloat(document.getElementById('modal-trk-target')?.value);
+  if (target && target > 0) t.targetValue = target;
+  t.unit = document.getElementById('modal-trk-unit')?.value.trim() || '';
+  saveToLocalStorage();
+  closeModal();
+  showToast('Tracker updated', 'success');
+  renderPage(AppState.currentPage);
+}
+
+function archiveTracker(index) {
+  AppState.trackers[index].archived = !AppState.trackers[index].archived;
+  saveToLocalStorage();
+  renderPage(AppState.currentPage);
+}
+
+function deleteTracker(index) {
+  if (!confirm('Delete this tracker?')) return;
+  AppState.trackers.splice(index, 1);
+  saveToLocalStorage();
+  showToast('Tracker deleted', 'warning');
+  renderPage(AppState.currentPage);
+}
+
+// ========== POMODORO / STUDY MODE ==========
+
+let _pomodoroState = {
+  running: false,
+  paused: false,
+  phase: 'work', // 'work', 'short_break', 'long_break'
+  cycle: 1,
+  timeRemaining: 0, // seconds
+  intervalId: null,
+  subject: '',
+  totalWorkSeconds: 0,
+  sessionsCompleted: 0,
+};
+
+function renderPomodoroPage() {
+  const container = document.getElementById('page-pomodoro');
+  const cfg = AppState.pomodoroConfig;
+  const state = _pomodoroState;
+
+  const phaseLabels = { work: 'Focus Time', short_break: 'Short Break', long_break: 'Long Break' };
+  const phaseColors = { work: 'var(--accent-primary)', short_break: 'var(--accent-green)', long_break: 'var(--accent-blue)' };
+  
+  const mins = Math.floor(state.timeRemaining / 60);
+  const secs = state.timeRemaining % 60;
+  const timeStr = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+  
+  const totalPhaseTime = state.phase === 'work' ? cfg.workMinutes * 60 :
+    state.phase === 'short_break' ? cfg.shortBreakMinutes * 60 : cfg.longBreakMinutes * 60;
+  const progressPct = totalPhaseTime > 0 ? Math.round(((totalPhaseTime - state.timeRemaining) / totalPhaseTime) * 100) : 0;
+
+  // History stats
+  const todayHistory = (AppState.pomodoroHistory || []).filter(h => h.date === todayStr());
+  const todayCycles = todayHistory.reduce((s, h) => s + (h.cycles || 0), 0);
+  const todayMinutes = todayHistory.reduce((s, h) => s + (h.totalMinutes || 0), 0);
+  const weekRange = getWeekRange(todayStr());
+  const weekHistory = (AppState.pomodoroHistory || []).filter(h => h.date >= weekRange.start && h.date <= weekRange.end);
+  const weekMinutes = weekHistory.reduce((s, h) => s + (h.totalMinutes || 0), 0);
+
+  container.innerHTML = `
+    <div class="stats-grid">
+      <div class="stat-card" style="--stat-color: var(--accent-primary)">
+        <div class="stat-label">Today</div>
+        <div class="stat-value">${todayMinutes}m</div>
+        <div class="stat-sub">${todayCycles} cycles</div>
+      </div>
+      <div class="stat-card" style="--stat-color: var(--accent-blue)">
+        <div class="stat-label">This Week</div>
+        <div class="stat-value">${weekMinutes}m</div>
+        <div class="stat-sub">study time</div>
+      </div>
+      <div class="stat-card" style="--stat-color: var(--accent-green)">
+        <div class="stat-label">Current Cycle</div>
+        <div class="stat-value">${state.cycle}/${cfg.cyclesBeforeLong}</div>
+        <div class="stat-sub">before long break</div>
+      </div>
+      <div class="stat-card" style="--stat-color: var(--accent-orange)">
+        <div class="stat-label">Session</div>
+        <div class="stat-value">${state.sessionsCompleted}</div>
+        <div class="stat-sub">cycles completed</div>
+      </div>
+    </div>
+
+    <div class="pomodoro-container">
+      <div class="pomodoro-phase-label" style="color:${phaseColors[state.phase]}">${phaseLabels[state.phase]}</div>
+      
+      <div class="pomodoro-timer-ring" style="--pom-color:${phaseColors[state.phase]};--pom-progress:${progressPct}%">
+        <div class="pomodoro-timer-display">${timeStr}</div>
+      </div>
+
+      <div class="pomodoro-cycles">
+        ${Array.from({length: cfg.cyclesBeforeLong}, (_, i) => 
+          `<div class="pom-cycle-dot ${i < state.cycle - 1 || (i === state.cycle - 1 && state.phase !== 'work') ? 'filled' : i === state.cycle - 1 ? 'active' : ''}"></div>`
+        ).join('')}
+      </div>
+
+      <div class="form-group" style="max-width:300px;margin:16px auto">
+        <input type="text" class="form-input" id="pom-subject" placeholder="What are you studying?" 
+          value="${escapeHtml(state.subject)}" onchange="_pomodoroState.subject=this.value"
+          style="text-align:center">
+      </div>
+
+      <div class="pomodoro-controls">
+        ${!state.running ? `
+          <button class="btn btn-primary pom-btn-main" onclick="pomodoroStart()">▶ Start</button>
+        ` : state.paused ? `
+          <button class="btn btn-primary pom-btn-main" onclick="pomodoroResume()">▶ Resume</button>
+        ` : `
+          <button class="btn pom-btn-main" onclick="pomodoroPause()">⏸ Pause</button>
+        `}
+        <button class="btn" onclick="pomodoroSkip()">⏭ Skip</button>
+        <button class="btn btn-danger" onclick="pomodoroReset()">⟲ Reset</button>
+      </div>
+    </div>
+
+    <div class="dashboard-grid" style="margin-top:32px">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title"><span class="icon">⚙️</span> Timer Settings</div>
+        </div>
+        <div style="padding:0 24px 24px;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div class="form-group" style="margin:0">
+            <label class="form-label">Focus (min)</label>
+            <input type="number" class="form-input" value="${cfg.workMinutes}" min="1" max="120" 
+              onchange="updatePomodoroConfig('workMinutes', this.value)">
+          </div>
+          <div class="form-group" style="margin:0">
+            <label class="form-label">Short Break (min)</label>
+            <input type="number" class="form-input" value="${cfg.shortBreakMinutes}" min="1" max="30" 
+              onchange="updatePomodoroConfig('shortBreakMinutes', this.value)">
+          </div>
+          <div class="form-group" style="margin:0">
+            <label class="form-label">Long Break (min)</label>
+            <input type="number" class="form-input" value="${cfg.longBreakMinutes}" min="5" max="60" 
+              onchange="updatePomodoroConfig('longBreakMinutes', this.value)">
+          </div>
+          <div class="form-group" style="margin:0">
+            <label class="form-label">Cycles before long break</label>
+            <input type="number" class="form-input" value="${cfg.cyclesBeforeLong}" min="1" max="10" 
+              onchange="updatePomodoroConfig('cyclesBeforeLong', this.value)">
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title"><span class="icon">📜</span> Today's Sessions</div>
+        </div>
+        <div class="scroll-inner" style="max-height:300px;padding:0 24px 24px">
+          ${todayHistory.length > 0 ? todayHistory.reverse().map(h => `
+            <div class="pom-history-entry">
+              <span class="pom-hist-subject">${escapeHtml(h.subject || 'Untitled')}</span>
+              <span class="pom-hist-stats">${h.cycles} cycle${h.cycles > 1 ? 's' : ''} · ${h.totalMinutes}min</span>
+            </div>
+          `).join('') : '<div class="empty-state" style="padding:20px"><div class="empty-state-text">No sessions today</div></div>'}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function updatePomodoroConfig(key, value) {
+  const val = parseInt(value);
+  if (isNaN(val) || val <= 0) return;
+  AppState.pomodoroConfig[key] = val;
+  saveToLocalStorage();
+  if (!_pomodoroState.running) {
+    _pomodoroState.timeRemaining = AppState.pomodoroConfig.workMinutes * 60;
+  }
+  showToast('Timer settings updated', 'success');
+}
+
+function pomodoroStart() {
+  const cfg = AppState.pomodoroConfig;
+  _pomodoroState.running = true;
+  _pomodoroState.paused = false;
+  _pomodoroState.phase = 'work';
+  _pomodoroState.timeRemaining = cfg.workMinutes * 60;
+  _pomodoroState.totalWorkSeconds = 0;
+  _pomodoroState.subject = document.getElementById('pom-subject')?.value || '';
+  pomodoroTick();
+  _pomodoroState.intervalId = setInterval(pomodoroTick, 1000);
+  renderPomodoroPage();
+}
+
+function pomodoroPause() {
+  _pomodoroState.paused = true;
+  if (_pomodoroState.intervalId) clearInterval(_pomodoroState.intervalId);
+  renderPomodoroPage();
+}
+
+function pomodoroResume() {
+  _pomodoroState.paused = false;
+  _pomodoroState.intervalId = setInterval(pomodoroTick, 1000);
+  renderPomodoroPage();
+}
+
+function pomodoroSkip() {
+  pomodoroPhaseComplete();
+}
+
+function pomodoroReset() {
+  if (_pomodoroState.intervalId) clearInterval(_pomodoroState.intervalId);
+  
+  // Save session if any work was done
+  if (_pomodoroState.totalWorkSeconds > 60) {
+    savePomodoroSession();
+  }
+  
+  _pomodoroState = {
+    running: false, paused: false, phase: 'work', cycle: 1,
+    timeRemaining: AppState.pomodoroConfig.workMinutes * 60,
+    intervalId: null, subject: '', totalWorkSeconds: 0, sessionsCompleted: 0,
+  };
+  renderPomodoroPage();
+}
+
+function pomodoroTick() {
+  if (_pomodoroState.timeRemaining > 0) {
+    _pomodoroState.timeRemaining--;
+    if (_pomodoroState.phase === 'work') {
+      _pomodoroState.totalWorkSeconds++;
+    }
+    // Update display without full re-render
+    const timerEl = document.querySelector('.pomodoro-timer-display');
+    if (timerEl) {
+      const mins = Math.floor(_pomodoroState.timeRemaining / 60);
+      const secs = _pomodoroState.timeRemaining % 60;
+      timerEl.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+    }
+    // Update progress ring
+    const cfg = AppState.pomodoroConfig;
+    const totalPhaseTime = _pomodoroState.phase === 'work' ? cfg.workMinutes * 60 :
+      _pomodoroState.phase === 'short_break' ? cfg.shortBreakMinutes * 60 : cfg.longBreakMinutes * 60;
+    const pct = Math.round(((totalPhaseTime - _pomodoroState.timeRemaining) / totalPhaseTime) * 100);
+    const ring = document.querySelector('.pomodoro-timer-ring');
+    if (ring) ring.style.setProperty('--pom-progress', pct + '%');
+  } else {
+    pomodoroPhaseComplete();
+  }
+}
+
+function pomodoroPhaseComplete() {
+  if (_pomodoroState.intervalId) clearInterval(_pomodoroState.intervalId);
+  const cfg = AppState.pomodoroConfig;
+  
+  // Play notification sound
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.frequency.value = 800;
+    gain.gain.value = 0.3;
+    osc.start();
+    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.5);
+    osc.stop(ctx.currentTime + 0.5);
+  } catch(e) {}
+
+  if (_pomodoroState.phase === 'work') {
+    _pomodoroState.sessionsCompleted++;
+    
+    if (_pomodoroState.cycle >= cfg.cyclesBeforeLong) {
+      // Long break
+      _pomodoroState.phase = 'long_break';
+      _pomodoroState.timeRemaining = cfg.longBreakMinutes * 60;
+      _pomodoroState.cycle = 1;
+      showToast('🎉 Long break time! Great work!', 'success');
+    } else {
+      // Short break
+      _pomodoroState.phase = 'short_break';
+      _pomodoroState.timeRemaining = cfg.shortBreakMinutes * 60;
+      showToast('☕ Short break! Relax for a moment.', 'info');
+    }
+  } else {
+    // Break is over, back to work
+    if (_pomodoroState.phase === 'short_break') {
+      _pomodoroState.cycle++;
+    }
+    _pomodoroState.phase = 'work';
+    _pomodoroState.timeRemaining = cfg.workMinutes * 60;
+    showToast('🎯 Focus time! Let\'s go!', 'info');
+  }
+  
+  _pomodoroState.intervalId = setInterval(pomodoroTick, 1000);
+  renderPomodoroPage();
+}
+
+function savePomodoroSession() {
+  const totalMinutes = Math.round(_pomodoroState.totalWorkSeconds / 60);
+  if (totalMinutes < 1) return;
+
+  if (!AppState.pomodoroHistory) AppState.pomodoroHistory = [];
+  AppState.pomodoroHistory.push({
+    date: todayStr(),
+    subject: _pomodoroState.subject || 'General',
+    cycles: _pomodoroState.sessionsCompleted,
+    totalMinutes,
+  });
+  saveToLocalStorage();
+}
+
+// ========== SCHEDULE CONFIGURATION (in Settings) ==========
+
+function renderScheduleConfig() {
+  const allItems = [...AppState.config.activities, ...AppState.config.studies];
+  const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+  return allItems.map(item => {
+    const schedule = AppState.schedules[item.id] || {};
+    const days = schedule.days || [];
+    const hasDays = days.length > 0 && days.length < 7;
+
+    return `
+      <div class="schedule-item">
+        <div class="schedule-item-name">${item.name}</div>
+        <div class="schedule-days">
+          ${dayNames.map((dn, i) => `
+            <button class="schedule-day-btn ${days.includes(i) || days.length === 0 ? 'active' : ''}" 
+              onclick="toggleScheduleDay('${item.id}', ${i})">${dn}</button>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function toggleScheduleDay(itemId, dayIndex) {
+  if (!AppState.schedules[itemId]) {
+    // First time setting schedule — start with all days selected, then toggle off
+    AppState.schedules[itemId] = { days: [0,1,2,3,4,5,6] };
+  }
+  const days = AppState.schedules[itemId].days;
+  const idx = days.indexOf(dayIndex);
+  if (idx >= 0) {
+    days.splice(idx, 1);
+  } else {
+    days.push(dayIndex);
+    days.sort();
+  }
+  // If all days are selected, treat as "no schedule" (always active)
+  if (days.length === 7 || days.length === 0) {
+    delete AppState.schedules[itemId];
+  }
+  saveToLocalStorage();
+  renderSettingsPage();
+}
 
 async function tryAutoLoadJSON() {
-  // Try loading from a file served alongside the HTML (for local server setups)
   try {
     const response = await fetch(AUTO_JSON_PATH);
     if (response.ok) {
       const data = await response.json();
       if (data.history) {
-        // JSON file takes precedence: its data overrides localStorage for same dates
         AppState.history = { ...AppState.history, ...data.history };
       }
       if (data.config) {
+        // Preserve deletion tracking from current config
+        const deletedIds = AppState.config._deletedIds || [];
         AppState.config = data.config;
+        // Restore deletion tracking and remove deleted items
+        if (deletedIds.length > 0) {
+          AppState.config._deletedIds = deletedIds;
+          if (AppState.config.activities) {
+            AppState.config.activities = AppState.config.activities.filter(a => !deletedIds.includes(a.id));
+          }
+          if (AppState.config.studies) {
+            AppState.config.studies = AppState.config.studies.filter(s => !deletedIds.includes(s.id));
+          }
+        }
       }
       if (data.goals) {
         AppState.goals = data.goals;
       }
       if (data.objectives) {
         AppState.objectives = data.objectives;
+      }
+      if (data.calendarEvents) {
+        AppState.calendarEvents = data.calendarEvents;
+      }
+      if (data.trackers) {
+        AppState.trackers = data.trackers;
+      }
+      if (data.schedules) {
+        AppState.schedules = data.schedules;
+      }
+      if (data.pomodoroConfig) {
+        AppState.pomodoroConfig = data.pomodoroConfig;
+      }
+      if (data.pomodoroHistory) {
+        AppState.pomodoroHistory = data.pomodoroHistory;
       }
       saveToLocalStorage();
       console.log('Auto-loaded data from ' + AUTO_JSON_PATH);
@@ -3348,6 +4511,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Save initial state
   saveToLocalStorage();
   
+  // Initialize Pomodoro timer state
+  _pomodoroState.timeRemaining = AppState.pomodoroConfig.workMinutes * 60;
+  
   // Update date display
   document.getElementById('current-date-display').textContent = formatDate(AppState.currentDate);
   
@@ -3363,5 +4529,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Render initial page
   renderPage('today');
   
-  console.log('Life Dashboard initialized');
+  // Check calendar notifications after a brief delay
+  setTimeout(() => {
+    checkCalendarNotifications();
+  }, 800);
+  
+  console.log('Life Dashboard v2.0 initialized');
 });
