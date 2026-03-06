@@ -1,6 +1,6 @@
 {
   "version": "1.1",
-  "exportDate": "2026-03-05T16:20:36.685Z",
+  "exportDate": "2026-03-06T08:49:43.623Z",
   "config": {
     "activities": [
       {
@@ -165,6 +165,22 @@
       {
         "id": "exterior_job_emigration_or_interchange_scholarship",
         "name": "Exterior Job / Emigration or Interchange / Scholarship",
+        "placeholder": "content",
+        "frequency": "monthly",
+        "category": "studies",
+        "group": "mandatory"
+      },
+      {
+        "id": "interchange",
+        "name": "Interchange / Scholarship",
+        "placeholder": "content",
+        "frequency": "monthly",
+        "category": "studies",
+        "group": "mandatory"
+      },
+      {
+        "id": "exterior_job",
+        "name": "Exterior Job / Emigration",
         "placeholder": "content",
         "frequency": "monthly",
         "category": "studies",
@@ -357,6 +373,18 @@
         "anki": {
           "done": true,
           "detail": "17 words"
+        },
+        "physical_training": {
+          "done": true,
+          "detail": "Gym [Back and Biceps]"
+        },
+        "reading": {
+          "done": true,
+          "detail": "Three Body Problem"
+        },
+        "hobby": {
+          "done": true,
+          "detail": "Gaming"
         }
       },
       "studies": {
@@ -367,6 +395,10 @@
         "linguistics": {
           "done": true,
           "detail": "Immersion"
+        },
+        "reading_writing": {
+          "done": true,
+          "detail": "Three Body Problem"
         }
       }
     }
