@@ -2383,11 +2383,6 @@ function deleteConfigItem(category, index) {
   if (!item) return;
   const label = category === 'activities' ? 'activity' : 'study';
   if (confirm(`Delete "${item.name}" from ${label} list?\n\nThis removes it from the configuration. Historical data for this item will be preserved.`)) {
-    // Track deletion so initConfig doesn't re-add it
-    if (!AppState.config._deletedIds) AppState.config._deletedIds = [];
-    if (!AppState.config._deletedIds.includes(item.id)) {
-      AppState.config._deletedIds.push(item.id);
-    }
     AppState.config[category].splice(index, 1);
     saveToLocalStorage();
     showToast(`Deleted "${item.name}"`, 'success');
