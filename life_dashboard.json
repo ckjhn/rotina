@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-06T14:05:38.735Z",
+  "exportDate": "2026-03-06T16:15:45.771Z",
   "config": {
     "activities": [
       {
@@ -321,8 +321,8 @@
           "detail": "Python - Programação Orientada a Objetos"
         },
         "college": {
-          "done": false,
-          "detail": ""
+          "done": true,
+          "detail": "End of the semester"
         },
         "coding": {
           "done": true,
@@ -350,7 +350,7 @@
         },
         "language_immersion": {
           "done": true,
-          "detail": "Young Sheldon T5 E12 [en]"
+          "detail": "Young Sheldon T5 E12-13-14 [en]"
         },
         "social": {
           "done": true,
@@ -379,8 +379,8 @@
       },
       "studies": {
         "college": {
-          "done": false,
-          "detail": ""
+          "done": true,
+          "detail": "End of the semester"
         },
         "linguistics": {
           "done": true,
@@ -429,6 +429,14 @@
         "mining_sentences": {
           "done": true,
           "detail": "10"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "Young Sheldon T5 E15 [en]"
+        },
+        "language_class": {
+          "done": false,
+          "detail": ""
         }
       },
       "studies": {
@@ -439,6 +447,22 @@
         "coding": {
           "done": true,
           "detail": "Python - Programação Orientada a Objetos"
+        },
+        "linguistics": {
+          "done": true,
+          "detail": "Immersion"
+        },
+        "philosophy_study": {
+          "done": false,
+          "detail": ""
+        },
+        "interchange_scholarship_exterior_job_emigration": {
+          "done": false,
+          "detail": ""
+        },
+        "college": {
+          "done": true,
+          "detail": "End of the semester"
         }
       }
     }
