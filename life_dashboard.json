@@ -1,6 +1,6 @@
 {
-  "version": "1.1",
-  "exportDate": "2026-03-06T08:49:43.623Z",
+  "version": "2.0",
+  "exportDate": "2026-03-06T14:05:38.735Z",
   "config": {
     "activities": [
       {
@@ -127,7 +127,7 @@
         "id": "coding",
         "name": "Coding / Programming",
         "placeholder": "content / topic",
-        "frequency": "weekly",
+        "frequency": "biweekly",
         "category": "studies",
         "group": "mandatory"
       },
@@ -164,24 +164,8 @@
         "group": "optional"
       },
       {
-        "id": "exterior_job_emigration_or_interchange_scholarship",
-        "name": "Exterior Job / Emigration or Interchange / Scholarship",
-        "placeholder": "content",
-        "frequency": "monthly",
-        "category": "studies",
-        "group": "mandatory"
-      },
-      {
-        "id": "interchange",
-        "name": "Interchange / Scholarship",
-        "placeholder": "content",
-        "frequency": "monthly",
-        "category": "studies",
-        "group": "mandatory"
-      },
-      {
-        "id": "exterior_job",
-        "name": "Exterior Job / Emigration",
+        "id": "interchange_scholarship_exterior_job_emigration",
+        "name": "Interchange / Scholarship | Exterior Job / Emigration",
         "placeholder": "content",
         "frequency": "monthly",
         "category": "studies",
@@ -262,7 +246,7 @@
         },
         "language_immersion": {
           "done": true,
-          "detail": "Young Sheldon T5 E6 [en]"
+          "detail": "Young Sheldon T5 E6"
         },
         "language_class": {
           "done": false,
@@ -289,122 +273,6 @@
         "reading_writing": {
           "done": false,
           "detail": ""
-        },
-        "philosophy_study": {
-          "done": false,
-          "detail": ""
-        }
-      }
-    },
-    "2026-03-04": {
-      "activities": {
-        "work": {
-          "done": true,
-          "detail": "Prolagos [Programador I]"
-        },
-        "hobby": {
-          "done": true,
-          "detail": "Gaming"
-        },
-        "scientia_momentum": {
-          "done": true,
-          "detail": "Scientia Momentum"
-        },
-        "philosophy": {
-          "done": true,
-          "detail": "Stoicism Practice"
-        },
-        "social": {
-          "done": true,
-          "detail": "Work Conversation"
-        },
-        "language_immersion": {
-          "done": true,
-          "detail": "Young Sheldon T5 E7-8 [en]"
-        },
-        "anki": {
-          "done": true,
-          "detail": "20 words"
-        },
-        "reading": {
-          "done": false,
-          "detail": ""
-        },
-        "physical_training": {
-          "done": true,
-          "detail": "Gym [Chest and Triceps]"
-        }
-      },
-      "studies": {
-        "course": {
-          "done": true,
-          "detail": "Python - Programação Orientada a Objetos"
-        },
-        "college": {
-          "done": false,
-          "detail": ""
-        },
-        "coding": {
-          "done": true,
-          "detail": "Python - Programação Orientada a Objetos"
-        },
-        "linguistics": {
-          "done": true,
-          "detail": "Immersion"
-        },
-        "reading_writing": {
-          "done": false,
-          "detail": ""
-        }
-      }
-    },
-    "2026-03-05": {
-      "activities": {
-        "work": {
-          "done": true,
-          "detail": "Prolagos [Programador I]"
-        },
-        "philosophy": {
-          "done": true,
-          "detail": "Stoicism Practice"
-        },
-        "language_immersion": {
-          "done": true,
-          "detail": "Young Sheldon T5 E12 [en]"
-        },
-        "social": {
-          "done": true,
-          "detail": "Work Conversation"
-        },
-        "anki": {
-          "done": true,
-          "detail": "17 words"
-        },
-        "physical_training": {
-          "done": true,
-          "detail": "Gym [Back and Biceps]"
-        },
-        "reading": {
-          "done": true,
-          "detail": "Three Body Problem"
-        },
-        "hobby": {
-          "done": true,
-          "detail": "Gaming"
-        }
-      },
-      "studies": {
-        "college": {
-          "done": false,
-          "detail": ""
-        },
-        "linguistics": {
-          "done": true,
-          "detail": "Immersion"
-        },
-        "reading_writing": {
-          "done": true,
-          "detail": "Three Body Problem"
         }
       }
     },
