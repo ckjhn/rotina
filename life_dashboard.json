@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-06T16:15:45.771Z",
+  "exportDate": "2026-03-07T22:46:03.222Z",
   "config": {
     "activities": [
       {
@@ -465,6 +465,19 @@
           "detail": "End of the semester"
         }
       }
+    },
+    "2026-03-07": {
+      "activities": {
+        "hobby": {
+          "done": true,
+          "detail": "Gaming"
+        },
+        "philosophy_practice": {
+          "done": true,
+          "detail": "Stoicism"
+        }
+      },
+      "studies": {}
     }
   },
   "goals": [],
@@ -584,7 +597,25 @@
         5
       ]
     },
-    "social": {
+    "scientia_momentum": {
+      "days": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "course": {
+      "days": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "college": {
       "days": [
         1,
         2,
