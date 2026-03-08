@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-08T15:32:25.229Z",
+  "exportDate": "2026-03-08T16:25:15.835Z",
   "config": {
     "activities": [
       {
@@ -179,23 +179,6 @@
     ]
   },
   "history": {
-    "2026-03-01": {
-      "activities": {
-        "hobby": {
-          "done": true,
-          "detail": "Gaming"
-        },
-        "anki": {
-          "done": true,
-          "detail": "30 words"
-        },
-        "social": {
-          "done": true,
-          "detail": "Shopping with family"
-        }
-      },
-      "studies": {}
-    },
     "2026-03-02": {
       "activities": {
         "hobby": {
@@ -275,6 +258,23 @@
           "detail": ""
         }
       }
+    },
+    "2026-03-01": {
+      "activities": {
+        "hobby": {
+          "done": true,
+          "detail": "Gaming"
+        },
+        "anki": {
+          "done": true,
+          "detail": "30 words"
+        },
+        "social": {
+          "done": true,
+          "detail": "Shopping with family"
+        }
+      },
+      "studies": {}
     },
     "2026-03-04": {
       "activities": {
