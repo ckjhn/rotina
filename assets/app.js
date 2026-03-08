@@ -89,6 +89,112 @@ const STORAGE_KEY_SCHEDULES = 'lifedash_schedules';
 const STORAGE_KEY_POMODORO_CFG = 'lifedash_pomodoro_config';
 const STORAGE_KEY_POMODORO_HIST = 'lifedash_pomodoro_history';
 const AUTO_JSON_PATH = 'life_dashboard.json';
+const STORAGE_KEY_GITHUB = 'lifedash_github';
+
+// GitHub integration state
+const GitHubConfig = {
+  token: '',
+  owner: '',
+  repo: '',
+  branch: 'main',
+  filePath: 'life_dashboard.json',
+};
+
+function loadGitHubConfig() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY_GITHUB);
+    if (saved) Object.assign(GitHubConfig, JSON.parse(saved));
+  } catch (e) { /* ignore */ }
+}
+
+function saveGitHubConfig() {
+  localStorage.setItem(STORAGE_KEY_GITHUB, JSON.stringify(GitHubConfig));
+}
+
+function isGitHubConfigured() {
+  return GitHubConfig.token && GitHubConfig.owner && GitHubConfig.repo;
+}
+
+async function saveToGitHub() {
+  if (!isGitHubConfigured()) {
+    showToast('Configure GitHub settings first', 'warning');
+    return;
+  }
+
+  const data = {
+    version: '2.0',
+    exportDate: new Date().toISOString(),
+    config: AppState.config,
+    history: AppState.history,
+    goals: AppState.goals,
+    objectives: AppState.objectives,
+    calendarEvents: AppState.calendarEvents,
+    trackers: AppState.trackers,
+    schedules: AppState.schedules,
+    pomodoroConfig: AppState.pomodoroConfig,
+    pomodoroHistory: AppState.pomodoroHistory,
+  };
+
+  const content = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
+  const apiUrl = `https://api.github.com/repos/${GitHubConfig.owner}/${GitHubConfig.repo}/contents/${GitHubConfig.filePath}`;
+
+  const saveBtn = document.getElementById('github-save-btn');
+  if (saveBtn) {
+    saveBtn.disabled = true;
+    saveBtn.innerHTML = '⏳ Saving...';
+  }
+
+  try {
+    // 1) Get current file SHA (needed to update)
+    let sha = null;
+    const getResp = await fetch(`${apiUrl}?ref=${GitHubConfig.branch}`, {
+      headers: {
+        'Authorization': `Bearer ${GitHubConfig.token}`,
+        'Accept': 'application/vnd.github.v3+json',
+      },
+    });
+    if (getResp.ok) {
+      const fileInfo = await getResp.json();
+      sha = fileInfo.sha;
+    } else if (getResp.status !== 404) {
+      const errData = await getResp.json().catch(() => ({}));
+      throw new Error(errData.message || `GitHub GET failed (${getResp.status})`);
+    }
+
+    // 2) Create or update file
+    const putBody = {
+      message: `Update life_dashboard.json — ${new Date().toLocaleString()}`,
+      content: content,
+      branch: GitHubConfig.branch,
+    };
+    if (sha) putBody.sha = sha;
+
+    const putResp = await fetch(apiUrl, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `Bearer ${GitHubConfig.token}`,
+        'Accept': 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(putBody),
+    });
+
+    if (!putResp.ok) {
+      const errData = await putResp.json().catch(() => ({}));
+      throw new Error(errData.message || `GitHub PUT failed (${putResp.status})`);
+    }
+
+    showToast('Saved to GitHub successfully!', 'success');
+  } catch (err) {
+    console.error('GitHub save error:', err);
+    showToast(`GitHub save failed: ${err.message}`, 'error');
+  } finally {
+    if (saveBtn) {
+      saveBtn.disabled = false;
+      saveBtn.innerHTML = '☁️ Save to GitHub';
+    }
+  }
+}
 
 // ========== UTILITY FUNCTIONS ==========
 
@@ -2397,6 +2503,9 @@ function renderDataPage() {
   const recordCount = Object.keys(AppState.history).length;
   const dataSize = new Blob([JSON.stringify(AppState.history)]).size;
   const sizeStr = dataSize > 1024 ? `${(dataSize / 1024).toFixed(1)} KB` : `${dataSize} B`;
+  const ghConfigured = isGitHubConfigured();
+  const ghStatusColor = ghConfigured ? 'var(--accent-green)' : 'var(--text-tertiary)';
+  const ghStatusText = ghConfigured ? 'Connected' : 'Not configured';
 
   container.innerHTML = `
     <div class="stats-grid" style="grid-template-columns: repeat(3, 1fr)">
@@ -2408,14 +2517,64 @@ function renderDataPage() {
         <div class="stat-label">Data Size</div>
         <div class="stat-value">${sizeStr}</div>
       </div>
-      <div class="stat-card" style="--stat-color: var(--accent-green)">
-        <div class="stat-label">Storage</div>
-        <div class="stat-value">Local</div>
-        <div class="stat-sub">localStorage + auto-load JSON</div>
+      <div class="stat-card" style="--stat-color: ${ghStatusColor}">
+        <div class="stat-label">GitHub Sync</div>
+        <div class="stat-value" style="font-size:1.2rem">${ghStatusText}</div>
+        <div class="stat-sub">${ghConfigured ? GitHubConfig.owner + '/' + GitHubConfig.repo : 'Set up below'}</div>
       </div>
     </div>
 
     <div class="dashboard-grid">
+
+      <!-- GITHUB SAVE (prominent) -->
+      <div class="card full-width" style="border: 1px solid ${ghConfigured ? 'var(--accent-green)' : 'var(--border)'}">
+        <div class="card-header">
+          <div class="card-title"><span class="icon">☁️</span> Save to GitHub</div>
+          <button class="btn btn-sm" onclick="toggleGitHubSettings()" style="font-size:0.75rem">⚙ Settings</button>
+        </div>
+        <p style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:16px">
+          Push <strong>life_dashboard.json</strong> to your GitHub repository, replacing the current file. Your GitHub Pages site will update automatically.
+        </p>
+        <button class="btn btn-primary" id="github-save-btn" onclick="saveToGitHub()" ${!ghConfigured ? 'disabled' : ''}>
+          ☁️ Save to GitHub
+        </button>
+
+        <!-- GitHub Settings (hidden by default) -->
+        <div id="github-settings-panel" style="display:none; margin-top:20px; padding-top:16px; border-top:1px solid var(--border)">
+          <div style="display:grid; gap:12px; max-width:500px">
+            <div>
+              <label style="font-size:0.8rem; color:var(--text-secondary); display:block; margin-bottom:4px">Personal Access Token</label>
+              <input type="password" class="input" id="gh-token" value="${GitHubConfig.token}" placeholder="ghp_xxxxxxxxxxxx" style="width:100%">
+              <span style="font-size:0.7rem; color:var(--text-tertiary)">Needs <code>repo</code> scope — <a href="https://github.com/settings/tokens/new?scopes=repo&description=Life+Dashboard" target="_blank" style="color:var(--accent-primary)">Create token</a></span>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px">
+              <div>
+                <label style="font-size:0.8rem; color:var(--text-secondary); display:block; margin-bottom:4px">Owner (username)</label>
+                <input type="text" class="input" id="gh-owner" value="${GitHubConfig.owner}" placeholder="your-username" style="width:100%">
+              </div>
+              <div>
+                <label style="font-size:0.8rem; color:var(--text-secondary); display:block; margin-bottom:4px">Repository</label>
+                <input type="text" class="input" id="gh-repo" value="${GitHubConfig.repo}" placeholder="life-dashboard" style="width:100%">
+              </div>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px">
+              <div>
+                <label style="font-size:0.8rem; color:var(--text-secondary); display:block; margin-bottom:4px">Branch</label>
+                <input type="text" class="input" id="gh-branch" value="${GitHubConfig.branch}" placeholder="main" style="width:100%">
+              </div>
+              <div>
+                <label style="font-size:0.8rem; color:var(--text-secondary); display:block; margin-bottom:4px">File Path</label>
+                <input type="text" class="input" id="gh-filepath" value="${GitHubConfig.filePath}" placeholder="life_dashboard.json" style="width:100%">
+              </div>
+            </div>
+            <div style="display:flex; gap:8px; margin-top:4px">
+              <button class="btn btn-primary" onclick="applyGitHubSettings()">💾 Save Settings</button>
+              <button class="btn" onclick="testGitHubConnection()">🔌 Test Connection</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="card">
         <div class="card-header">
           <div class="card-title"><span class="icon">⬇️</span> Export Data</div>
@@ -2463,6 +2622,54 @@ function renderDataPage() {
       zone.style.borderColor = '';
       if (e.dataTransfer.files.length > 0) handleFile(e.dataTransfer.files[0]);
     });
+  }
+}
+
+function toggleGitHubSettings() {
+  const panel = document.getElementById('github-settings-panel');
+  if (panel) panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+}
+
+function applyGitHubSettings() {
+  GitHubConfig.token = document.getElementById('gh-token').value.trim();
+  GitHubConfig.owner = document.getElementById('gh-owner').value.trim();
+  GitHubConfig.repo = document.getElementById('gh-repo').value.trim();
+  GitHubConfig.branch = document.getElementById('gh-branch').value.trim() || 'main';
+  GitHubConfig.filePath = document.getElementById('gh-filepath').value.trim() || 'life_dashboard.json';
+  saveGitHubConfig();
+  showToast('GitHub settings saved', 'success');
+  renderDataPage();
+}
+
+async function testGitHubConnection() {
+  const token = document.getElementById('gh-token').value.trim();
+  const owner = document.getElementById('gh-owner').value.trim();
+  const repo = document.getElementById('gh-repo').value.trim();
+
+  if (!token || !owner || !repo) {
+    showToast('Fill in token, owner, and repo first', 'warning');
+    return;
+  }
+
+  try {
+    const resp = await fetch(`https://api.github.com/repos/${owner}/${repo}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/vnd.github.v3+json',
+      },
+    });
+    if (resp.ok) {
+      const repoData = await resp.json();
+      showToast(`Connected! Repo: ${repoData.full_name}`, 'success');
+    } else if (resp.status === 401) {
+      showToast('Invalid token — check your PAT', 'error');
+    } else if (resp.status === 404) {
+      showToast('Repository not found — check owner/repo', 'error');
+    } else {
+      showToast(`GitHub responded with ${resp.status}`, 'error');
+    }
+  } catch (err) {
+    showToast(`Connection failed: ${err.message}`, 'error');
   }
 }
 
@@ -4493,6 +4700,7 @@ function toggleSidebar() {
 document.addEventListener('DOMContentLoaded', async () => {
   // Load from localStorage first
   loadFromLocalStorage();
+  loadGitHubConfig();
   
   // Initialize config
   initConfig();
