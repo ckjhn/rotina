@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-09T18:15:27.942Z",
+  "exportDate": "2026-03-09T23:37:50.757Z",
   "config": {
     "activities": [
       {
@@ -556,8 +556,8 @@
           "detail": "CIMV 5.0 - Etapa 4 Modulo 30 Aula 1"
         },
         "mining_sentences": {
-          "done": true,
-          "detail": "10 words"
+          "done": false,
+          "detail": ""
         },
         "social": {
           "done": true,
@@ -615,15 +615,11 @@
       "createdAt": "2026-03-03",
       "archived": false,
       "targetValue": 180,
-      "currentValue": 20,
+      "currentValue": 10,
       "unit": "words",
       "valueHistory": [
         {
           "date": "2026-03-06",
-          "amount": 10
-        },
-        {
-          "date": "2026-03-09",
           "amount": 10
         }
       ]
@@ -748,5 +744,7 @@
     "longBreakMinutes": 30,
     "cyclesBeforeLong": 4
   },
-  "pomodoroHistory": []
+  "pomodoroHistory": [],
+  "habits": [],
+  "habitsLog": {}
 }
