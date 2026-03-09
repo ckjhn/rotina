@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-09T10:26:25.798Z",
+  "exportDate": "2026-03-09T14:03:58.328Z",
   "config": {
     "activities": [
       {
@@ -538,6 +538,14 @@
         "hobby": {
           "done": true,
           "detail": "Gaming"
+        },
+        "work": {
+          "done": true,
+          "detail": "Prolagos [Programador I]"
+        },
+        "anki": {
+          "done": true,
+          "detail": "27 words"
         }
       },
       "studies": {
