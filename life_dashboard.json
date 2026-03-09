@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-09T14:26:52.327Z",
+  "exportDate": "2026-03-09T14:53:09.013Z",
   "config": {
     "activities": [
       {
@@ -268,7 +268,7 @@
         },
         "linguistics": {
           "done": true,
-          "detail": "Immersion"
+          "detail": "English"
         },
         "reading_writing": {
           "done": false,
@@ -330,7 +330,7 @@
         },
         "linguistics": {
           "done": true,
-          "detail": "Immersion"
+          "detail": "English"
         },
         "reading_writing": {
           "done": false,
@@ -384,7 +384,7 @@
         },
         "linguistics": {
           "done": true,
-          "detail": "Immersion"
+          "detail": "English"
         },
         "reading_writing": {
           "done": true,
@@ -450,7 +450,7 @@
         },
         "linguistics": {
           "done": true,
-          "detail": "Immersion"
+          "detail": "English"
         },
         "philosophy_study": {
           "done": false,
@@ -492,7 +492,7 @@
       "studies": {
         "linguistics": {
           "done": true,
-          "detail": "Immersion"
+          "detail": "English"
         }
       }
     },
