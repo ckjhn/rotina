@@ -76,6 +76,8 @@ const AppState = {
   comparisonMode: 'week',
   comparisonDateA: null,
   comparisonDateB: null,
+  habits: [],          // Array of vice/bad habit definitions { id, name, icon, createdAt }
+  habitsLog: {},       // { "2026-03-01": { habitId: { failed: true, note: "..." } } }
 };
 
 // ========== STORAGE KEYS ==========
@@ -88,6 +90,8 @@ const STORAGE_KEY_TRACKERS = 'lifedash_trackers';
 const STORAGE_KEY_SCHEDULES = 'lifedash_schedules';
 const STORAGE_KEY_POMODORO_CFG = 'lifedash_pomodoro_config';
 const STORAGE_KEY_POMODORO_HIST = 'lifedash_pomodoro_history';
+const STORAGE_KEY_HABITS = 'lifedash_habits';
+const STORAGE_KEY_HABITS_LOG = 'lifedash_habits_log';
 const AUTO_JSON_PATH = 'life_dashboard.json';
 const STORAGE_KEY_GITHUB = 'lifedash_github';
 
@@ -133,6 +137,8 @@ async function saveToGitHub() {
     schedules: AppState.schedules,
     pomodoroConfig: AppState.pomodoroConfig,
     pomodoroHistory: AppState.pomodoroHistory,
+    habits: AppState.habits,
+    habitsLog: AppState.habitsLog,
   };
 
   const content = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
@@ -273,6 +279,8 @@ function saveToLocalStorage() {
     localStorage.setItem(STORAGE_KEY_SCHEDULES, JSON.stringify(AppState.schedules));
     localStorage.setItem(STORAGE_KEY_POMODORO_CFG, JSON.stringify(AppState.pomodoroConfig));
     localStorage.setItem(STORAGE_KEY_POMODORO_HIST, JSON.stringify(AppState.pomodoroHistory));
+    localStorage.setItem(STORAGE_KEY_HABITS, JSON.stringify(AppState.habits));
+    localStorage.setItem(STORAGE_KEY_HABITS_LOG, JSON.stringify(AppState.habitsLog));
   } catch (e) {
     console.warn('localStorage save failed:', e);
   }
@@ -289,6 +297,8 @@ function loadFromLocalStorage() {
     const schedules = localStorage.getItem(STORAGE_KEY_SCHEDULES);
     const pomCfg = localStorage.getItem(STORAGE_KEY_POMODORO_CFG);
     const pomHist = localStorage.getItem(STORAGE_KEY_POMODORO_HIST);
+    const habitsData = localStorage.getItem(STORAGE_KEY_HABITS);
+    const habitsLogData = localStorage.getItem(STORAGE_KEY_HABITS_LOG);
     if (hist) AppState.history = JSON.parse(hist);
     if (conf) AppState.config = JSON.parse(conf);
     if (goals) AppState.goals = JSON.parse(goals);
@@ -298,6 +308,8 @@ function loadFromLocalStorage() {
     if (schedules) AppState.schedules = JSON.parse(schedules);
     if (pomCfg) AppState.pomodoroConfig = JSON.parse(pomCfg);
     if (pomHist) AppState.pomodoroHistory = JSON.parse(pomHist);
+    if (habitsData) AppState.habits = JSON.parse(habitsData);
+    if (habitsLogData) AppState.habitsLog = JSON.parse(habitsLogData);
     return !!(hist || conf);
   } catch (e) {
     console.warn('localStorage load failed:', e);
@@ -318,6 +330,8 @@ function exportToJSON() {
     schedules: AppState.schedules,
     pomodoroConfig: AppState.pomodoroConfig,
     pomodoroHistory: AppState.pomodoroHistory,
+    habits: AppState.habits,
+    habitsLog: AppState.habitsLog,
   };
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
@@ -364,6 +378,12 @@ function importFromJSON(file) {
         }
         if (data.pomodoroHistory) {
           AppState.pomodoroHistory = data.pomodoroHistory;
+        }
+        if (data.habits) {
+          AppState.habits = data.habits;
+        }
+        if (data.habitsLog) {
+          AppState.habitsLog = { ...AppState.habitsLog, ...data.habitsLog };
         }
         saveToLocalStorage();
         resolve(data);
@@ -799,6 +819,7 @@ function renderPage(pageId) {
     case 'goals': renderGoalsPage(); break;
     case 'calendar': renderCalendarPage(); break;
     case 'trackers': renderTrackersPage(); break;
+    case 'habits': renderHabitsPage(); break;
     case 'pomodoro': renderPomodoroPage(); break;
     case 'activities-dash': renderActivitiesDashboard(); break;
     case 'studies-dash': renderStudiesDashboard(); break;
@@ -817,6 +838,7 @@ function getPageTitle(pageId) {
     'goals': 'Goals & Objectives',
     'calendar': 'Calendar & Events',
     'trackers': 'Progress Trackers',
+    'habits': 'Habit Control',
     'pomodoro': 'Study Mode',
     'activities-dash': 'Activities Dashboard',
     'studies-dash': 'Studies Dashboard',
@@ -2735,6 +2757,8 @@ function clearAllData() {
     localStorage.removeItem(STORAGE_KEY_SCHEDULES);
     localStorage.removeItem(STORAGE_KEY_POMODORO_CFG);
     localStorage.removeItem(STORAGE_KEY_POMODORO_HIST);
+    localStorage.removeItem(STORAGE_KEY_HABITS);
+    localStorage.removeItem(STORAGE_KEY_HABITS_LOG);
     AppState.history = {};
     AppState.config = { activities: [], studies: [] };
     AppState.goals = [];
@@ -2744,6 +2768,8 @@ function clearAllData() {
     AppState.schedules = {};
     AppState.pomodoroConfig = { workMinutes: 30, shortBreakMinutes: 5, longBreakMinutes: 30, cyclesBeforeLong: 4 };
     AppState.pomodoroHistory = [];
+    AppState.habits = [];
+    AppState.habitsLog = {};
     initConfig();
     saveToLocalStorage();
     showToast('Factory reset complete', 'warning');
@@ -4492,6 +4518,12 @@ function pomodoroStart() {
   _pomodoroState.timeRemaining = cfg.workMinutes * 60;
   _pomodoroState.totalWorkSeconds = 0;
   _pomodoroState.subject = document.getElementById('pom-subject')?.value || '';
+  
+  // Request notification permission for background alerts
+  if ('Notification' in window && Notification.permission === 'default') {
+    Notification.requestPermission();
+  }
+  
   pomodoroTick();
   _pomodoroState.intervalId = setInterval(pomodoroTick, 1000);
   renderPomodoroPage();
@@ -4521,6 +4553,13 @@ function pomodoroReset() {
     savePomodoroSession();
   }
   
+  // Restore document title
+  document.title = 'Life Dashboard — Activity & Study Tracker';
+  
+  // Restore nav text
+  const navPom = document.querySelector('.nav-item[data-page="pomodoro"] span:last-child');
+  if (navPom) navPom.textContent = 'Study Mode';
+  
   _pomodoroState = {
     running: false, paused: false, phase: 'work', cycle: 1,
     timeRemaining: AppState.pomodoroConfig.workMinutes * 60,
@@ -4535,7 +4574,7 @@ function pomodoroTick() {
     if (_pomodoroState.phase === 'work') {
       _pomodoroState.totalWorkSeconds++;
     }
-    // Update display without full re-render
+    // Update display without full re-render (only if elements exist)
     const timerEl = document.querySelector('.pomodoro-timer-display');
     if (timerEl) {
       const mins = Math.floor(_pomodoroState.timeRemaining / 60);
@@ -4549,8 +4588,84 @@ function pomodoroTick() {
     const pct = Math.round(((totalPhaseTime - _pomodoroState.timeRemaining) / totalPhaseTime) * 100);
     const ring = document.querySelector('.pomodoro-timer-ring');
     if (ring) ring.style.setProperty('--pom-progress', pct + '%');
+    
+    // Update document title with timer when running (background support)
+    const mins2 = Math.floor(_pomodoroState.timeRemaining / 60);
+    const secs2 = _pomodoroState.timeRemaining % 60;
+    const phaseEmoji = _pomodoroState.phase === 'work' ? '🎯' : '☕';
+    document.title = `${phaseEmoji} ${String(mins2).padStart(2, '0')}:${String(secs2).padStart(2, '0')} — Life Dashboard`;
+    
+    // Update nav indicator so user sees timer on any page
+    const navPom = document.querySelector('.nav-item[data-page="pomodoro"] span:last-child');
+    if (navPom) {
+      navPom.textContent = `Study Mode ${String(mins2).padStart(2,'0')}:${String(secs2).padStart(2,'0')}`;
+    }
   } else {
     pomodoroPhaseComplete();
+  }
+}
+
+function playPomodoroSound(isWorkDone) {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const now = ctx.currentTime;
+    
+    if (isWorkDone) {
+      // Triple ascending chime for end of work session
+      const notes = [523.25, 659.25, 783.99]; // C5, E5, G5
+      notes.forEach((freq, i) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.type = 'sine';
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.35, now + i * 0.25);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + i * 0.25 + 0.6);
+        osc.start(now + i * 0.25);
+        osc.stop(now + i * 0.25 + 0.6);
+      });
+      // Second wave (repeat for emphasis)
+      setTimeout(() => {
+        try {
+          const ctx2 = new (window.AudioContext || window.webkitAudioContext)();
+          const n = ctx2.currentTime;
+          [783.99, 987.77, 1046.50].forEach((freq, i) => {
+            const osc = ctx2.createOscillator();
+            const gain = ctx2.createGain();
+            osc.connect(gain);
+            gain.connect(ctx2.destination);
+            osc.type = 'sine';
+            osc.frequency.value = freq;
+            gain.gain.setValueAtTime(0.3, n + i * 0.2);
+            gain.gain.exponentialRampToValueAtTime(0.01, n + i * 0.2 + 0.5);
+            osc.start(n + i * 0.2);
+            osc.stop(n + i * 0.2 + 0.5);
+          });
+        } catch(e) {}
+      }, 900);
+    } else {
+      // Two-tone bell for break end
+      [440, 554.37, 440].forEach((freq, i) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.type = 'triangle';
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.3, now + i * 0.3);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + i * 0.3 + 0.4);
+        osc.start(now + i * 0.3);
+        osc.stop(now + i * 0.3 + 0.4);
+      });
+    }
+  } catch(e) {}
+  
+  // Also fire a browser notification if permitted
+  if ('Notification' in window && Notification.permission === 'granted') {
+    const title = isWorkDone ? '☕ Break Time!' : '🎯 Focus Time!';
+    const body = isWorkDone ? 'Great work! Take a break.' : 'Break is over. Let\'s focus!';
+    new Notification(title, { body, icon: '🍅' });
   }
 }
 
@@ -4558,19 +4673,10 @@ function pomodoroPhaseComplete() {
   if (_pomodoroState.intervalId) clearInterval(_pomodoroState.intervalId);
   const cfg = AppState.pomodoroConfig;
   
-  // Play notification sound
-  try {
-    const ctx = new (window.AudioContext || window.webkitAudioContext)();
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    osc.connect(gain);
-    gain.connect(ctx.destination);
-    osc.frequency.value = 800;
-    gain.gain.value = 0.3;
-    osc.start();
-    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.5);
-    osc.stop(ctx.currentTime + 0.5);
-  } catch(e) {}
+  const isWorkPhaseEnding = _pomodoroState.phase === 'work';
+  
+  // Play improved notification sound
+  playPomodoroSound(isWorkPhaseEnding);
 
   if (_pomodoroState.phase === 'work') {
     _pomodoroState.sessionsCompleted++;
@@ -4613,6 +4719,485 @@ function savePomodoroSession() {
     totalMinutes,
   });
   saveToLocalStorage();
+}
+
+// ========== HABIT CONTROL (Vices & Bad Habits Tracker) ==========
+
+let _habitsCalMonth = new Date().getMonth();
+let _habitsCalYear = new Date().getFullYear();
+
+function renderHabitsPage() {
+  const container = document.getElementById('page-habits');
+  const today = todayStr();
+  const habits = AppState.habits || [];
+  const log = AppState.habitsLog || {};
+
+  // Calculate stats
+  const last7 = [];
+  const last14_first7 = [];
+  for (let i = 0; i < 7; i++) last7.push(addDays(today, -i));
+  for (let i = 7; i < 14; i++) last14_first7.push(addDays(today, -i));
+  
+  let thisWeekFails = 0, lastWeekFails = 0;
+  let thisWeekClean = 0, lastWeekClean = 0;
+  
+  last7.forEach(d => {
+    const dayLog = log[d] || {};
+    habits.forEach(h => {
+      if (dayLog[h.id]?.failed) thisWeekFails++;
+      else thisWeekClean++;
+    });
+  });
+  
+  last14_first7.forEach(d => {
+    const dayLog = log[d] || {};
+    habits.forEach(h => {
+      if (dayLog[h.id]?.failed) lastWeekFails++;
+      else lastWeekClean++;
+    });
+  });
+
+  // Current streak (days with zero failures)
+  let cleanStreak = 0;
+  let checkDate = today;
+  while (cleanStreak < 365) {
+    const dayLog = log[checkDate] || {};
+    const anyFail = habits.some(h => dayLog[h.id]?.failed);
+    if (anyFail) break;
+    // Only count if there's at least some history or it's today
+    if (checkDate === today || Object.keys(dayLog).length > 0 || AppState.history[checkDate]) {
+      cleanStreak++;
+    } else {
+      break;
+    }
+    checkDate = addDays(checkDate, -1);
+  }
+
+  // Calendar HTML
+  const calHtml = renderHabitsCalendar(_habitsCalYear, _habitsCalMonth, habits, log);
+
+  // Today's habit status
+  const todayLog = log[today] || {};
+  const todayStatusHtml = habits.length > 0 ? habits.map(h => {
+    const failed = todayLog[h.id]?.failed || false;
+    const note = todayLog[h.id]?.note || '';
+    return `
+      <div class="habit-today-item ${failed ? 'failed' : 'clean'}">
+        <div class="habit-today-left">
+          <span class="habit-today-icon">${h.icon || '🚫'}</span>
+          <span class="habit-today-name">${escapeHtml(h.name)}</span>
+        </div>
+        <div class="habit-today-right">
+          <button class="btn btn-sm ${failed ? 'habit-btn-failed' : 'habit-btn-clean'}" 
+            onclick="toggleHabitFail('${h.id}', '${today}')">
+            ${failed ? '❌ Failed' : '✅ Clean'}
+          </button>
+          <input type="text" class="form-input habit-note-input" placeholder="note..." 
+            value="${escapeHtml(note)}" 
+            onchange="updateHabitNote('${h.id}', '${today}', this.value)">
+        </div>
+      </div>
+    `;
+  }).join('') : '<div class="empty-state"><div class="empty-state-icon">🛡️</div><div class="empty-state-text">No habits tracked yet. Add one below.</div></div>';
+
+  // AI Analysis
+  const analysisHtml = generateHabitsAnalysis(habits, log, today);
+
+  container.innerHTML = `
+    <div class="stats-grid">
+      <div class="stat-card" style="--stat-color: var(--accent-green)">
+        <div class="stat-label">Clean Streak</div>
+        <div class="stat-value">${cleanStreak}d</div>
+        <div class="stat-sub">zero-failure days</div>
+      </div>
+      <div class="stat-card" style="--stat-color: ${thisWeekFails <= lastWeekFails ? 'var(--accent-green)' : 'var(--accent-secondary)'}">
+        <div class="stat-label">This Week</div>
+        <div class="stat-value">${thisWeekFails}</div>
+        <div class="stat-sub">failures (last 7d)</div>
+      </div>
+      <div class="stat-card" style="--stat-color: var(--accent-blue)">
+        <div class="stat-label">Last Week</div>
+        <div class="stat-value">${lastWeekFails}</div>
+        <div class="stat-sub">failures (prev 7d)</div>
+      </div>
+      <div class="stat-card" style="--stat-color: var(--accent-purple)">
+        <div class="stat-label">Tracked</div>
+        <div class="stat-value">${habits.length}</div>
+        <div class="stat-sub">habits monitored</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:20px">
+      <div class="card-header">
+        <div class="card-title"><span class="icon">📋</span> Today — ${formatDate(today)}</div>
+      </div>
+      <div class="habit-today-list">
+        ${todayStatusHtml}
+      </div>
+    </div>
+
+    <div class="dashboard-grid">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title"><span class="icon">📅</span> Habit Calendar</div>
+          <div style="display:flex;gap:8px;align-items:center">
+            <button class="btn btn-sm" onclick="habitsCalNav(-1)">◀</button>
+            <span style="font-size:0.85rem;min-width:100px;text-align:center" id="habits-cal-label">
+              ${new Date(_habitsCalYear, _habitsCalMonth).toLocaleDateString('en-US', {month:'long', year:'numeric'})}
+            </span>
+            <button class="btn btn-sm" onclick="habitsCalNav(1)">▶</button>
+          </div>
+        </div>
+        <div class="habits-calendar">${calHtml}</div>
+        <div style="padding:8px 24px 16px;display:flex;gap:16px;font-size:0.75rem;color:var(--text-muted)">
+          <span><span class="habit-legend-dot clean-dot"></span> Clean day</span>
+          <span><span class="habit-legend-dot fail-dot"></span> Failure logged</span>
+          <span><span class="habit-legend-dot partial-dot"></span> Partial fail</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title"><span class="icon">🧠</span> Intelligent Analysis</div>
+        </div>
+        <div class="habits-analysis scroll-inner" style="max-height:420px;padding:0 24px 24px">
+          ${analysisHtml}
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:20px">
+      <div class="card-header">
+        <div class="card-title"><span class="icon">⚙️</span> Manage Habits</div>
+      </div>
+      <div style="padding:0 24px 24px">
+        <div style="display:flex;gap:12px;margin-bottom:16px;align-items:end">
+          <div class="form-group" style="margin:0;flex:1">
+            <label class="form-label">Habit/Vice Name</label>
+            <input type="text" class="form-input" id="new-habit-name" placeholder="e.g., Smoking, Junk Food, Social Media...">
+          </div>
+          <div class="form-group" style="margin:0;width:80px">
+            <label class="form-label">Icon</label>
+            <input type="text" class="form-input" id="new-habit-icon" placeholder="🚬" value="🚫" style="text-align:center">
+          </div>
+          <button class="btn btn-primary" onclick="addNewHabit()" style="height:38px">+ Add</button>
+        </div>
+        ${habits.length > 0 ? `
+        <div class="habits-manage-list">
+          ${habits.map((h, i) => `
+            <div class="habits-manage-item">
+              <span>${h.icon || '🚫'} ${escapeHtml(h.name)}</span>
+              <span style="font-size:0.75rem;color:var(--text-muted)">since ${formatDateShort(h.createdAt || today)}</span>
+              <button class="btn btn-sm btn-danger" onclick="deleteHabit(${i})">🗑</button>
+            </div>
+          `).join('')}
+        </div>` : ''}
+      </div>
+    </div>
+  `;
+}
+
+function renderHabitsCalendar(year, month, habits, log) {
+  const today = todayStr();
+  const firstDay = new Date(year, month, 1).getDay();
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+  let html = '<div class="mini-cal-header">';
+  ['S','M','T','W','T','F','S'].forEach(d => { html += `<div class="mini-cal-day-label">${d}</div>`; });
+  html += '</div><div class="mini-cal-grid">';
+
+  for (let i = 0; i < firstDay; i++) html += '<div class="mini-cal-cell empty"></div>';
+  
+  for (let day = 1; day <= daysInMonth; day++) {
+    const dateKey = `${year}-${String(month+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+    const isToday = dateKey === today;
+    const isFuture = dateKey > today;
+    const dayLog = log[dateKey] || {};
+    
+    let failCount = 0;
+    let totalTracked = habits.length;
+    habits.forEach(h => {
+      if (dayLog[h.id]?.failed) failCount++;
+    });
+    
+    let statusClass = '';
+    if (!isFuture && totalTracked > 0) {
+      if (failCount === 0) statusClass = 'habit-clean';
+      else if (failCount < totalTracked) statusClass = 'habit-partial';
+      else statusClass = 'habit-fail';
+    }
+    
+    const tooltip = failCount > 0 ? `${failCount} failure${failCount>1?'s':''}` : (totalTracked > 0 && !isFuture ? 'Clean day' : '');
+    
+    html += `<div class="mini-cal-cell ${isToday ? 'today' : ''} ${statusClass} ${isFuture ? 'future' : ''}" 
+      title="${tooltip}"
+      onclick="openHabitsDayModal('${dateKey}')">${day}</div>`;
+  }
+  html += '</div>';
+  return html;
+}
+
+function habitsCalNav(delta) {
+  _habitsCalMonth += delta;
+  if (_habitsCalMonth > 11) { _habitsCalMonth = 0; _habitsCalYear++; }
+  if (_habitsCalMonth < 0) { _habitsCalMonth = 11; _habitsCalYear--; }
+  renderHabitsPage();
+}
+
+function toggleHabitFail(habitId, dateStr) {
+  if (!AppState.habitsLog) AppState.habitsLog = {};
+  if (!AppState.habitsLog[dateStr]) AppState.habitsLog[dateStr] = {};
+  
+  const current = AppState.habitsLog[dateStr][habitId];
+  if (current?.failed) {
+    AppState.habitsLog[dateStr][habitId] = { failed: false, note: current.note || '' };
+  } else {
+    AppState.habitsLog[dateStr][habitId] = { failed: true, note: current?.note || '' };
+  }
+  saveToLocalStorage();
+  renderHabitsPage();
+}
+
+function updateHabitNote(habitId, dateStr, note) {
+  if (!AppState.habitsLog) AppState.habitsLog = {};
+  if (!AppState.habitsLog[dateStr]) AppState.habitsLog[dateStr] = {};
+  if (!AppState.habitsLog[dateStr][habitId]) AppState.habitsLog[dateStr][habitId] = { failed: false };
+  AppState.habitsLog[dateStr][habitId].note = note;
+  saveToLocalStorage();
+}
+
+function addNewHabit() {
+  const name = document.getElementById('new-habit-name')?.value.trim();
+  const icon = document.getElementById('new-habit-icon')?.value.trim() || '🚫';
+  if (!name) { showToast('Enter a habit name', 'warning'); return; }
+  
+  if (!AppState.habits) AppState.habits = [];
+  const id = 'habit_' + name.toLowerCase().replace(/[^a-z0-9]+/g, '_') + '_' + Date.now();
+  
+  if (AppState.habits.find(h => h.name.toLowerCase() === name.toLowerCase())) {
+    showToast('This habit already exists', 'warning');
+    return;
+  }
+  
+  AppState.habits.push({ id, name, icon, createdAt: todayStr() });
+  saveToLocalStorage();
+  showToast(`Tracking "${name}"`, 'success');
+  renderHabitsPage();
+}
+
+function deleteHabit(index) {
+  const habit = AppState.habits[index];
+  if (!habit) return;
+  if (!confirm(`Remove "${habit.name}" from tracking?\n\nLog data for this habit will be preserved.`)) return;
+  AppState.habits.splice(index, 1);
+  saveToLocalStorage();
+  showToast(`Removed "${habit.name}"`, 'warning');
+  renderHabitsPage();
+}
+
+function openHabitsDayModal(dateStr) {
+  const habits = AppState.habits || [];
+  if (habits.length === 0) { showToast('Add a habit first', 'info'); return; }
+  
+  const log = AppState.habitsLog || {};
+  const dayLog = log[dateStr] || {};
+  
+  const itemsHtml = habits.map(h => {
+    const failed = dayLog[h.id]?.failed || false;
+    const note = dayLog[h.id]?.note || '';
+    return `
+      <div class="habit-modal-item">
+        <div style="display:flex;align-items:center;gap:8px;flex:1">
+          <span>${h.icon || '🚫'}</span>
+          <span>${escapeHtml(h.name)}</span>
+        </div>
+        <button class="btn btn-sm ${failed ? 'habit-btn-failed' : 'habit-btn-clean'}"
+          onclick="toggleHabitFail('${h.id}', '${dateStr}');openHabitsDayModal('${dateStr}')">
+          ${failed ? '❌ Failed' : '✅ Clean'}
+        </button>
+        <input type="text" class="form-input" style="width:140px;font-size:0.8rem" placeholder="note..." 
+          value="${escapeHtml(note)}" 
+          onchange="updateHabitNote('${h.id}', '${dateStr}', this.value)">
+      </div>
+    `;
+  }).join('');
+
+  const html = `
+    <div class="modal-header">
+      <div class="modal-title">🛡️ Habit Log — ${formatDate(dateStr)}</div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      ${itemsHtml}
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary" onclick="closeModal();renderHabitsPage()">Done</button>
+    </div>
+  `;
+  openModal(html);
+}
+
+function generateHabitsAnalysis(habits, log, today) {
+  if (habits.length === 0) {
+    return '<div class="empty-state" style="padding:20px"><div class="empty-state-icon">🧠</div><div class="empty-state-text">Add habits to see intelligent analysis</div></div>';
+  }
+
+  const insights = [];
+  
+  // Collect data for this week and last week
+  const thisWeekDates = [];
+  const lastWeekDates = [];
+  for (let i = 0; i < 7; i++) thisWeekDates.push(addDays(today, -i));
+  for (let i = 7; i < 14; i++) lastWeekDates.push(addDays(today, -i));
+  
+  let thisWeekTotal = 0, lastWeekTotal = 0;
+  const perHabitThis = {};
+  const perHabitLast = {};
+  
+  habits.forEach(h => {
+    perHabitThis[h.id] = 0;
+    perHabitLast[h.id] = 0;
+  });
+  
+  thisWeekDates.forEach(d => {
+    const dayLog = log[d] || {};
+    habits.forEach(h => {
+      if (dayLog[h.id]?.failed) {
+        thisWeekTotal++;
+        perHabitThis[h.id]++;
+      }
+    });
+  });
+  
+  lastWeekDates.forEach(d => {
+    const dayLog = log[d] || {};
+    habits.forEach(h => {
+      if (dayLog[h.id]?.failed) {
+        lastWeekTotal++;
+        perHabitLast[h.id]++;
+      }
+    });
+  });
+  
+  // Overall comparison
+  if (thisWeekTotal < lastWeekTotal) {
+    const diff = lastWeekTotal - thisWeekTotal;
+    insights.push({
+      type: 'success',
+      icon: '🎉',
+      text: `<strong>Great progress!</strong> You had <strong>${thisWeekTotal}</strong> failure${thisWeekTotal !== 1 ? 's' : ''} this week vs <strong>${lastWeekTotal}</strong> last week — that's <strong>${diff} fewer</strong>. You're on the right path!`,
+    });
+  } else if (thisWeekTotal > lastWeekTotal) {
+    const diff = thisWeekTotal - lastWeekTotal;
+    insights.push({
+      type: 'warning',
+      icon: '⚠️',
+      text: `<strong>Attention:</strong> This week had <strong>${thisWeekTotal}</strong> failure${thisWeekTotal !== 1 ? 's' : ''} vs <strong>${lastWeekTotal}</strong> last week — <strong>${diff} more</strong>. Don't give up. Every setback is a chance to learn.`,
+    });
+  } else if (thisWeekTotal === 0 && lastWeekTotal === 0) {
+    insights.push({
+      type: 'success',
+      icon: '🏆',
+      text: `<strong>Flawless!</strong> Two consecutive clean weeks. You're building real discipline. Keep this momentum going!`,
+    });
+  } else {
+    insights.push({
+      type: 'info',
+      icon: 'ℹ️',
+      text: `This week and last week had the same number of failures (<strong>${thisWeekTotal}</strong>). Consistency is key — try to break through and reduce this number.`,
+    });
+  }
+
+  // Per-habit breakdown
+  habits.forEach(h => {
+    const tw = perHabitThis[h.id];
+    const lw = perHabitLast[h.id];
+    
+    if (tw === 0 && lw === 0) {
+      // Calculate total clean days for this habit
+      let cleanDays = 0;
+      let cd = today;
+      for (let i = 0; i < 30; i++) {
+        if (!(log[cd]?.[h.id]?.failed)) cleanDays++;
+        else break;
+        cd = addDays(cd, -1);
+      }
+      if (cleanDays >= 7) {
+        insights.push({
+          type: 'success',
+          icon: h.icon || '🛡️',
+          text: `<strong>${escapeHtml(h.name)}:</strong> ${cleanDays}+ days clean! This habit is under control. Every day strengthens your willpower.`,
+        });
+      }
+    } else if (tw < lw) {
+      insights.push({
+        type: 'success',
+        icon: '📉',
+        text: `<strong>${escapeHtml(h.name)}:</strong> Improved! Down from <strong>${lw}</strong> to <strong>${tw}</strong> failures this week.`,
+      });
+    } else if (tw > lw) {
+      insights.push({
+        type: 'warning',
+        icon: '📈',
+        text: `<strong>${escapeHtml(h.name)}:</strong> Increased from <strong>${lw}</strong> to <strong>${tw}</strong> failures. Try to identify what triggers this habit and have a plan ready.`,
+      });
+    } else if (tw > 0) {
+      insights.push({
+        type: 'info',
+        icon: '🔄',
+        text: `<strong>${escapeHtml(h.name)}:</strong> <strong>${tw}</strong> failure${tw > 1 ? 's' : ''} both weeks. Focus on reducing even by one — small wins compound over time.`,
+      });
+    }
+  });
+  
+  // Tips based on patterns
+  const totalFailDays = Object.keys(log).filter(d => {
+    const dayLog = log[d];
+    return habits.some(h => dayLog[h.id]?.failed);
+  });
+  
+  if (totalFailDays.length > 0) {
+    // Check if failures cluster on certain days
+    const dayOfWeekCounts = [0,0,0,0,0,0,0];
+    totalFailDays.forEach(d => {
+      const dow = new Date(d + 'T12:00:00').getDay();
+      dayOfWeekCounts[dow]++;
+    });
+    const maxDay = dayOfWeekCounts.indexOf(Math.max(...dayOfWeekCounts));
+    const dayNames = ['Sundays', 'Mondays', 'Tuesdays', 'Wednesdays', 'Thursdays', 'Fridays', 'Saturdays'];
+    if (dayOfWeekCounts[maxDay] >= 3) {
+      insights.push({
+        type: 'info',
+        icon: '🔍',
+        text: `<strong>Pattern detected:</strong> Most failures happen on <strong>${dayNames[maxDay]}</strong>. Pay extra attention on that day — prepare alternatives and stay mindful.`,
+      });
+    }
+  }
+
+  // Motivational tips
+  const motivations = [
+    { icon: '💪', text: '<strong>Remember:</strong> Progress, not perfection. Each clean day rewires your brain. You are literally building a new version of yourself.' },
+    { icon: '🧘', text: '<strong>Tip:</strong> When you feel the urge, pause for 10 deep breaths. Most cravings pass within 10-15 minutes. Distract yourself with a positive activity.' },
+    { icon: '📝', text: '<strong>Tip:</strong> Writing notes about when and why you fail helps identify patterns. The more you understand your triggers, the better you can avoid them.' },
+    { icon: '🌊', text: '<strong>Mindset:</strong> A single failure doesn\'t erase your progress. What matters is getting back on track immediately. Don\'t let one bad day become two.' },
+  ];
+  
+  // Pick 1-2 motivations based on current state
+  if (thisWeekTotal > 0) {
+    const idx = Math.floor(thisWeekTotal * 1.3) % motivations.length;
+    insights.push({ type: 'info', ...motivations[idx] });
+  }
+  if (thisWeekTotal >= 3) {
+    const idx2 = (Math.floor(thisWeekTotal * 2.7) + 1) % motivations.length;
+    insights.push({ type: 'info', ...motivations[idx2] });
+  }
+
+  return insights.map(i => `
+    <div class="ai-insight ${i.type}">
+      <span class="ai-insight-icon">${i.icon}</span>
+      <div class="ai-insight-text">${i.text}</div>
+    </div>
+  `).join('');
 }
 
 // ========== SCHEDULE CONFIGURATION (in Settings) ==========
@@ -4704,6 +5289,12 @@ async function tryAutoLoadJSON() {
       }
       if (data.pomodoroHistory) {
         AppState.pomodoroHistory = data.pomodoroHistory;
+      }
+      if (data.habits) {
+        AppState.habits = data.habits;
+      }
+      if (data.habitsLog) {
+        AppState.habitsLog = { ...AppState.habitsLog, ...data.habitsLog };
       }
       saveToLocalStorage();
       console.log('Auto-loaded data from ' + AUTO_JSON_PATH);
