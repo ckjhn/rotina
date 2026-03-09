@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-09T14:03:58.328Z",
+  "exportDate": "2026-03-09T14:23:53.422Z",
   "config": {
     "activities": [
       {
@@ -546,6 +546,14 @@
         "anki": {
           "done": true,
           "detail": "27 words"
+        },
+        "philosophy_practice": {
+          "done": true,
+          "detail": "Stoicism"
+        },
+        "language_class": {
+          "done": true,
+          "detail": "CIMV 5.0 - Etapa 4 Modulo 30 Aula 1"
         }
       },
       "studies": {
