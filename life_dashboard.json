@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-09T14:23:53.422Z",
+  "exportDate": "2026-03-09T14:24:54.104Z",
   "config": {
     "activities": [
       {
@@ -554,12 +554,20 @@
         "language_class": {
           "done": true,
           "detail": "CIMV 5.0 - Etapa 4 Modulo 30 Aula 1"
+        },
+        "mining_sentences": {
+          "done": true,
+          "detail": "10 words"
         }
       },
       "studies": {
         "course": {
           "done": true,
           "detail": "Python - Programação Orientada a Objetos"
+        },
+        "linguistics": {
+          "done": true,
+          "detail": "English"
         }
       }
     }
@@ -574,9 +582,14 @@
       "createdAt": "2026-03-03",
       "archived": false,
       "targetValue": 20,
-      "currentValue": 0,
+      "currentValue": 1,
       "unit": "",
-      "valueHistory": []
+      "valueHistory": [
+        {
+          "date": "2026-03-09",
+          "amount": 1
+        }
+      ]
     },
     {
       "id": "obj_mmawhh0g15qh5",
@@ -586,11 +599,15 @@
       "createdAt": "2026-03-03",
       "archived": false,
       "targetValue": 180,
-      "currentValue": 10,
+      "currentValue": 20,
       "unit": "words",
       "valueHistory": [
         {
           "date": "2026-03-06",
+          "amount": 10
+        },
+        {
+          "date": "2026-03-09",
           "amount": 10
         }
       ]
