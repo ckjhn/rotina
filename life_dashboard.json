@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-09T14:53:09.013Z",
+  "exportDate": "2026-03-09T17:15:05.233Z",
   "config": {
     "activities": [
       {
@@ -558,6 +558,10 @@
         "mining_sentences": {
           "done": true,
           "detail": "10 words"
+        },
+        "social": {
+          "done": true,
+          "detail": "Work, Family"
         }
       },
       "studies": {
