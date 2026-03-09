@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-08T16:55:07.824Z",
+  "exportDate": "2026-03-09T10:26:25.798Z",
   "config": {
     "activities": [
       {
@@ -517,9 +517,35 @@
         "philosophy_practice": {
           "done": true,
           "detail": "Stoicism"
+        },
+        "reading": {
+          "done": false,
+          "detail": ""
+        },
+        "physical_training": {
+          "done": false,
+          "detail": ""
         }
       },
       "studies": {}
+    },
+    "2026-03-09": {
+      "activities": {
+        "scientia_momentum": {
+          "done": true,
+          "detail": "Scientia Momentum"
+        },
+        "hobby": {
+          "done": true,
+          "detail": "Gaming"
+        }
+      },
+      "studies": {
+        "course": {
+          "done": true,
+          "detail": "Python - Programação Orientada a Objetos"
+        }
+      }
     }
   },
   "goals": [],
