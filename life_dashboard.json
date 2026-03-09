@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-09T17:15:05.233Z",
+  "exportDate": "2026-03-09T18:15:27.942Z",
   "config": {
     "activities": [
       {
@@ -562,6 +562,10 @@
         "social": {
           "done": true,
           "detail": "Work, Family"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "English"
         }
       },
       "studies": {
@@ -572,6 +576,14 @@
         "linguistics": {
           "done": true,
           "detail": "English"
+        },
+        "college": {
+          "done": true,
+          "detail": "End of the semester"
+        },
+        "coding": {
+          "done": true,
+          "detail": "Python - Programação Orientada a Objeto"
         }
       }
     }
