@@ -447,6 +447,15 @@ function getItemStatus(dateStr, category, itemId) {
 
 // ========== STATISTICS CALCULATIONS ==========
 
+function isItemActiveOnDate(itemId, dateStr) {
+  const schedule = AppState.schedules[itemId];
+  if (!schedule || !schedule.days || schedule.days.length === 0 || schedule.days.length === 7) {
+    return true; // No schedule restriction = active every day
+  }
+  const dayOfWeek = new Date(dateStr + 'T12:00:00').getDay(); // 0=Sun
+  return schedule.days.includes(dayOfWeek);
+}
+
 function calcDayCompletion(dateStr, category) {
   const items = getAllItems(category);
   const record = getDayRecord(dateStr);
@@ -460,6 +469,9 @@ function calcDayCompletion(dateStr, category) {
     if (item.frequency === 'optional') return;
     if (item.frequency !== 'daily') return;
     
+    // Skip items not scheduled for this day
+    if (!isItemActiveOnDate(item.id, dateStr)) return;
+    
     // Special rule: college and course — only one required
     if (category === 'studies' && (item.id === 'college' || item.id === 'course')) {
       return; // handle separately
@@ -469,12 +481,16 @@ function calcDayCompletion(dateStr, category) {
     if (record[cat]?.[item.id]?.done) doneCount++;
   });
 
-  // Handle college/course special case
+  // Handle college/course special case — only if at least one is active today
   if (category === 'studies') {
-    requiredCount++; // one of them is required
-    const collegeDone = record[cat]?.college?.done;
-    const courseDone = record[cat]?.course?.done;
-    if (collegeDone || courseDone) doneCount++;
+    const collegeActive = isItemActiveOnDate('college', dateStr);
+    const courseActive = isItemActiveOnDate('course', dateStr);
+    if (collegeActive || courseActive) {
+      requiredCount++; // one of them is required
+      const collegeDone = record[cat]?.college?.done;
+      const courseDone = record[cat]?.course?.done;
+      if (collegeDone || courseDone) doneCount++;
+    }
   }
 
   return requiredCount === 0 ? 100 : Math.round((doneCount / requiredCount) * 100);
@@ -497,13 +513,19 @@ function calcRangeCompletion(start, end, category) {
     
     dailyItems.forEach(item => {
       if (category === 'studies' && (item.id === 'college' || item.id === 'course')) return;
+      // Skip items not scheduled for this day
+      if (!isItemActiveOnDate(item.id, date)) return;
       totalRequired++;
       if (record[cat]?.[item.id]?.done) totalDone++;
     });
 
     if (category === 'studies') {
-      totalRequired++;
-      if (record[cat]?.college?.done || record[cat]?.course?.done) totalDone++;
+      const collegeActive = isItemActiveOnDate('college', date);
+      const courseActive = isItemActiveOnDate('course', date);
+      if (collegeActive || courseActive) {
+        totalRequired++;
+        if (record[cat]?.college?.done || record[cat]?.course?.done) totalDone++;
+      }
     }
   });
 
@@ -816,11 +838,16 @@ function renderTodayPage() {
   
   const actCompletion = calcDayCompletion(date, 'activities');
   const studCompletion = calcDayCompletion(date, 'studies');
-  const totalItems = [...AppState.config.activities, ...AppState.config.studies].filter(i => i.frequency !== 'optional').length;
+  const totalItems = [...AppState.config.activities, ...AppState.config.studies].filter(i => i.frequency !== 'optional' && isItemActiveOnDate(i.id, date)).length;
   const record = getDayRecord(date);
   let totalDone = 0;
   ['activities', 'studies'].forEach(cat => {
-    Object.values(record[cat] || {}).forEach(v => { if (v.done) totalDone++; });
+    const items = cat === 'activities' ? AppState.config.activities : AppState.config.studies;
+    items.forEach(item => {
+      if (item.frequency === 'optional') return;
+      if (!isItemActiveOnDate(item.id, date)) return;
+      if (record[cat]?.[item.id]?.done) totalDone++;
+    });
   });
 
   const insights = generateInsights().slice(0, 3);
