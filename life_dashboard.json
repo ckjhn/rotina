@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-10T14:18:39.785Z",
+  "exportDate": "2026-03-10T16:52:00.583Z",
   "config": {
     "activities": [
       {
@@ -600,6 +600,14 @@
         "language_immersion": {
           "done": true,
           "detail": "Asmongold TV"
+        },
+        "social": {
+          "done": true,
+          "detail": "Work"
+        },
+        "philosophy_practice": {
+          "done": true,
+          "detail": "Stoicism"
         }
       },
       "studies": {
