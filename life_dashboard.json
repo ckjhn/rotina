@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-09T23:37:50.757Z",
+  "exportDate": "2026-03-10T13:18:18.219Z",
   "config": {
     "activities": [
       {
@@ -586,6 +586,19 @@
           "detail": "Python - Programação Orientada a Objeto"
         }
       }
+    },
+    "2026-03-10": {
+      "activities": {
+        "work": {
+          "done": true,
+          "detail": "Prolagos [Programador I]"
+        },
+        "hobby": {
+          "done": true,
+          "detail": "Gaming"
+        }
+      },
+      "studies": {}
     }
   },
   "goals": [],
@@ -745,6 +758,132 @@
     "cyclesBeforeLong": 4
   },
   "pomodoroHistory": [],
-  "habits": [],
-  "habitsLog": {}
+  "habits": [
+    {
+      "id": "habit_pornography_1773148521833",
+      "name": "Pornography",
+      "icon": "🚫",
+      "createdAt": "2026-03-10"
+    },
+    {
+      "id": "habit_doce_1773148558872",
+      "name": "Doce",
+      "icon": "🍫",
+      "createdAt": "2026-03-10"
+    },
+    {
+      "id": "habit_gordura_1773148570817",
+      "name": "Gordura",
+      "icon": "🍟",
+      "createdAt": "2026-03-10"
+    }
+  ],
+  "habitsLog": {
+    "2026-03-01": {
+      "habit_doce_1773148558872": {
+        "failed": true,
+        "note": ""
+      },
+      "habit_gordura_1773148570817": {
+        "failed": true,
+        "note": ""
+      },
+      "habit_pornography_1773148521833": {
+        "failed": true,
+        "note": ""
+      }
+    },
+    "2026-03-02": {
+      "habit_pornography_1773148521833": {
+        "failed": true,
+        "note": ""
+      },
+      "habit_doce_1773148558872": {
+        "failed": true,
+        "note": ""
+      },
+      "habit_gordura_1773148570817": {
+        "failed": true,
+        "note": ""
+      }
+    },
+    "2026-03-09": {
+      "habit_gordura_1773148570817": {
+        "failed": false,
+        "note": ""
+      },
+      "habit_doce_1773148558872": {
+        "failed": true,
+        "note": "barra de chocolate hersheys"
+      },
+      "habit_pornography_1773148521833": {
+        "failed": false,
+        "note": ""
+      }
+    },
+    "2026-03-03": {
+      "habit_doce_1773148558872": {
+        "failed": true,
+        "note": ""
+      },
+      "habit_gordura_1773148570817": {
+        "failed": true,
+        "note": ""
+      },
+      "habit_pornography_1773148521833": {
+        "failed": true,
+        "note": ""
+      }
+    },
+    "2026-03-04": {
+      "habit_doce_1773148558872": {
+        "failed": true,
+        "note": ""
+      },
+      "habit_gordura_1773148570817": {
+        "failed": true,
+        "note": ""
+      }
+    },
+    "2026-03-05": {
+      "habit_doce_1773148558872": {
+        "failed": true,
+        "note": ""
+      },
+      "habit_gordura_1773148570817": {
+        "failed": true,
+        "note": ""
+      }
+    },
+    "2026-03-06": {
+      "habit_doce_1773148558872": {
+        "failed": true,
+        "note": ""
+      },
+      "habit_gordura_1773148570817": {
+        "failed": true,
+        "note": ""
+      }
+    },
+    "2026-03-07": {
+      "habit_doce_1773148558872": {
+        "failed": true,
+        "note": ""
+      },
+      "habit_gordura_1773148570817": {
+        "failed": true,
+        "note": ""
+      }
+    },
+    "2026-03-08": {
+      "habit_doce_1773148558872": {
+        "failed": true,
+        "note": ""
+      },
+      "habit_gordura_1773148570817": {
+        "failed": true,
+        "note": ""
+      }
+    }
+  }
 }
