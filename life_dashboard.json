@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-10T13:19:54.709Z",
+  "exportDate": "2026-03-10T14:18:39.785Z",
   "config": {
     "activities": [
       {
@@ -596,12 +596,20 @@
         "hobby": {
           "done": true,
           "detail": "Gaming"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "Asmongold TV"
         }
       },
       "studies": {
         "college": {
           "done": true,
           "detail": "End of the semester"
+        },
+        "linguistics": {
+          "done": true,
+          "detail": "English"
         }
       }
     }
