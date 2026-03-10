@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-10T18:29:59.426Z",
+  "exportDate": "2026-03-10T19:08:20.575Z",
   "config": {
     "activities": [
       {
@@ -612,6 +612,10 @@
         "anki": {
           "done": true,
           "detail": "28 words"
+        },
+        "mining_sentences": {
+          "done": true,
+          "detail": "10 words"
         }
       },
       "studies": {
@@ -657,11 +661,15 @@
       "createdAt": "2026-03-03",
       "archived": false,
       "targetValue": 180,
-      "currentValue": 10,
+      "currentValue": 20,
       "unit": "words",
       "valueHistory": [
         {
           "date": "2026-03-06",
+          "amount": 10
+        },
+        {
+          "date": "2026-03-10",
           "amount": 10
         }
       ]
