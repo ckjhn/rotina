@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-10T13:18:18.219Z",
+  "exportDate": "2026-03-10T13:19:54.709Z",
   "config": {
     "activities": [
       {
@@ -598,7 +598,12 @@
           "detail": "Gaming"
         }
       },
-      "studies": {}
+      "studies": {
+        "college": {
+          "done": true,
+          "detail": "End of the semester"
+        }
+      }
     }
   },
   "goals": [],
