@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-11T23:50:52.079Z",
+  "exportDate": "2026-03-11T23:57:08.902Z",
   "config": {
     "activities": [
       {
@@ -670,6 +670,10 @@
         "reading": {
           "done": true,
           "detail": "Three Body Problem"
+        },
+        "physical_training": {
+          "done": false,
+          "detail": ""
         }
       },
       "studies": {
