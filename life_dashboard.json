@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-10T20:47:42.100Z",
+  "exportDate": "2026-03-11T00:12:45.404Z",
   "config": {
     "activities": [
       {
@@ -673,6 +673,18 @@
           "amount": 10
         }
       ]
+    },
+    {
+      "id": "obj_mmlaboj56sywh",
+      "name": "NOFAP",
+      "description": "",
+      "type": "value",
+      "createdAt": "2026-03-11",
+      "archived": false,
+      "targetValue": 7,
+      "currentValue": 0,
+      "unit": "",
+      "valueHistory": []
     }
   ],
   "calendarEvents": [],
@@ -918,6 +930,12 @@
         "note": ""
       },
       "habit_gordura_1773148570817": {
+        "failed": true,
+        "note": ""
+      }
+    },
+    "2026-03-11": {
+      "habit_pornography_1773148521833": {
         "failed": true,
         "note": ""
       }
