@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-11T23:32:21.745Z",
+  "exportDate": "2026-03-11T23:34:10.075Z",
   "config": {
     "activities": [
       {
@@ -666,6 +666,10 @@
         "scientia_momentum": {
           "done": true,
           "detail": "Scientia Momentum"
+        },
+        "reading": {
+          "done": false,
+          "detail": ""
         }
       },
       "studies": {
@@ -675,11 +679,19 @@
         },
         "course": {
           "done": true,
-          "detail": "CEV - Java Básico - Aula 1"
+          "detail": "Java Básico - Aula 1"
         },
         "college": {
           "done": true,
           "detail": "End of the semester"
+        },
+        "reading_writing": {
+          "done": false,
+          "detail": ""
+        },
+        "coding": {
+          "done": true,
+          "detail": ""
         }
       }
     }
