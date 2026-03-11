@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-11T00:12:45.404Z",
+  "exportDate": "2026-03-11T00:23:00.668Z",
   "config": {
     "activities": [
       {
@@ -936,8 +936,14 @@
     },
     "2026-03-11": {
       "habit_pornography_1773148521833": {
-        "failed": true,
+        "failed": false,
         "note": ""
+      }
+    },
+    "2026-03-10": {
+      "habit_pornography_1773148521833": {
+        "failed": true,
+        "note": "Girls nuds"
       }
     }
   }
