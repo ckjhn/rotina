@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-11T21:47:36.617Z",
+  "exportDate": "2026-03-11T23:32:21.745Z",
   "config": {
     "activities": [
       {
@@ -662,12 +662,24 @@
         "hobby": {
           "done": true,
           "detail": "Gaming"
+        },
+        "scientia_momentum": {
+          "done": true,
+          "detail": "Scientia Momentum"
         }
       },
       "studies": {
         "linguistics": {
           "done": true,
           "detail": "English"
+        },
+        "course": {
+          "done": true,
+          "detail": "CEV - Java Básico - Aula 1"
+        },
+        "college": {
+          "done": true,
+          "detail": "End of the semester"
         }
       }
     }
