@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-11T12:35:16.347Z",
+  "exportDate": "2026-03-11T21:46:21.318Z",
   "config": {
     "activities": [
       {
@@ -644,15 +644,32 @@
           "detail": "Prolagos [Programador I]"
         },
         "social": {
-          "done": false,
-          "detail": ""
+          "done": true,
+          "detail": "Work conversation"
         },
         "philosophy_practice": {
           "done": true,
           "detail": "Stoicims"
+        },
+        "anki": {
+          "done": true,
+          "detail": "52 words"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "The Dinosaurs - T1 EP 3-4"
+        },
+        "hobby": {
+          "done": true,
+          "detail": "Gaming"
         }
       },
-      "studies": {}
+      "studies": {
+        "linguistics": {
+          "done": true,
+          "detail": "English"
+        }
+      }
     }
   },
   "goals": [],
@@ -715,12 +732,17 @@
       "name": "Three Body Problem (book)",
       "description": "",
       "targetValue": 316,
-      "currentValue": 140,
+      "currentValue": 142,
       "unit": "pages",
       "history": [
         {
           "date": "2026-03-11",
           "amount": 140,
+          "type": "add"
+        },
+        {
+          "date": "2026-03-11",
+          "amount": 2,
           "type": "add"
         }
       ],
