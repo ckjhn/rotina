@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-11T00:32:14.441Z",
+  "exportDate": "2026-03-11T02:08:12.981Z",
   "config": {
     "activities": [
       {
@@ -595,7 +595,7 @@
         },
         "hobby": {
           "done": true,
-          "detail": "Gaming"
+          "detail": "Fap"
         },
         "language_immersion": {
           "done": true,
@@ -616,6 +616,10 @@
         "mining_sentences": {
           "done": true,
           "detail": "10 words"
+        },
+        "reading": {
+          "done": true,
+          "detail": "Three Body Problem"
         }
       },
       "studies": {
@@ -628,8 +632,8 @@
           "detail": "English"
         },
         "reading_writing": {
-          "done": false,
-          "detail": ""
+          "done": true,
+          "detail": "Reading"
         }
       }
     }
@@ -693,10 +697,16 @@
       "id": "trk_mmeyics2mz8z3",
       "name": "Three Body Problem (book)",
       "description": "",
-      "targetValue": 320,
-      "currentValue": 0,
+      "targetValue": 316,
+      "currentValue": 140,
       "unit": "pages",
-      "history": [],
+      "history": [
+        {
+          "date": "2026-03-11",
+          "amount": 140,
+          "type": "add"
+        }
+      ],
       "archived": false,
       "createdAt": "2026-03-06"
     },
