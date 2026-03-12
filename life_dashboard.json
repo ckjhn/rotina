@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-12T18:36:42.636Z",
+  "exportDate": "2026-03-12T20:11:05.910Z",
   "config": {
     "activities": [
       {
@@ -728,6 +728,10 @@
         "anki": {
           "done": true,
           "detail": "34 words"
+        },
+        "mining_sentences": {
+          "done": true,
+          "detail": "10 words"
         }
       },
       "studies": {
@@ -738,6 +742,10 @@
         "college": {
           "done": true,
           "detail": "End of the Semester"
+        },
+        "reading_writing": {
+          "done": false,
+          "detail": ""
         }
       }
     }
@@ -773,7 +781,7 @@
       "createdAt": "2026-03-03",
       "archived": false,
       "targetValue": 180,
-      "currentValue": 20,
+      "currentValue": 30,
       "unit": "words",
       "valueHistory": [
         {
@@ -782,6 +790,10 @@
         },
         {
           "date": "2026-03-10",
+          "amount": 10
+        },
+        {
+          "date": "2026-03-12",
           "amount": 10
         }
       ]
