@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-12T20:11:05.910Z",
+  "exportDate": "2026-03-12T21:10:54.378Z",
   "config": {
     "activities": [
       {
@@ -1155,6 +1155,16 @@
       "habit_pornography_1773148521833": {
         "failed": true,
         "note": "Porn"
+      }
+    },
+    "2026-03-12": {
+      "habit_doce_1773148558872": {
+        "failed": true,
+        "note": "Leite Condensado com ovomaltine"
+      },
+      "habit_gordura_1773148570817": {
+        "failed": true,
+        "note": "Uma coxinha de frango com catupiry"
       }
     }
   }
