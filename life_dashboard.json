@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-12T15:47:35.082Z",
+  "exportDate": "2026-03-12T17:26:03.624Z",
   "config": {
     "activities": [
       {
@@ -793,6 +793,82 @@
       "currentValue": 0,
       "unit": "",
       "valueHistory": []
+    },
+    {
+      "id": "obj_mmnpd7c7w4ckf",
+      "name": "College Syllabus",
+      "description": "",
+      "type": "list",
+      "createdAt": "2026-03-12",
+      "archived": false,
+      "steps": [
+        {
+          "id": "s0",
+          "text": "Modelagem de Sistemas em Uml",
+          "done": false,
+          "doneDate": null
+        },
+        {
+          "id": "s1",
+          "text": "Arquitetura de Computadores",
+          "done": false,
+          "doneDate": null
+        },
+        {
+          "id": "s2",
+          "text": "Pradigmas de Linguagens de Programação em Python",
+          "done": false,
+          "doneDate": null
+        },
+        {
+          "id": "s3",
+          "text": "Pensamento Computacional",
+          "done": false,
+          "doneDate": null
+        },
+        {
+          "id": "s4",
+          "text": "Introdução à Segurança da Informação",
+          "done": false,
+          "doneDate": null
+        },
+        {
+          "id": "s5",
+          "text": "Processos de Desenvolvimento de Software",
+          "done": false,
+          "doneDate": null
+        },
+        {
+          "id": "s6",
+          "text": "Desenvolvimento Web em Html5, Css, JavaScript e php",
+          "done": false,
+          "doneDate": null
+        },
+        {
+          "id": "s7",
+          "text": "Fundamentos de Redes de Computadores",
+          "done": false,
+          "doneDate": null
+        },
+        {
+          "id": "s8",
+          "text": "Requisitos de Sistemas",
+          "done": false,
+          "doneDate": null
+        },
+        {
+          "id": "s9",
+          "text": "Matemática e Lógica",
+          "done": false,
+          "doneDate": null
+        },
+        {
+          "id": "s10",
+          "text": "Sistema da Informação",
+          "done": false,
+          "doneDate": null
+        }
+      ]
     }
   ],
   "calendarEvents": [],
