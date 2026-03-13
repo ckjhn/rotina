@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-13T02:40:10.465Z",
+  "exportDate": "2026-03-13T16:31:32.703Z",
   "config": {
     "activities": [
       {
@@ -762,6 +762,40 @@
         "coding": {
           "done": true,
           "detail": "Java Básico - Aula 4"
+        }
+      }
+    },
+    "2026-03-13": {
+      "activities": {
+        "work": {
+          "done": true,
+          "detail": "Prolagos [Programador I]"
+        },
+        "social": {
+          "done": true,
+          "detail": "Work"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "Tron 2"
+        },
+        "hobby": {
+          "done": true,
+          "detail": "Gaming"
+        },
+        "philosophy_practice": {
+          "done": true,
+          "detail": "Stoicism"
+        }
+      },
+      "studies": {
+        "linguistics": {
+          "done": true,
+          "detail": "English"
+        },
+        "college": {
+          "done": true,
+          "detail": "End of the semester"
         }
       }
     }
