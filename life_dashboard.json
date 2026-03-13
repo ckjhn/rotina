@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-13T16:31:32.703Z",
+  "exportDate": "2026-03-13T17:43:03.416Z",
   "config": {
     "activities": [
       {
@@ -740,6 +740,10 @@
         "scientia_momentum": {
           "done": true,
           "detail": "Scientia Momentum"
+        },
+        "reading": {
+          "done": true,
+          "detail": "Three Body Problem"
         }
       },
       "studies": {
@@ -752,8 +756,8 @@
           "detail": "End of the Semester"
         },
         "reading_writing": {
-          "done": false,
-          "detail": ""
+          "done": true,
+          "detail": "Three Body Problem"
         },
         "course": {
           "done": true,
