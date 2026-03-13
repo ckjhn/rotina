@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-13T18:19:24.892Z",
+  "exportDate": "2026-03-13T18:54:32.406Z",
   "config": {
     "activities": [
       {
@@ -790,6 +790,10 @@
         "philosophy_practice": {
           "done": true,
           "detail": "Stoicism"
+        },
+        "scientia_momentum": {
+          "done": true,
+          "detail": "Scientia Momentum"
         }
       },
       "studies": {
@@ -800,6 +804,10 @@
         "college": {
           "done": true,
           "detail": "End of the semester"
+        },
+        "philosophy_study": {
+          "done": true,
+          "detail": "Ancient Philosophy by Julia Annas"
         }
       }
     }
