@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-13T19:01:59.728Z",
+  "exportDate": "2026-03-13T19:18:25.459Z",
   "config": {
     "activities": [
       {
@@ -620,6 +620,10 @@
         "reading": {
           "done": true,
           "detail": "Three Body Problem"
+        },
+        "scientia_momentum": {
+          "done": true,
+          "detail": "Scientia Momentum"
         }
       },
       "studies": {
@@ -634,6 +638,10 @@
         "reading_writing": {
           "done": true,
           "detail": "Reading"
+        },
+        "interchange_scholarship_exterior_job_emigration": {
+          "done": true,
+          "detail": "Money Convertion"
         }
       }
     },
@@ -798,6 +806,14 @@
         "anki": {
           "done": true,
           "detail": "38 words"
+        },
+        "reading": {
+          "done": false,
+          "detail": ""
+        },
+        "physical_training": {
+          "done": false,
+          "detail": ""
         }
       },
       "studies": {
@@ -812,6 +828,14 @@
         "philosophy_study": {
           "done": true,
           "detail": "Ancient Philosophy by Julia Annas"
+        },
+        "interchange_scholarship_exterior_job_emigration": {
+          "done": false,
+          "detail": ""
+        },
+        "reading_writing": {
+          "done": false,
+          "detail": ""
         }
       }
     }
