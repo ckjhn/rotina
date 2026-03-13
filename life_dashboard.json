@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-12T21:10:54.378Z",
+  "exportDate": "2026-03-13T00:56:59.770Z",
   "config": {
     "activities": [
       {
@@ -732,6 +732,10 @@
         "mining_sentences": {
           "done": true,
           "detail": "10 words"
+        },
+        "physical_training": {
+          "done": true,
+          "detail": "Gym [Chest and Triceps]"
         }
       },
       "studies": {
