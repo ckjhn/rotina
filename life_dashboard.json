@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-13T00:56:59.770Z",
+  "exportDate": "2026-03-13T02:25:15.366Z",
   "config": {
     "activities": [
       {
@@ -683,7 +683,7 @@
         },
         "course": {
           "done": true,
-          "detail": "Java Básico - Aula 1"
+          "detail": "Java Básico - Aula 1,2 e 3"
         },
         "college": {
           "done": true,
@@ -736,6 +736,10 @@
         "physical_training": {
           "done": true,
           "detail": "Gym [Chest and Triceps]"
+        },
+        "scientia_momentum": {
+          "done": true,
+          "detail": "Scientia Momentum"
         }
       },
       "studies": {
@@ -750,6 +754,14 @@
         "reading_writing": {
           "done": false,
           "detail": ""
+        },
+        "course": {
+          "done": true,
+          "detail": "Java Básico - Aula 4"
+        },
+        "coding": {
+          "done": true,
+          "detail": "Java Básico - Aula 4"
         }
       }
     }
