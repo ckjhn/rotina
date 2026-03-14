@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-14T00:39:44.450Z",
+  "exportDate": "2026-03-14T15:48:36.905Z",
   "config": {
     "activities": [
       {
@@ -808,8 +808,8 @@
           "detail": "38 words"
         },
         "reading": {
-          "done": false,
-          "detail": ""
+          "done": true,
+          "detail": "Three Body Problem"
         },
         "physical_training": {
           "done": false,
@@ -834,8 +834,8 @@
           "detail": ""
         },
         "reading_writing": {
-          "done": false,
-          "detail": ""
+          "done": true,
+          "detail": "Reading"
         }
       }
     }
