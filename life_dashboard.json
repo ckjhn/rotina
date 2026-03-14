@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-14T15:48:36.905Z",
+  "exportDate": "2026-03-14T15:57:22.491Z",
   "config": {
     "activities": [
       {
@@ -838,6 +838,23 @@
           "detail": "Reading"
         }
       }
+    },
+    "2026-03-14": {
+      "activities": {
+        "hobby": {
+          "done": true,
+          "detail": "Gaming"
+        },
+        "physical_training": {
+          "done": true,
+          "detail": "Gym [back and biceps]"
+        },
+        "anki": {
+          "done": true,
+          "detail": "28 words"
+        }
+      },
+      "studies": {}
     }
   },
   "goals": [],
