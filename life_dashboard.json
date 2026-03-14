@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-14T15:57:22.491Z",
+  "exportDate": "2026-03-14T16:01:49.661Z",
   "config": {
     "activities": [
       {
@@ -852,6 +852,10 @@
         "anki": {
           "done": true,
           "detail": "28 words"
+        },
+        "social": {
+          "done": true,
+          "detail": "Gym, Family"
         }
       },
       "studies": {}
