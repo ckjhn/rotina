@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-13T19:18:25.459Z",
+  "exportDate": "2026-03-14T00:39:44.450Z",
   "config": {
     "activities": [
       {
@@ -1255,6 +1255,20 @@
       "habit_gordura_1773148570817": {
         "failed": true,
         "note": "Uma coxinha de frango com catupiry"
+      }
+    },
+    "2026-03-13": {
+      "habit_doce_1773148558872": {
+        "failed": true,
+        "note": "Chocolicia"
+      },
+      "habit_pornography_1773148521833": {
+        "failed": true,
+        "note": "Porn"
+      },
+      "habit_gordura_1773148570817": {
+        "failed": true,
+        "note": "Ana Maria Bolinho"
       }
     }
   }
