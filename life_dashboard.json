@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-14T16:01:49.661Z",
+  "exportDate": "2026-03-15T18:09:48.903Z",
   "config": {
     "activities": [
       {
@@ -856,6 +856,27 @@
         "social": {
           "done": true,
           "detail": "Gym, Family"
+        },
+        "philosophy_practice": {
+          "done": true,
+          "detail": "Stoicism"
+        }
+      },
+      "studies": {}
+    },
+    "2026-03-15": {
+      "activities": {
+        "hobby": {
+          "done": true,
+          "detail": "Gaming"
+        },
+        "social": {
+          "done": true,
+          "detail": "Family"
+        },
+        "philosophy_practice": {
+          "done": true,
+          "detail": "Stoicism"
         }
       },
       "studies": {}
@@ -1290,6 +1311,20 @@
       "habit_gordura_1773148570817": {
         "failed": true,
         "note": "Ana Maria Bolinho"
+      }
+    },
+    "2026-03-14": {
+      "habit_pornography_1773148521833": {
+        "failed": true,
+        "note": "Nuds Pictures"
+      },
+      "habit_doce_1773148558872": {
+        "failed": true,
+        "note": "Bombom"
+      },
+      "habit_gordura_1773148570817": {
+        "failed": true,
+        "note": "Mc Donalds"
       }
     }
   }
