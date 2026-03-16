@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-16T14:19:08.850Z",
+  "exportDate": "2026-03-16T15:43:14.087Z",
   "config": {
     "activities": [
       {
@@ -919,6 +919,10 @@
         "philosophy_practice": {
           "done": true,
           "detail": "Stoicism"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "Young Sheldon"
         }
       },
       "studies": {
@@ -933,6 +937,10 @@
         "coding": {
           "done": true,
           "detail": "Python - OOP"
+        },
+        "linguistics": {
+          "done": true,
+          "detail": "English"
         }
       }
     }
@@ -1380,6 +1388,16 @@
       "habit_gordura_1773148570817": {
         "failed": true,
         "note": "Mc Donalds"
+      }
+    },
+    "2026-03-15": {
+      "habit_doce_1773148558872": {
+        "failed": true,
+        "note": "Chocolicia"
+      },
+      "habit_gordura_1773148570817": {
+        "failed": true,
+        "note": "Pizza HMM"
       }
     }
   }
