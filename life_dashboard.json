@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-16T19:45:34.181Z",
+  "exportDate": "2026-03-16T19:47:06.029Z",
   "config": {
     "activities": [
       {
@@ -923,6 +923,10 @@
         "language_immersion": {
           "done": true,
           "detail": "Young Sheldon"
+        },
+        "language_class": {
+          "done": true,
+          "detail": "CIMV 5.0 - Etapa 4 Modulo 30 Aula 3"
         }
       },
       "studies": {
