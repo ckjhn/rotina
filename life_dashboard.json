@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-16T21:01:05.342Z",
+  "exportDate": "2026-03-16T23:56:50.122Z",
   "config": {
     "activities": [
       {
@@ -931,6 +931,10 @@
         "anki": {
           "done": true,
           "detail": "21 words"
+        },
+        "mining_sentences": {
+          "done": true,
+          "detail": "28 words"
         }
       },
       "studies": {
@@ -949,6 +953,10 @@
         "linguistics": {
           "done": true,
           "detail": "English"
+        },
+        "reading_writing": {
+          "done": true,
+          "detail": "Three Body Problem"
         }
       }
     }
@@ -988,7 +996,7 @@
       "createdAt": "2026-03-03",
       "archived": false,
       "targetValue": 180,
-      "currentValue": 30,
+      "currentValue": 58,
       "unit": "words",
       "valueHistory": [
         {
@@ -1002,6 +1010,10 @@
         {
           "date": "2026-03-12",
           "amount": 10
+        },
+        {
+          "date": "2026-03-16",
+          "amount": 28
         }
       ]
     },
