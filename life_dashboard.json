@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-16T19:47:06.029Z",
+  "exportDate": "2026-03-16T20:40:41.915Z",
   "config": {
     "activities": [
       {
@@ -927,6 +927,10 @@
         "language_class": {
           "done": true,
           "detail": "CIMV 5.0 - Etapa 4 Modulo 30 Aula 3"
+        },
+        "anki": {
+          "done": true,
+          "detail": "20 words"
         }
       },
       "studies": {
