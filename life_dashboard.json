@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-15T18:09:48.903Z",
+  "exportDate": "2026-03-16T14:14:29.511Z",
   "config": {
     "activities": [
       {
@@ -877,9 +877,22 @@
         "philosophy_practice": {
           "done": true,
           "detail": "Stoicism"
+        },
+        "anki": {
+          "done": true,
+          "detail": "25 words"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "Shorts"
         }
       },
-      "studies": {}
+      "studies": {
+        "linguistics": {
+          "done": true,
+          "detail": "English"
+        }
+      }
     }
   },
   "goals": [],
