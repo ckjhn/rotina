@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-16T14:14:29.511Z",
+  "exportDate": "2026-03-16T14:16:12.935Z",
   "config": {
     "activities": [
       {
@@ -891,6 +891,40 @@
         "linguistics": {
           "done": true,
           "detail": "English"
+        }
+      }
+    },
+    "2026-03-16": {
+      "activities": {
+        "work": {
+          "done": true,
+          "detail": "Prolagos [Programador I]"
+        },
+        "reading": {
+          "done": true,
+          "detail": "Three Body Problem"
+        },
+        "scientia_momentum": {
+          "done": true,
+          "detail": "Scientia Momentum"
+        },
+        "hobby": {
+          "done": true,
+          "detail": "Gaming"
+        },
+        "social": {
+          "done": true,
+          "detail": "Work"
+        }
+      },
+      "studies": {
+        "college": {
+          "done": true,
+          "detail": "End of the semester"
+        },
+        "course": {
+          "done": true,
+          "detail": "Python - OOP"
         }
       }
     }
