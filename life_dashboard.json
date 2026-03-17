@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-17T13:41:50.753Z",
+  "exportDate": "2026-03-17T16:14:41.677Z",
   "config": {
     "activities": [
       {
@@ -946,6 +946,19 @@
           "detail": "Three Body Problem"
         }
       }
+    },
+    "2026-03-17": {
+      "activities": {
+        "work": {
+          "done": true,
+          "detail": "Prolagos [Programador I]"
+        },
+        "hobby": {
+          "done": true,
+          "detail": "Gaming"
+        }
+      },
+      "studies": {}
     }
   },
   "goals": [],
