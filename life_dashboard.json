@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-17T18:22:36.563Z",
+  "exportDate": "2026-03-17T18:45:22.709Z",
   "config": {
     "activities": [
       {
@@ -976,6 +976,14 @@
         "anki": {
           "done": true,
           "detail": "80 words"
+        },
+        "mining_sentences": {
+          "done": true,
+          "detail": "13 words"
+        },
+        "language_class": {
+          "done": true,
+          "detail": "CIMV 5.0 - Etapa 4 Modulo 30 Aula 4"
         }
       },
       "studies": {
@@ -1004,7 +1012,7 @@
       "createdAt": "2026-03-03",
       "archived": false,
       "targetValue": 20,
-      "currentValue": 3,
+      "currentValue": 4,
       "unit": "",
       "valueHistory": [
         {
@@ -1018,6 +1026,10 @@
         {
           "date": "2026-03-16",
           "amount": 1
+        },
+        {
+          "date": "2026-03-17",
+          "amount": 1
         }
       ]
     },
@@ -1029,7 +1041,7 @@
       "createdAt": "2026-03-03",
       "archived": false,
       "targetValue": 180,
-      "currentValue": 58,
+      "currentValue": 71,
       "unit": "words",
       "valueHistory": [
         {
@@ -1047,6 +1059,10 @@
         {
           "date": "2026-03-16",
           "amount": 28
+        },
+        {
+          "date": "2026-03-17",
+          "amount": 13
         }
       ]
     },
