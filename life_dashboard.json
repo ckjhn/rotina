@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-17T13:26:21.501Z",
+  "exportDate": "2026-03-17T13:36:31.831Z",
   "config": {
     "activities": [
       {
@@ -958,7 +958,7 @@
       "createdAt": "2026-03-03",
       "archived": false,
       "targetValue": 20,
-      "currentValue": 2,
+      "currentValue": 3,
       "unit": "",
       "valueHistory": [
         {
@@ -967,6 +967,10 @@
         },
         {
           "date": "2026-03-12",
+          "amount": 1
+        },
+        {
+          "date": "2026-03-16",
           "amount": 1
         }
       ]
@@ -979,7 +983,7 @@
       "createdAt": "2026-03-03",
       "archived": false,
       "targetValue": 180,
-      "currentValue": 30,
+      "currentValue": 58,
       "unit": "words",
       "valueHistory": [
         {
@@ -993,6 +997,10 @@
         {
           "date": "2026-03-12",
           "amount": 10
+        },
+        {
+          "date": "2026-03-16",
+          "amount": 28
         }
       ]
     },
