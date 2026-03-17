@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-16T23:56:50.122Z",
+  "exportDate": "2026-03-17T13:26:21.501Z",
   "config": {
     "activities": [
       {
@@ -877,22 +877,9 @@
         "philosophy_practice": {
           "done": true,
           "detail": "Stoicism"
-        },
-        "anki": {
-          "done": true,
-          "detail": "25 words"
-        },
-        "language_immersion": {
-          "done": true,
-          "detail": "Shorts"
         }
       },
-      "studies": {
-        "linguistics": {
-          "done": true,
-          "detail": "English"
-        }
-      }
+      "studies": {}
     },
     "2026-03-16": {
       "activities": {
@@ -971,7 +958,7 @@
       "createdAt": "2026-03-03",
       "archived": false,
       "targetValue": 20,
-      "currentValue": 3,
+      "currentValue": 2,
       "unit": "",
       "valueHistory": [
         {
@@ -980,10 +967,6 @@
         },
         {
           "date": "2026-03-12",
-          "amount": 1
-        },
-        {
-          "date": "2026-03-16",
           "amount": 1
         }
       ]
@@ -996,7 +979,7 @@
       "createdAt": "2026-03-03",
       "archived": false,
       "targetValue": 180,
-      "currentValue": 58,
+      "currentValue": 30,
       "unit": "words",
       "valueHistory": [
         {
@@ -1010,10 +993,6 @@
         {
           "date": "2026-03-12",
           "amount": 10
-        },
-        {
-          "date": "2026-03-16",
-          "amount": 28
         }
       ]
     },
@@ -1040,8 +1019,8 @@
         {
           "id": "s0",
           "text": "Modelagem de Sistemas em Uml",
-          "done": true,
-          "doneDate": "2026-03-16"
+          "done": false,
+          "doneDate": null
         },
         {
           "id": "s1",
