@@ -153,11 +153,13 @@ async function saveToGitHub() {
   try {
     // 1) Get current file SHA (needed to update)
     let sha = null;
-    const getResp = await fetch(`${apiUrl}?ref=${GitHubConfig.branch}`, {
+    // Adicionado um timestamp na URL para burlar o cache agressivo de alguns navegadores
+    const getResp = await fetch(`${apiUrl}?ref=${GitHubConfig.branch}&t=${Date.now()}`, {
       headers: {
         'Authorization': `Bearer ${GitHubConfig.token}`,
         'Accept': 'application/vnd.github.v3+json',
       },
+      cache: 'no-store' // Força o navegador a ignorar o cache
     });
     if (getResp.ok) {
       const fileInfo = await getResp.json();
