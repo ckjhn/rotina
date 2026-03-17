@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-17T16:15:25.226Z",
+  "exportDate": "2026-03-17T17:08:02.244Z",
   "config": {
     "activities": [
       {
@@ -964,16 +964,24 @@
         "social": {
           "done": true,
           "detail": "Work social"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "Young Sheldon"
         }
       },
       "studies": {
         "linguistics": {
           "done": true,
-          "detail": "Three Body Problem"
+          "detail": "English"
         },
         "college": {
           "done": true,
           "detail": "End of the semester"
+        },
+        "reading_writing": {
+          "done": true,
+          "detail": "Three Body Problem"
         }
       }
     }
