@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-18T16:13:49.786Z",
+  "exportDate": "2026-03-18T17:14:46.945Z",
   "config": {
     "activities": [
       {
@@ -1218,39 +1218,6 @@
           "type": "add"
         }
       ],
-      "archived": false,
-      "createdAt": "2026-03-06"
-    },
-    {
-      "id": "trk_mmeyj2kdtn340",
-      "name": "Travel",
-      "description": "Money for leave the country and live for 3 months on the exterior",
-      "targetValue": 50000,
-      "currentValue": 0,
-      "unit": "R$",
-      "history": [],
-      "archived": false,
-      "createdAt": "2026-03-06"
-    },
-    {
-      "id": "trk_mmeyjkza9qjnf",
-      "name": "Emergency Money",
-      "description": "",
-      "targetValue": 3000,
-      "currentValue": 0,
-      "unit": "R$",
-      "history": [],
-      "archived": false,
-      "createdAt": "2026-03-06"
-    },
-    {
-      "id": "trk_mmeykmcq0heqy",
-      "name": "Investment",
-      "description": "",
-      "targetValue": 1000,
-      "currentValue": 0,
-      "unit": "R$",
-      "history": [],
       "archived": false,
       "createdAt": "2026-03-06"
     }
