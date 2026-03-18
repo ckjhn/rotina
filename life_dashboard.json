@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-18T11:13:40.342Z",
+  "exportDate": "2026-03-18T11:22:26.140Z",
   "config": {
     "activities": [
       {
@@ -897,7 +897,7 @@
         },
         "hobby": {
           "done": true,
-          "detail": "Gaming"
+          "detail": "Reading"
         },
         "social": {
           "done": true,
@@ -955,7 +955,7 @@
         },
         "hobby": {
           "done": true,
-          "detail": "Gaming"
+          "detail": "Reading"
         },
         "reading": {
           "done": true,
@@ -1004,6 +1004,23 @@
           "detail": "Three Body Problem"
         }
       }
+    },
+    "2026-03-18": {
+      "activities": {
+        "work": {
+          "done": true,
+          "detail": "Prolagos [Programador I]"
+        },
+        "social": {
+          "done": true,
+          "detail": "Work "
+        },
+        "philosophy_practice": {
+          "done": true,
+          "detail": "Stoicism"
+        }
+      },
+      "studies": {}
     }
   },
   "goals": [],
