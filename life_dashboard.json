@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-18T11:22:26.140Z",
+  "exportDate": "2026-03-18T16:13:49.786Z",
   "config": {
     "activities": [
       {
@@ -1018,9 +1018,30 @@
         "philosophy_practice": {
           "done": true,
           "detail": "Stoicism"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "Young Sheldon"
+        },
+        "hobby": {
+          "done": true,
+          "detail": "Watch series"
         }
       },
-      "studies": {}
+      "studies": {
+        "reading_writing": {
+          "done": false,
+          "detail": ""
+        },
+        "linguistics": {
+          "done": true,
+          "detail": "English"
+        },
+        "college": {
+          "done": true,
+          "detail": "End of the semester"
+        }
+      }
     }
   },
   "goals": [],
