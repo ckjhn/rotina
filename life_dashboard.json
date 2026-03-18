@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-18T17:14:46.945Z",
+  "exportDate": "2026-03-18T20:54:02.203Z",
   "config": {
     "activities": [
       {
@@ -1026,6 +1026,10 @@
         "hobby": {
           "done": true,
           "detail": "Watch series"
+        },
+        "anki": {
+          "done": true,
+          "detail": "78 words"
         }
       },
       "studies": {
