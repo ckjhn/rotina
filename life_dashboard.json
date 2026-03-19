@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-19T16:02:44.550Z",
+  "exportDate": "2026-03-19T18:02:04.201Z",
   "config": {
     "activities": [
       {
@@ -1084,6 +1084,10 @@
         "anki": {
           "done": true,
           "detail": "32 words"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "Young Sheldon"
         }
       },
       "studies": {
@@ -1094,6 +1098,10 @@
         "college": {
           "done": true,
           "detail": "End of the semester"
+        },
+        "linguistics": {
+          "done": true,
+          "detail": "English"
         }
       }
     }
