@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-18T20:54:54.305Z",
+  "exportDate": "2026-03-19T02:13:42.323Z",
   "config": {
     "activities": [
       {
@@ -1034,12 +1034,16 @@
         "scientia_momentum": {
           "done": true,
           "detail": "Scientia Momentum"
+        },
+        "reading": {
+          "done": true,
+          "detail": "Three Body Problem"
         }
       },
       "studies": {
         "reading_writing": {
-          "done": false,
-          "detail": ""
+          "done": true,
+          "detail": "Three Body Problem"
         },
         "linguistics": {
           "done": true,
