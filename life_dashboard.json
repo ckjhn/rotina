@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-19T18:02:04.201Z",
+  "exportDate": "2026-03-19T19:25:31.419Z",
   "config": {
     "activities": [
       {
@@ -1088,6 +1088,14 @@
         "language_immersion": {
           "done": true,
           "detail": "Young Sheldon"
+        },
+        "scientia_momentum": {
+          "done": true,
+          "detail": "Scientia Momentum"
+        },
+        "philosophy_practice": {
+          "done": true,
+          "detail": "Stoicism"
         }
       },
       "studies": {
@@ -1102,6 +1110,14 @@
         "linguistics": {
           "done": true,
           "detail": "English"
+        },
+        "course": {
+          "done": true,
+          "detail": "Python OOP"
+        },
+        "coding": {
+          "done": true,
+          "detail": "Python OOP"
         }
       }
     }
