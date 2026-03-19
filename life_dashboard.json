@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-19T15:55:29.964Z",
+  "exportDate": "2026-03-19T16:02:44.550Z",
   "config": {
     "activities": [
       {
@@ -1080,6 +1080,10 @@
         "social": {
           "done": true,
           "detail": "Enviroment Skills"
+        },
+        "anki": {
+          "done": true,
+          "detail": "32 words"
         }
       },
       "studies": {
