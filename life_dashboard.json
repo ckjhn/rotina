@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-19T02:13:42.323Z",
+  "exportDate": "2026-03-19T15:55:29.964Z",
   "config": {
     "activities": [
       {
@@ -1025,7 +1025,7 @@
         },
         "hobby": {
           "done": true,
-          "detail": "Watch series"
+          "detail": "Gaming - Osu"
         },
         "anki": {
           "done": true,
@@ -1060,6 +1060,36 @@
         "coding": {
           "done": true,
           "detail": "Java Revision"
+        }
+      }
+    },
+    "2026-03-19": {
+      "activities": {
+        "work": {
+          "done": true,
+          "detail": "Prolagos [Programador I]"
+        },
+        "reading": {
+          "done": true,
+          "detail": "Three Body Problem"
+        },
+        "hobby": {
+          "done": true,
+          "detail": "Reading"
+        },
+        "social": {
+          "done": true,
+          "detail": "Enviroment Skills"
+        }
+      },
+      "studies": {
+        "reading_writing": {
+          "done": true,
+          "detail": "Three Body Problem"
+        },
+        "college": {
+          "done": true,
+          "detail": "End of the semester"
         }
       }
     }
