@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-19T19:25:39.060Z",
+  "exportDate": "2026-03-20T00:43:31.464Z",
   "config": {
     "activities": [
       {
@@ -1209,8 +1209,8 @@
         {
           "id": "s0",
           "text": "Modelagem de Sistemas em Uml",
-          "done": false,
-          "doneDate": null
+          "done": true,
+          "doneDate": "2026-03-20"
         },
         {
           "id": "s1",
