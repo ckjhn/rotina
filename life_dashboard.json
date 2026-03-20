@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-20T12:32:39.196Z",
+  "exportDate": "2026-03-20T16:36:47.859Z",
   "config": {
     "activities": [
       {
@@ -1138,12 +1138,24 @@
         "social": {
           "done": true,
           "detail": "Work"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "Young Sheldon"
+        },
+        "hobby": {
+          "done": true,
+          "detail": "Gaming"
         }
       },
       "studies": {
         "college": {
           "done": true,
           "detail": "End of the semester"
+        },
+        "linguistics": {
+          "done": true,
+          "detail": "English"
         }
       }
     }
