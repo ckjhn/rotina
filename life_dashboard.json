@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-20T00:43:31.464Z",
+  "exportDate": "2026-03-20T11:45:22.530Z",
   "config": {
     "activities": [
       {
@@ -1120,6 +1120,19 @@
           "detail": "Python OOP"
         }
       }
+    },
+    "2026-03-20": {
+      "activities": {
+        "work": {
+          "done": true,
+          "detail": "Prolagos [Programador I]"
+        },
+        "anki": {
+          "done": true,
+          "detail": "20 words"
+        }
+      },
+      "studies": {}
     }
   },
   "goals": [],
