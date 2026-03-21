@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-21T20:19:55.362Z",
+  "exportDate": "2026-03-21T20:24:41.927Z",
   "config": {
     "activities": [
       {
@@ -1164,6 +1164,52 @@
         "linguistics": {
           "done": true,
           "detail": "English"
+        }
+      }
+    },
+    "2026-03-21": {
+      "activities": {
+        "physical_training": {
+          "done": false,
+          "detail": ""
+        },
+        "reading": {
+          "done": true,
+          "detail": "Three Body Problem"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "Pacific Rim"
+        },
+        "philosophy_practice": {
+          "done": true,
+          "detail": "Stoicism"
+        },
+        "social": {
+          "done": true,
+          "detail": "Family"
+        },
+        "hobby": {
+          "done": true,
+          "detail": "Gaming"
+        },
+        "anki": {
+          "done": true,
+          "detail": "35 words"
+        }
+      },
+      "studies": {
+        "reading_writing": {
+          "done": true,
+          "detail": "Reading"
+        },
+        "linguistics": {
+          "done": true,
+          "detail": "English"
+        },
+        "college": {
+          "done": true,
+          "detail": "End of the semester"
         }
       }
     }
