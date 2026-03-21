@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-20T16:37:22.029Z",
+  "exportDate": "2026-03-21T20:19:55.362Z",
   "config": {
     "activities": [
       {
@@ -1146,6 +1146,14 @@
         "hobby": {
           "done": true,
           "detail": "Gaming"
+        },
+        "reading": {
+          "done": false,
+          "detail": ""
+        },
+        "physical_training": {
+          "done": true,
+          "detail": "Gym [Back and Biceps]"
         }
       },
       "studies": {
