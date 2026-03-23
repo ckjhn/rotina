@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-23T19:41:09.424Z",
+  "exportDate": "2026-03-23T20:01:57.160Z",
   "config": {
     "activities": [
       {
@@ -1754,6 +1754,24 @@
       "habit_gordura_1773148570817": {
         "failed": true,
         "note": "Pizza HMM"
+      }
+    },
+    "2026-03-21": {
+      "habit_gordura_1773148570817": {
+        "failed": true,
+        "note": "Pizza"
+      }
+    },
+    "2026-03-22": {
+      "habit_doce_1773148558872": {
+        "failed": true,
+        "note": "Suflair"
+      }
+    },
+    "2026-03-23": {
+      "habit_gordura_1773148570817": {
+        "failed": true,
+        "note": "McDonalds"
       }
     }
   }
