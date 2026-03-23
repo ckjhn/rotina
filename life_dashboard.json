@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-23T08:53:00.658Z",
+  "exportDate": "2026-03-23T11:13:50.864Z",
   "config": {
     "activities": [
       {
@@ -167,7 +167,7 @@
         "id": "interchange_scholarship_exterior_job_emigration",
         "name": "Interchange / Scholarship | Exterior Job / Emigration",
         "placeholder": "content",
-        "frequency": "monthly",
+        "frequency": "triweekly",
         "category": "studies",
         "group": "mandatory"
       }
