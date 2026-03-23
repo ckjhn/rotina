@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-23T11:14:54.267Z",
+  "exportDate": "2026-03-23T19:34:50.378Z",
   "config": {
     "activities": [
       {
@@ -1288,6 +1288,10 @@
         "hobby": {
           "done": true,
           "detail": "Gaming"
+        },
+        "reading": {
+          "done": true,
+          "detail": "Three Body Problem"
         }
       },
       "studies": {
@@ -1302,6 +1306,10 @@
         "coding": {
           "done": true,
           "detail": "Python OOP"
+        },
+        "reading_writing": {
+          "done": true,
+          "detail": "Three Body Problem"
         }
       }
     }
