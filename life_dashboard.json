@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-23T20:01:57.160Z",
+  "exportDate": "2026-03-23T21:40:24.175Z",
   "config": {
     "activities": [
       {
@@ -1296,6 +1296,14 @@
         "anki": {
           "done": true,
           "detail": "69 words"
+        },
+        "language_class": {
+          "done": true,
+          "detail": "CIMV 5.0 - Etapa 4 Modulo 31 Aula 1"
+        },
+        "mining_sentences": {
+          "done": true,
+          "detail": "3 words"
         }
       },
       "studies": {
@@ -1357,7 +1365,7 @@
       "createdAt": "2026-03-03",
       "archived": false,
       "targetValue": 180,
-      "currentValue": 71,
+      "currentValue": 74,
       "unit": "words",
       "valueHistory": [
         {
@@ -1379,6 +1387,10 @@
         {
           "date": "2026-03-17",
           "amount": 13
+        },
+        {
+          "date": "2026-03-23",
+          "amount": 3
         }
       ]
     },
