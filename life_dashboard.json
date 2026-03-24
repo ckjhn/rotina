@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-23T21:40:24.175Z",
+  "exportDate": "2026-03-24T10:56:09.910Z",
   "config": {
     "activities": [
       {
@@ -1304,6 +1304,10 @@
         "mining_sentences": {
           "done": true,
           "detail": "3 words"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "Hitler and the Nazis: Evil on Trial"
         }
       },
       "studies": {
@@ -1322,6 +1326,10 @@
         "reading_writing": {
           "done": true,
           "detail": "Three Body Problem"
+        },
+        "linguistics": {
+          "done": true,
+          "detail": "English"
         }
       }
     }
