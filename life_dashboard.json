@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-24T13:35:15.752Z",
+  "exportDate": "2026-03-24T13:40:08.875Z",
   "config": {
     "activities": [
       {
@@ -1346,6 +1346,10 @@
         "anki": {
           "done": true,
           "detail": "28 words"
+        },
+        "philosophy_practice": {
+          "done": true,
+          "detail": "Stoicism"
         }
       },
       "studies": {
