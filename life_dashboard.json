@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-24T10:56:09.910Z",
+  "exportDate": "2026-03-24T13:30:43.879Z",
   "config": {
     "activities": [
       {
@@ -1330,6 +1330,24 @@
         "linguistics": {
           "done": true,
           "detail": "English"
+        }
+      }
+    },
+    "2026-03-24": {
+      "activities": {
+        "work": {
+          "done": true,
+          "detail": "Prolagos [Programador I]"
+        },
+        "social": {
+          "done": true,
+          "detail": "Work"
+        }
+      },
+      "studies": {
+        "college": {
+          "done": true,
+          "detail": "end of the semester"
         }
       }
     }
