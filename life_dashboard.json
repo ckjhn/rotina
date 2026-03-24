@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-24T14:31:18.072Z",
+  "exportDate": "2026-03-24T17:12:07.822Z",
   "config": {
     "activities": [
       {
@@ -1350,12 +1350,24 @@
         "philosophy_practice": {
           "done": true,
           "detail": "Stoicism"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "The Magnificent Seven"
+        },
+        "hobby": {
+          "done": true,
+          "detail": "Movie"
         }
       },
       "studies": {
         "college": {
           "done": true,
           "detail": "end of the semester"
+        },
+        "linguistics": {
+          "done": true,
+          "detail": "English"
         }
       }
     }
