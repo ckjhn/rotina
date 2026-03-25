@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-25T22:04:14.724Z",
+  "exportDate": "2026-03-25T22:05:17.189Z",
   "config": {
     "activities": [
       {
@@ -1618,7 +1618,7 @@
       "name": "Three Body Problem (book)",
       "description": "",
       "targetValue": 316,
-      "currentValue": 142,
+      "currentValue": 175,
       "unit": "pages",
       "history": [
         {
@@ -1629,6 +1629,11 @@
         {
           "date": "2026-03-11",
           "amount": 2,
+          "type": "add"
+        },
+        {
+          "date": "2026-03-25",
+          "amount": 33,
           "type": "add"
         }
       ],
