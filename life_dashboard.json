@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-25T21:45:19.451Z",
+  "exportDate": "2026-03-25T21:48:55.472Z",
   "config": {
     "activities": [
       {
@@ -1392,6 +1392,48 @@
         "philosophy_study": {
           "done": true,
           "detail": "Ancient Philosophy"
+        }
+      }
+    },
+    "2026-03-25": {
+      "activities": {
+        "work": {
+          "done": true,
+          "detail": "Prolagos [Programador I]"
+        },
+        "hobby": {
+          "done": true,
+          "detail": "Creating a game"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "Young Sheldon"
+        },
+        "philosophy_practice": {
+          "done": true,
+          "detail": "Stoicism"
+        },
+        "social": {
+          "done": true,
+          "detail": "Job"
+        },
+        "language_class": {
+          "done": false,
+          "detail": ""
+        },
+        "anki": {
+          "done": true,
+          "detail": "29 words"
+        }
+      },
+      "studies": {
+        "linguistics": {
+          "done": true,
+          "detail": "English"
+        },
+        "college": {
+          "done": true,
+          "detail": "end of the semester"
         }
       }
     }
