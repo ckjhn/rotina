@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-24T20:21:03.195Z",
+  "exportDate": "2026-03-25T21:45:19.451Z",
   "config": {
     "activities": [
       {
@@ -1370,6 +1370,10 @@
         "scientia_momentum": {
           "done": true,
           "detail": "Scientia Momentum"
+        },
+        "physical_training": {
+          "done": true,
+          "detail": "Gym [Chest x Triceps)"
         }
       },
       "studies": {
