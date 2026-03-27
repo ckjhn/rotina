@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-26T17:59:12.099Z",
+  "exportDate": "2026-03-27T09:18:59.119Z",
   "config": {
     "activities": [
       {
@@ -1470,6 +1470,18 @@
         "philosophy_practice": {
           "done": true,
           "detail": "Stoicism"
+        },
+        "anki": {
+          "done": true,
+          "detail": "41 words"
+        },
+        "scientia_momentum": {
+          "done": true,
+          "detail": "Scientia Momentum"
+        },
+        "reading": {
+          "done": true,
+          "detail": "Three Body Problem"
         }
       },
       "studies": {
@@ -1484,6 +1496,10 @@
         "philosophy_study": {
           "done": true,
           "detail": "Deep conversation about philosophy"
+        },
+        "reading_writing": {
+          "done": true,
+          "detail": "Reading"
         }
       }
     }
