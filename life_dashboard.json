@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-27T10:11:54.822Z",
+  "exportDate": "2026-03-27T10:12:03.194Z",
   "config": {
     "activities": [
       {
@@ -1516,6 +1516,10 @@
         "scientia_momentum": {
           "done": true,
           "detail": "Scientia Momentum"
+        },
+        "philosophy_practice": {
+          "done": true,
+          "detail": "Stoicism"
         }
       },
       "studies": {
