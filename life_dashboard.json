@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-27T10:12:03.194Z",
+  "exportDate": "2026-03-27T12:44:57.104Z",
   "config": {
     "activities": [
       {
@@ -1520,6 +1520,10 @@
         "philosophy_practice": {
           "done": true,
           "detail": "Stoicism"
+        },
+        "social": {
+          "done": true,
+          "detail": "Work conversation"
         }
       },
       "studies": {
