@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-27T12:44:57.104Z",
+  "exportDate": "2026-03-27T13:17:54.294Z",
   "config": {
     "activities": [
       {
@@ -1542,7 +1542,35 @@
       }
     }
   },
-  "goals": [],
+  "goals": [
+    {
+      "id": "goal_mn8xf86fckilu",
+      "name": "Organização Financeira",
+      "description": "Organizar todas as minhas finanças",
+      "steps": [
+        {
+          "id": "s0",
+          "text": "https://www.reddit.com/r/personalfinance/comments/1ogwq9y/what_app_is_best_for_organizing_all_of_your/",
+          "done": false,
+          "doneDate": null
+        },
+        {
+          "id": "s1",
+          "text": "Analisar o link acima e testar os aplicativos, até achar o melhor",
+          "done": false,
+          "doneDate": null
+        },
+        {
+          "id": "s2",
+          "text": "Após isso, organizar as finanças nesse aplicativo selecionado",
+          "done": false,
+          "doneDate": null
+        }
+      ],
+      "createdAt": "2026-03-27",
+      "archived": false
+    }
+  ],
   "objectives": [
     {
       "id": "obj_mmawg1hg7wc2w",
