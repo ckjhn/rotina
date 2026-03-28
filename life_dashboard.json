@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-28T01:18:20.870Z",
+  "exportDate": "2026-03-28T01:41:17.475Z",
   "config": {
     "activities": [
       {
@@ -1524,12 +1524,28 @@
         "social": {
           "done": true,
           "detail": "Work conversation"
+        },
+        "physical_training": {
+          "done": true,
+          "detail": "Gym [Back and Biceps]"
+        },
+        "reading": {
+          "done": true,
+          "detail": "Ancient Philosophy by Julia Annas"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "War of Worlds"
+        },
+        "anki": {
+          "done": true,
+          "detail": "35 words"
         }
       },
       "studies": {
         "reading_writing": {
-          "done": false,
-          "detail": ""
+          "done": true,
+          "detail": "Reading"
         },
         "course": {
           "done": true,
@@ -1538,6 +1554,18 @@
         "college": {
           "done": true,
           "detail": "end of the semester"
+        },
+        "philosophy_study": {
+          "done": true,
+          "detail": "Reading"
+        },
+        "linguistics": {
+          "done": true,
+          "detail": "English"
+        },
+        "coding": {
+          "done": true,
+          "detail": "Python OOP"
         }
       }
     }
@@ -2053,22 +2081,36 @@
         "note": "Baton"
       },
       "habit_pornography_1773148521833": {
-        "failed": false,
-        "note": "Touching on Leggings"
-      }
-    },
-    "2026-03-28": {
-      "habit_doce_1773148558872": {
         "failed": true,
-        "note": "Baton"
+        "note": "Try on Leggings"
       },
       "habit_gordura_1773148570817": {
         "failed": true,
         "note": "Esfirra e Pringles"
+      }
+    },
+    "2026-03-28": {
+      "habit_doce_1773148558872": {
+        "failed": false,
+        "note": ""
+      },
+      "habit_gordura_1773148570817": {
+        "failed": false,
+        "note": ""
       },
       "habit_pornography_1773148521833": {
+        "failed": false,
+        "note": ""
+      }
+    },
+    "2026-03-26": {
+      "habit_pornography_1773148521833": {
         "failed": true,
-        "note": "Try on Leggings"
+        "note": "Touching on Leggings"
+      },
+      "habit_doce_1773148558872": {
+        "failed": true,
+        "note": "Baton"
       }
     }
   }
