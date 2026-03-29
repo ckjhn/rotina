@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-29T18:28:31.634Z",
+  "exportDate": "2026-03-29T18:29:47.234Z",
   "config": {
     "activities": [
       {
@@ -1616,35 +1616,7 @@
       }
     }
   },
-  "goals": [
-    {
-      "id": "goal_mn8xf86fckilu",
-      "name": "Organização Financeira",
-      "description": "Organizar todas as minhas finanças",
-      "steps": [
-        {
-          "id": "s0",
-          "text": "https://www.reddit.com/r/personalfinance/comments/1ogwq9y/what_app_is_best_for_organizing_all_of_your/",
-          "done": false,
-          "doneDate": null
-        },
-        {
-          "id": "s1",
-          "text": "Analisar o link acima e testar os aplicativos, até achar o melhor",
-          "done": false,
-          "doneDate": null
-        },
-        {
-          "id": "s2",
-          "text": "Após isso, organizar as finanças nesse aplicativo selecionado",
-          "done": false,
-          "doneDate": null
-        }
-      ],
-      "createdAt": "2026-03-27",
-      "archived": false
-    }
-  ],
+  "goals": [],
   "objectives": [
     {
       "id": "obj_mmawg1hg7wc2w",
@@ -2137,12 +2109,12 @@
     },
     "2026-03-28": {
       "habit_doce_1773148558872": {
-        "failed": false,
-        "note": ""
+        "failed": true,
+        "note": "Bombom"
       },
       "habit_gordura_1773148570817": {
-        "failed": false,
-        "note": ""
+        "failed": true,
+        "note": "Pizza"
       },
       "habit_pornography_1773148521833": {
         "failed": false,
@@ -2157,6 +2129,12 @@
       "habit_doce_1773148558872": {
         "failed": true,
         "note": "Baton"
+      }
+    },
+    "2026-03-29": {
+      "habit_pornography_1773148521833": {
+        "failed": true,
+        "note": "Strip Tease Naked"
       }
     }
   }
