@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-30T12:07:18.762Z",
+  "exportDate": "2026-03-30T12:20:44.768Z",
   "config": {
     "activities": [
       {
@@ -1663,7 +1663,35 @@
       "studies": {}
     }
   },
-  "goals": [],
+  "goals": [
+    {
+      "id": "goal_mnd5paehrb0nu",
+      "name": "New Job [focus on exterior]",
+      "description": "Find a new Job",
+      "steps": [
+        {
+          "id": "s0",
+          "text": "Update Resume",
+          "done": false,
+          "doneDate": null
+        },
+        {
+          "id": "s1",
+          "text": "Searchs on Linkedin about Job",
+          "done": false,
+          "doneDate": null
+        },
+        {
+          "id": "s2",
+          "text": "Apply on Jobs",
+          "done": false,
+          "doneDate": null
+        }
+      ],
+      "createdAt": "2026-03-30",
+      "archived": false
+    }
+  ],
   "objectives": [
     {
       "id": "obj_mmawg1hg7wc2w",
@@ -1742,18 +1770,6 @@
           "amount": 10
         }
       ]
-    },
-    {
-      "id": "obj_mmlaboj56sywh",
-      "name": "NOFAP",
-      "description": "",
-      "type": "value",
-      "createdAt": "2026-03-11",
-      "archived": false,
-      "targetValue": 7,
-      "currentValue": 0,
-      "unit": "",
-      "valueHistory": []
     },
     {
       "id": "obj_mmnpd7c7w4ckf",
