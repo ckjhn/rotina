@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-29T18:29:47.234Z",
+  "exportDate": "2026-03-30T08:46:59.918Z",
   "config": {
     "activities": [
       {
@@ -1614,6 +1614,32 @@
           "detail": "Python OOP"
         }
       }
+    },
+    "2026-03-29": {
+      "activities": {
+        "hobby": {
+          "done": true,
+          "detail": "Gaming"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "Young Sheldon"
+        },
+        "social": {
+          "done": true,
+          "detail": "Family"
+        },
+        "philosophy_practice": {
+          "done": false,
+          "detail": ""
+        }
+      },
+      "studies": {
+        "linguistics": {
+          "done": true,
+          "detail": "English"
+        }
+      }
     }
   },
   "goals": [],
@@ -2134,7 +2160,11 @@
     "2026-03-29": {
       "habit_pornography_1773148521833": {
         "failed": true,
-        "note": "Strip Tease Naked"
+        "note": "Porn"
+      },
+      "habit_doce_1773148558872": {
+        "failed": true,
+        "note": "Bombom e barra"
       }
     }
   }
