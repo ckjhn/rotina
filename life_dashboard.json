@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-30T12:20:44.768Z",
+  "exportDate": "2026-03-30T13:59:59.853Z",
   "config": {
     "activities": [
       {
@@ -1658,9 +1658,38 @@
         "hobby": {
           "done": true,
           "detail": "Gaming"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "Marine Ford Build on Minecraft"
+        },
+        "anki": {
+          "done": true,
+          "detail": "78 words"
+        },
+        "scientia_momentum": {
+          "done": true,
+          "detail": "Scientia Momentum"
         }
       },
-      "studies": {}
+      "studies": {
+        "linguistics": {
+          "done": true,
+          "detail": "English"
+        },
+        "coding": {
+          "done": true,
+          "detail": "Python OOP"
+        },
+        "college": {
+          "done": true,
+          "detail": "End of the semester"
+        },
+        "course": {
+          "done": true,
+          "detail": "Python OOP"
+        }
+      }
     }
   },
   "goals": [
