@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-30T20:33:14.084Z",
+  "exportDate": "2026-03-31T22:59:18.886Z",
   "config": {
     "activities": [
       {
@@ -1694,6 +1694,27 @@
           "detail": "Python OOP"
         }
       }
+    },
+    "2026-03-31": {
+      "activities": {
+        "work": {
+          "done": true,
+          "detail": "Prolagos [Programador I]"
+        },
+        "hobby": {
+          "done": true,
+          "detail": "Gaming"
+        },
+        "social": {
+          "done": true,
+          "detail": "Family"
+        },
+        "philosophy_practice": {
+          "done": false,
+          "detail": ""
+        }
+      },
+      "studies": {}
     }
   },
   "goals": [
@@ -2239,6 +2260,22 @@
       "habit_doce_1773148558872": {
         "failed": true,
         "note": "Bombom e barra"
+      }
+    },
+    "2026-03-30": {
+      "habit_pornography_1773148521833": {
+        "failed": true,
+        "note": "Porn"
+      },
+      "habit_doce_1773148558872": {
+        "failed": true,
+        "note": "Bombom"
+      }
+    },
+    "2026-03-31": {
+      "habit_pornography_1773148521833": {
+        "failed": true,
+        "note": "Porn"
       }
     }
   }
