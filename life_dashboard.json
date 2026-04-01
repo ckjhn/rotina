@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-01T11:59:53.822Z",
+  "exportDate": "2026-04-01T17:44:35.330Z",
   "config": {
     "activities": [
       {
@@ -1738,12 +1738,24 @@
         "hobby": {
           "done": true,
           "detail": "Mods Organization"
+        },
+        "anki": {
+          "done": true,
+          "detail": "77 words"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "Young Sheldon"
         }
       },
       "studies": {
         "college": {
           "done": true,
           "detail": "end of the semester"
+        },
+        "linguistics": {
+          "done": true,
+          "detail": "English"
         }
       }
     }
