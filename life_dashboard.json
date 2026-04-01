@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-01T17:44:35.330Z",
+  "exportDate": "2026-04-01T17:45:04.178Z",
   "config": {
     "activities": [
       {
@@ -1746,6 +1746,14 @@
         "language_immersion": {
           "done": true,
           "detail": "Young Sheldon"
+        },
+        "philosophy_practice": {
+          "done": true,
+          "detail": "Stoicism"
+        },
+        "social": {
+          "done": true,
+          "detail": "Job"
         }
       },
       "studies": {
