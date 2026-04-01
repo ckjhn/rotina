@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-03-31T22:59:18.886Z",
+  "exportDate": "2026-04-01T11:23:38.969Z",
   "config": {
     "activities": [
       {
@@ -1712,6 +1712,15 @@
         "philosophy_practice": {
           "done": false,
           "detail": ""
+        }
+      },
+      "studies": {}
+    },
+    "2026-04-01": {
+      "activities": {
+        "work": {
+          "done": true,
+          "detail": "Prolagos [Programador I]"
         }
       },
       "studies": {}
