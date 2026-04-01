@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-01T11:59:28.657Z",
+  "exportDate": "2026-04-01T11:59:53.822Z",
   "config": {
     "activities": [
       {
@@ -1734,6 +1734,10 @@
         "work": {
           "done": true,
           "detail": "Prolagos [Programador I]"
+        },
+        "hobby": {
+          "done": true,
+          "detail": "Mods Organization"
         }
       },
       "studies": {
