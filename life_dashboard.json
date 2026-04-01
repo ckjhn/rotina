@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-01T11:23:38.969Z",
+  "exportDate": "2026-04-01T11:59:28.657Z",
   "config": {
     "activities": [
       {
@@ -1712,9 +1712,22 @@
         "philosophy_practice": {
           "done": false,
           "detail": ""
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "Young Sheldon"
         }
       },
-      "studies": {}
+      "studies": {
+        "college": {
+          "done": true,
+          "detail": "end of the semester"
+        },
+        "linguistics": {
+          "done": true,
+          "detail": "English"
+        }
+      }
     },
     "2026-04-01": {
       "activities": {
@@ -1723,7 +1736,12 @@
           "detail": "Prolagos [Programador I]"
         }
       },
-      "studies": {}
+      "studies": {
+        "college": {
+          "done": true,
+          "detail": "end of the semester"
+        }
+      }
     }
   },
   "goals": [
