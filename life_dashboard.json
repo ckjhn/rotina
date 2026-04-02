@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-02T11:35:17.523Z",
+  "exportDate": "2026-04-02T12:12:25.125Z",
   "config": {
     "activities": [
       {
@@ -1792,12 +1792,44 @@
         "philosophy_practice": {
           "done": true,
           "detail": "Stoicism"
+        },
+        "scientia_momentum": {
+          "done": true,
+          "detail": "Scientia Momentum"
+        },
+        "reading": {
+          "done": true,
+          "detail": ""
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "Young Sheldon"
+        },
+        "anki": {
+          "done": true,
+          "detail": "40 words"
         }
       },
       "studies": {
         "college": {
           "done": true,
           "detail": "end of the semester"
+        },
+        "other_study": {
+          "done": true,
+          "detail": "History"
+        },
+        "reading_writing": {
+          "done": true,
+          "detail": "Reading"
+        },
+        "linguistics": {
+          "done": true,
+          "detail": "English"
+        },
+        "philosophy_study": {
+          "done": true,
+          "detail": "Ancient Philosophy by Julia Annas"
         }
       }
     }
