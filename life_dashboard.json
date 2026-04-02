@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-02T12:18:22.597Z",
+  "exportDate": "2026-04-02T12:49:04.766Z",
   "config": {
     "activities": [
       {
@@ -1799,7 +1799,7 @@
         },
         "reading": {
           "done": true,
-          "detail": ""
+          "detail": "Ancient Philosophy by Julia Annas"
         },
         "language_immersion": {
           "done": true,
