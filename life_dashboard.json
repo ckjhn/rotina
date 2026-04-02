@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-02T11:29:03.514Z",
+  "exportDate": "2026-04-02T11:34:55.163Z",
   "config": {
     "activities": [
       {
@@ -1748,8 +1748,8 @@
           "detail": "Young Sheldon"
         },
         "philosophy_practice": {
-          "done": true,
-          "detail": "Stoicism"
+          "done": false,
+          "detail": ""
         },
         "social": {
           "done": true,
@@ -1780,6 +1780,18 @@
         "work": {
           "done": true,
           "detail": "Prolagos [Programador I]"
+        },
+        "hobby": {
+          "done": true,
+          "detail": "Creating my game"
+        },
+        "social": {
+          "done": true,
+          "detail": "Job"
+        },
+        "philosophy_practice": {
+          "done": true,
+          "detail": "Stoicism"
         }
       },
       "studies": {
