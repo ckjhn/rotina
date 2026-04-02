@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-02T11:28:23.121Z",
+  "exportDate": "2026-04-02T11:29:03.514Z",
   "config": {
     "activities": [
       {
@@ -1754,6 +1754,10 @@
         "social": {
           "done": true,
           "detail": "Job"
+        },
+        "scientia_momentum": {
+          "done": true,
+          "detail": "Scientia Momentum"
         }
       },
       "studies": {
@@ -1764,6 +1768,10 @@
         "linguistics": {
           "done": true,
           "detail": "English"
+        },
+        "other_study": {
+          "done": true,
+          "detail": "History"
         }
       }
     },
