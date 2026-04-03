@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-02T12:51:12.285Z",
+  "exportDate": "2026-04-03T01:24:05.486Z",
   "config": {
     "activities": [
       {
@@ -2407,6 +2407,16 @@
       "habit_gordura_1773148570817": {
         "failed": true,
         "note": "Pizza Frango"
+      }
+    },
+    "2026-04-02": {
+      "habit_pornography_1773148521833": {
+        "failed": true,
+        "note": "Porn"
+      },
+      "habit_doce_1773148558872": {
+        "failed": true,
+        "note": "Bombom"
       }
     }
   }
