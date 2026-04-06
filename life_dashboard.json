@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-06T21:51:11.028Z",
+  "exportDate": "2026-04-06T21:52:59.171Z",
   "config": {
     "activities": [
       {
@@ -49,20 +49,6 @@
         "id": "anki",
         "name": "Anki",
         "placeholder": "done",
-        "frequency": "daily",
-        "category": "activities"
-      },
-      {
-        "id": "language_class",
-        "name": "Language Class",
-        "placeholder": "language name",
-        "frequency": "daily",
-        "category": "activities"
-      },
-      {
-        "id": "mining_sentences",
-        "name": "Mineração de Sentenças",
-        "placeholder": "amount",
         "frequency": "daily",
         "category": "activities"
       },
@@ -168,6 +154,22 @@
         "name": "Interchange / Scholarship | Exterior Job / Emigration",
         "placeholder": "content",
         "frequency": "triweekly",
+        "category": "studies",
+        "group": "mandatory"
+      },
+      {
+        "id": "language_class",
+        "name": "Language Class",
+        "placeholder": "details",
+        "frequency": "weekly",
+        "category": "studies",
+        "group": "mandatory"
+      },
+      {
+        "id": "minera_o_de_senten_as",
+        "name": "Mineração de Sentenças",
+        "placeholder": "details",
+        "frequency": "weekly",
         "category": "studies",
         "group": "mandatory"
       }
