@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-03T01:24:05.486Z",
+  "exportDate": "2026-04-06T05:11:12.657Z",
   "config": {
     "activities": [
       {
@@ -2417,6 +2417,48 @@
       "habit_doce_1773148558872": {
         "failed": true,
         "note": "Bombom"
+      }
+    },
+    "2026-04-03": {
+      "habit_gordura_1773148570817": {
+        "failed": true,
+        "note": ""
+      },
+      "habit_doce_1773148558872": {
+        "failed": true,
+        "note": ""
+      },
+      "habit_pornography_1773148521833": {
+        "failed": true,
+        "note": ""
+      }
+    },
+    "2026-04-04": {
+      "habit_pornography_1773148521833": {
+        "failed": true,
+        "note": ""
+      },
+      "habit_doce_1773148558872": {
+        "failed": true,
+        "note": ""
+      },
+      "habit_gordura_1773148570817": {
+        "failed": true,
+        "note": ""
+      }
+    },
+    "2026-04-05": {
+      "habit_doce_1773148558872": {
+        "failed": true,
+        "note": ""
+      },
+      "habit_gordura_1773148570817": {
+        "failed": true,
+        "note": ""
+      },
+      "habit_pornography_1773148521833": {
+        "failed": true,
+        "note": ""
       }
     }
   }
