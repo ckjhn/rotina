@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-06T21:52:59.171Z",
+  "exportDate": "2026-04-07T12:15:42.194Z",
   "config": {
     "activities": [
       {
@@ -66,6 +66,20 @@
         "frequency": "daily",
         "category": "activities",
         "group": "mandatory"
+      },
+      {
+        "id": "language_class",
+        "name": "Language Class",
+        "placeholder": "language name",
+        "frequency": "daily",
+        "category": "activities"
+      },
+      {
+        "id": "mining_sentences",
+        "name": "Mineração de Sentenças",
+        "placeholder": "amount",
+        "frequency": "daily",
+        "category": "activities"
       }
     ],
     "studies": [
@@ -1872,6 +1886,28 @@
           "detail": "End of the semester"
         }
       }
+    },
+    "2026-04-07": {
+      "activities": {
+        "work": {
+          "done": true,
+          "detail": "Prolagos [Programador I]"
+        },
+        "philosophy_practice": {
+          "done": true,
+          "detail": "Stoicism"
+        },
+        "social": {
+          "done": true,
+          "detail": "Work"
+        }
+      },
+      "studies": {
+        "college": {
+          "done": true,
+          "detail": "End of the semester"
+        }
+      }
     }
   },
   "goals": [
@@ -2497,6 +2533,12 @@
         "note": ""
       },
       "habit_pornography_1773148521833": {
+        "failed": true,
+        "note": ""
+      }
+    },
+    "2026-04-06": {
+      "habit_doce_1773148558872": {
         "failed": true,
         "note": ""
       }
