@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-08T12:59:30.223Z",
+  "exportDate": "2026-04-08T13:28:30.879Z",
   "config": {
     "activities": [
       {
@@ -171,9 +171,7 @@
     "_deletedIds": [
       "exterior_job",
       "interchange",
-      "philosophy",
-      "language_immersion",
-      "anki"
+      "philosophy"
     ]
   },
   "history": {
@@ -1904,9 +1902,34 @@
         "work": {
           "done": true,
           "detail": "Prolagos [Programador I]"
+        },
+        "social": {
+          "done": true,
+          "detail": "Work"
+        },
+        "philosophy_practice": {
+          "done": true,
+          "detail": "Stoicism"
+        },
+        "reading": {
+          "done": true,
+          "detail": "Ancient Philosophy"
+        },
+        "hobby": {
+          "done": true,
+          "detail": "Sleeping"
         }
       },
-      "studies": {}
+      "studies": {
+        "college": {
+          "done": true,
+          "detail": "end of the semester"
+        },
+        "philosophy_study": {
+          "done": true,
+          "detail": "Ancient Philosophy by Anne Jules"
+        }
+      }
     }
   },
   "goals": [
