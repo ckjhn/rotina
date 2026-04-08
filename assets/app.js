@@ -11,8 +11,7 @@ const DEFAULT_ACTIVITIES = [
   { id: 'hobby', name: 'Hobby', placeholder: 'name', frequency: 'daily', category: 'activities' },
   { id: 'philosophy', name: 'Philosophy', placeholder: 'Stoicism', frequency: 'daily', category: 'activities' },
   { id: 'scientia_momentum', name: 'Scientia Momentum / College', placeholder: 'one / other / both', frequency: 'daily', category: 'activities' },
-  { id: 'language_immersion', name: 'Language Immersion', placeholder: 'language name', frequency: 'daily', category: 'activities' },
-  { id: 'anki', name: 'Anki', placeholder: 'done', frequency: 'daily', category: 'activities' },
+
   { id: 'social', name: 'Social', placeholder: 'what kind of contact?', frequency: 'daily', category: 'activities' },
 ];
 
@@ -2538,6 +2537,11 @@ function deleteConfigItem(category, index) {
   if (!item) return;
   const label = category === 'activities' ? 'activity' : 'study';
   if (confirm(`Delete "${item.name}" from ${label} list?\n\nThis removes it from the configuration. Historical data for this item will be preserved.`)) {
+    // Register the ID so initConfig() never re-adds this default item on reload
+    if (!AppState.config._deletedIds) AppState.config._deletedIds = [];
+    if (!AppState.config._deletedIds.includes(item.id)) {
+      AppState.config._deletedIds.push(item.id);
+    }
     AppState.config[category].splice(index, 1);
     saveToLocalStorage();
     showToast(`Deleted "${item.name}"`, 'success');
