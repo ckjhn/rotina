@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-07T12:15:42.194Z",
+  "exportDate": "2026-04-08T12:26:21.100Z",
   "config": {
     "activities": [
       {
@@ -1900,6 +1900,14 @@
         "social": {
           "done": true,
           "detail": "Work"
+        },
+        "anki": {
+          "done": true,
+          "detail": "20 words"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "Something Bad is Gonna Happen"
         }
       },
       "studies": {
@@ -1908,6 +1916,15 @@
           "detail": "End of the semester"
         }
       }
+    },
+    "2026-04-08": {
+      "activities": {
+        "work": {
+          "done": true,
+          "detail": "Prolagos [Programador I]"
+        }
+      },
+      "studies": {}
     }
   },
   "goals": [
