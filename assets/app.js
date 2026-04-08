@@ -13,8 +13,6 @@ const DEFAULT_ACTIVITIES = [
   { id: 'scientia_momentum', name: 'Scientia Momentum / College', placeholder: 'one / other / both', frequency: 'daily', category: 'activities' },
   { id: 'language_immersion', name: 'Language Immersion', placeholder: 'language name', frequency: 'daily', category: 'activities' },
   { id: 'anki', name: 'Anki', placeholder: 'done', frequency: 'daily', category: 'activities' },
-  { id: 'language_class', name: 'Language Class', placeholder: 'language name', frequency: 'daily', category: 'activities' },
-  { id: 'mining_sentences', name: 'Mineração de Sentenças', placeholder: 'amount', frequency: 'daily', category: 'activities' },
   { id: 'social', name: 'Social', placeholder: 'what kind of contact?', frequency: 'daily', category: 'activities' },
 ];
 
