@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-08T13:41:48.384Z",
+  "exportDate": "2026-04-08T13:42:00.392Z",
   "config": {
     "activities": [
       {
@@ -1937,7 +1937,7 @@
         },
         "hobby": {
           "done": true,
-          "detail": "Sleeping"
+          "detail": "Gaming"
         }
       },
       "studies": {
