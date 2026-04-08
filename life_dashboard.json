@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-08T13:45:22.627Z",
+  "exportDate": "2026-04-08T21:47:07.264Z",
   "config": {
     "activities": [
       {
@@ -1942,6 +1942,10 @@
         "anki": {
           "done": true,
           "detail": "22"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "Something Very Bad is Going to Happen"
         }
       },
       "studies": {
@@ -1952,6 +1956,14 @@
         "philosophy_study": {
           "done": true,
           "detail": "Ancient Philosophy by Anne Jules"
+        },
+        "linguistics": {
+          "done": true,
+          "detail": "Immersion"
+        },
+        "reading_writing": {
+          "done": true,
+          "detail": "Reading"
         }
       }
     }
