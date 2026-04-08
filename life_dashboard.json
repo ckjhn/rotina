@@ -39,20 +39,6 @@
         "category": "activities"
       },
       {
-        "id": "language_immersion",
-        "name": "Language Immersion",
-        "placeholder": "language name",
-        "frequency": "daily",
-        "category": "activities"
-      },
-      {
-        "id": "anki",
-        "name": "Anki",
-        "placeholder": "done",
-        "frequency": "daily",
-        "category": "activities"
-      },
-      {
         "id": "social",
         "name": "Social",
         "placeholder": "what kind of contact?",
@@ -185,7 +171,9 @@
     "_deletedIds": [
       "exterior_job",
       "interchange",
-      "philosophy"
+      "philosophy",
+      "language_immersion",
+      "anki"
     ]
   },
   "history": {
