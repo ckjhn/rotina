@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-08T21:47:07.264Z",
+  "exportDate": "2026-04-09T11:05:27.289Z",
   "config": {
     "activities": [
       {
@@ -1946,6 +1946,10 @@
         "language_immersion": {
           "done": true,
           "detail": "Something Very Bad is Going to Happen"
+        },
+        "physical_training": {
+          "done": true,
+          "detail": "Gym [Chest and Triceps]"
         }
       },
       "studies": {
@@ -1966,6 +1970,15 @@
           "detail": "Reading"
         }
       }
+    },
+    "2026-04-09": {
+      "activities": {
+        "work": {
+          "done": true,
+          "detail": "Prolagos [Programador I]"
+        }
+      },
+      "studies": {}
     }
   },
   "goals": [
