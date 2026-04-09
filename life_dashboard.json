@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-09T12:11:31.010Z",
+  "exportDate": "2026-04-09T12:27:01.838Z",
   "config": {
     "activities": [
       {
@@ -1974,9 +1974,13 @@
           "done": true,
           "detail": "Scientia Momentum"
         },
-        "philosophy_practice": {
+        "social": {
           "done": true,
-          "detail": "Stoicism"
+          "detail": "Family"
+        },
+        "hobby": {
+          "done": true,
+          "detail": "Gaming"
         }
       },
       "studies": {
