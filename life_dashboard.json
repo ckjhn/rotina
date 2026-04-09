@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-09T11:05:27.289Z",
+  "exportDate": "2026-04-09T12:09:57.208Z",
   "config": {
     "activities": [
       {
@@ -1976,9 +1976,26 @@
         "work": {
           "done": true,
           "detail": "Prolagos [Programador I]"
+        },
+        "scientia_momentum": {
+          "done": true,
+          "detail": "Scientia Momentum"
         }
       },
-      "studies": {}
+      "studies": {
+        "college": {
+          "done": true,
+          "detail": "end of the semester"
+        },
+        "course": {
+          "done": true,
+          "detail": "Python OOP"
+        },
+        "coding": {
+          "done": true,
+          "detail": "Python OOP"
+        }
+      }
     }
   },
   "goals": [
