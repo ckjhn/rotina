@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-09T12:27:01.838Z",
+  "exportDate": "2026-04-09T18:05:37.534Z",
   "config": {
     "activities": [
       {
@@ -1981,6 +1981,18 @@
         "hobby": {
           "done": true,
           "detail": "Gaming"
+        },
+        "reading": {
+          "done": true,
+          "detail": "Ancient Philosophy by Julia Annas"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "Ancient Philosophy by Julia Annas"
+        },
+        "philosophy_practice": {
+          "done": true,
+          "detail": "Stoicism"
         }
       },
       "studies": {
@@ -1995,6 +2007,18 @@
         "coding": {
           "done": true,
           "detail": "Python OOP"
+        },
+        "linguistics": {
+          "done": true,
+          "detail": "English"
+        },
+        "reading_writing": {
+          "done": true,
+          "detail": "Reading"
+        },
+        "philosophy_study": {
+          "done": true,
+          "detail": "Ancient Philosophy by Julia Annas"
         }
       }
     }
