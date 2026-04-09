@@ -5256,7 +5256,8 @@ async function tryAutoLoadJSON() {
     if (response.ok) {
       const data = await response.json();
       if (data.history) {
-        AppState.history = { ...AppState.history, ...data.history };
+        // localStorage wins — JSON only fills in dates not already in localStorage
+        AppState.history = { ...data.history, ...AppState.history };
       }
       if (data.config) {
         // Preserve deletion tracking from current config
@@ -5320,15 +5321,17 @@ function toggleSidebar() {
 // ========== INITIALIZATION ==========
 
 document.addEventListener('DOMContentLoaded', async () => {
-  // Load from localStorage first
-  loadFromLocalStorage();
+  // Load from localStorage first — returns true if data was found
+  const hasLocalData = loadFromLocalStorage();
   loadGitHubConfig();
   
   // Initialize config
   initConfig();
   
-  // Try auto-loading external JSON
-  await tryAutoLoadJSON();
+  // Only auto-load from JSON if localStorage is empty (first-time setup or cleared storage)
+  if (!hasLocalData) {
+    await tryAutoLoadJSON();
+  }
   
   // Ensure config is applied
   applyConfig();
