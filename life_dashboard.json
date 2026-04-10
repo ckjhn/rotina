@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-10T13:46:04.801Z",
+  "exportDate": "2026-04-10T13:46:13.737Z",
   "config": {
     "activities": [
       {
@@ -168,14 +168,6 @@
         "group": "mandatory"
       },
       {
-        "id": "minera_o_de_senten_as",
-        "name": "Mineração de Sentenças",
-        "placeholder": "details",
-        "frequency": "weekly",
-        "category": "studies",
-        "group": "mandatory"
-      },
-      {
         "id": "sentence_mining",
         "name": "Sentence Mining",
         "placeholder": "amount",
@@ -187,7 +179,8 @@
     "_deletedIds": [
       "exterior_job",
       "interchange",
-      "philosophy"
+      "philosophy",
+      "minera_o_de_senten_as"
     ]
   },
   "history": {
