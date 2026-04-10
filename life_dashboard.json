@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-10T13:47:08.929Z",
+  "exportDate": "2026-04-10T18:29:04.118Z",
   "config": {
     "activities": [
       {
@@ -2023,12 +2023,32 @@
         "hobby": {
           "done": true,
           "detail": "Gaming"
+        },
+        "philosophy_practice": {
+          "done": true,
+          "detail": "Stoicism"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "Something Very Bad Is Gonna Happen"
+        },
+        "anki": {
+          "done": true,
+          "detail": "22"
         }
       },
       "studies": {
         "college": {
           "done": true,
           "detail": "end of the semester"
+        },
+        "linguistics": {
+          "done": true,
+          "detail": "English"
+        },
+        "interchange_scholarship_exterior_job_emigration": {
+          "done": true,
+          "detail": "Wise"
         }
       }
     }
