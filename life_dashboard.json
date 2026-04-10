@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-10T13:46:13.737Z",
+  "exportDate": "2026-04-10T13:47:08.929Z",
   "config": {
     "activities": [
       {
@@ -2007,6 +2007,28 @@
         "philosophy_study": {
           "done": true,
           "detail": "Ancient Philosophy by Julia Annas"
+        }
+      }
+    },
+    "2026-04-10": {
+      "activities": {
+        "work": {
+          "done": true,
+          "detail": "Prolagos [Programador I]"
+        },
+        "social": {
+          "done": true,
+          "detail": "Work"
+        },
+        "hobby": {
+          "done": true,
+          "detail": "Gaming"
+        }
+      },
+      "studies": {
+        "college": {
+          "done": true,
+          "detail": "end of the semester"
         }
       }
     }
