@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-09T22:21:44.134Z",
+  "exportDate": "2026-04-10T13:46:04.801Z",
   "config": {
     "activities": [
       {
@@ -168,6 +168,14 @@
         "group": "mandatory"
       },
       {
+        "id": "minera_o_de_senten_as",
+        "name": "Mineração de Sentenças",
+        "placeholder": "details",
+        "frequency": "weekly",
+        "category": "studies",
+        "group": "mandatory"
+      },
+      {
         "id": "sentence_mining",
         "name": "Sentence Mining",
         "placeholder": "amount",
@@ -179,8 +187,7 @@
     "_deletedIds": [
       "exterior_job",
       "interchange",
-      "philosophy",
-      "minera_o_de_senten_as"
+      "philosophy"
     ]
   },
   "history": {
@@ -1935,14 +1942,6 @@
         "anki": {
           "done": true,
           "detail": "22"
-        },
-        "language_immersion": {
-          "done": true,
-          "detail": "Something Very Bad is Going to Happen"
-        },
-        "physical_training": {
-          "done": true,
-          "detail": "Gym [Chest and Triceps]"
         }
       },
       "studies": {
@@ -1953,10 +1952,6 @@
         "philosophy_study": {
           "done": true,
           "detail": "Ancient Philosophy by Anne Jules"
-        },
-        "linguistics": {
-          "done": true,
-          "detail": "Immersion"
         },
         "reading_writing": {
           "done": true,
@@ -1970,6 +1965,14 @@
           "done": true,
           "detail": "Prolagos [Programador I]"
         },
+        "reading": {
+          "done": true,
+          "detail": "Ancient Philosophy"
+        },
+        "hobby": {
+          "done": true,
+          "detail": "Gaming"
+        },
         "scientia_momentum": {
           "done": true,
           "detail": "Scientia Momentum"
@@ -1978,47 +1981,35 @@
           "done": true,
           "detail": "Family"
         },
-        "hobby": {
-          "done": true,
-          "detail": "Gaming"
-        },
-        "reading": {
-          "done": true,
-          "detail": "Ancient Philosophy by Julia Annas"
-        },
-        "language_immersion": {
-          "done": true,
-          "detail": "Ancient Philosophy by Julia Annas"
-        },
         "philosophy_practice": {
           "done": true,
           "detail": "Stoicism"
         },
         "anki": {
           "done": true,
-          "detail": "19"
+          "detail": "20"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "Ancient Philosophy"
         }
       },
       "studies": {
-        "college": {
+        "reading_writing": {
           "done": true,
-          "detail": "end of the semester"
-        },
-        "course": {
-          "done": true,
-          "detail": "Python OOP"
-        },
-        "coding": {
-          "done": true,
-          "detail": "Python OOP"
+          "detail": "Reading"
         },
         "linguistics": {
           "done": true,
           "detail": "English"
         },
-        "reading_writing": {
+        "course": {
           "done": true,
-          "detail": "Reading"
+          "detail": "Python OOP"
+        },
+        "college": {
+          "done": true,
+          "detail": "end of the semester"
         },
         "philosophy_study": {
           "done": true,
