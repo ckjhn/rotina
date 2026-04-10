@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-10T18:29:04.118Z",
+  "exportDate": "2026-04-10T19:07:27.593Z",
   "config": {
     "activities": [
       {
@@ -1935,6 +1935,10 @@
         "anki": {
           "done": true,
           "detail": "22"
+        },
+        "physical_training": {
+          "done": true,
+          "detail": "Gym [Chest x Triceps] x Running"
         }
       },
       "studies": {
