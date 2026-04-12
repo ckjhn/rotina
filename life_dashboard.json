@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-11T14:41:22.214Z",
+  "exportDate": "2026-04-12T17:38:47.030Z",
   "config": {
     "activities": [
       {
@@ -2075,6 +2075,15 @@
           "detail": ""
         }
       }
+    },
+    "2026-04-11": {
+      "activities": {
+        "hobby": {
+          "done": true,
+          "detail": "Movie"
+        }
+      },
+      "studies": {}
     }
   },
   "goals": [
