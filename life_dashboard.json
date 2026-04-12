@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-12T17:38:47.030Z",
+  "exportDate": "2026-04-12T18:01:29.110Z",
   "config": {
     "activities": [
       {
@@ -2081,9 +2081,76 @@
         "hobby": {
           "done": true,
           "detail": "Movie"
+        },
+        "philosophy_practice": {
+          "done": true,
+          "detail": "Stoicism"
+        },
+        "social": {
+          "done": true,
+          "detail": "Family"
+        },
+        "anki": {
+          "done": false,
+          "detail": ""
         }
       },
-      "studies": {}
+      "studies": {
+        "college": {
+          "done": true,
+          "detail": "end of the semester"
+        }
+      }
+    },
+    "2026-04-12": {
+      "activities": {
+        "hobby": {
+          "done": true,
+          "detail": "Gaming"
+        },
+        "scientia_momentum": {
+          "done": true,
+          "detail": "Scientia Momentum"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "Tutorial"
+        },
+        "philosophy_practice": {
+          "done": true,
+          "detail": "Stoicism"
+        },
+        "social": {
+          "done": true,
+          "detail": "Family"
+        },
+        "anki": {
+          "done": true,
+          "detail": "42 words"
+        }
+      },
+      "studies": {
+        "college": {
+          "done": true,
+          "detail": "end of the semester"
+        },
+        "language_class": {
+          "done": false,
+          "detail": ""
+        },
+        "linguistics": {
+          "done": true,
+          "detail": "English"
+        },
+        "interchange_scholarship_exterior_job_emigration": {
+          "done": true,
+          "detail": "Investment"
+        },
+        "investment": {
+          "done": false,
+          "detail": ""
+        }
+      }
     }
   },
   "goals": [
