@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-13T19:46:27.042Z",
+  "exportDate": "2026-04-13T20:58:41.951Z",
   "config": {
     "activities": [
       {
@@ -2161,6 +2161,10 @@
         "social": {
           "done": true,
           "detail": "Work"
+        },
+        "scientia_momentum": {
+          "done": false,
+          "detail": ""
         }
       },
       "studies": {
@@ -2171,6 +2175,14 @@
         "linguistics": {
           "done": true,
           "detail": "English"
+        },
+        "philosophy_study": {
+          "done": true,
+          "detail": "Conversation"
+        },
+        "sentence_mining": {
+          "done": true,
+          "detail": "24 words"
         }
       }
     }
