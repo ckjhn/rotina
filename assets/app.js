@@ -89,6 +89,7 @@ const STORAGE_KEY_POMODORO_CFG = 'lifedash_pomodoro_config';
 const STORAGE_KEY_POMODORO_HIST = 'lifedash_pomodoro_history';
 const STORAGE_KEY_HABITS = 'lifedash_habits';
 const STORAGE_KEY_HABITS_LOG = 'lifedash_habits_log';
+const STORAGE_KEY_LAST_SYNC = 'lifedash_last_sync';
 const AUTO_JSON_PATH = 'life_dashboard.json';
 const STORAGE_KEY_GITHUB = 'lifedash_github';
 
@@ -2651,6 +2652,16 @@ function renderDataPage() {
           <div class="upload-zone-hint">or drag and drop here</div>
         </div>
         <input type="file" id="file-input" accept=".json" style="display:none" onchange="handleFileUpload(event)">
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title"><span class="icon">🔄</span> Sync from JSON</div>
+        </div>
+        <p style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:16px">
+          Manually sync your data from the <strong>life_dashboard.json</strong> file. This merges new entries with existing data and updates the timestamp. Use this if you've edited the JSON file externally.
+        </p>
+        <button class="btn btn-primary" onclick="forceSyncFromJSON()">🔄 Force Sync from JSON</button>
       </div>
 
       <div class="card full-width">
@@ -5320,6 +5331,150 @@ function toggleSidebar() {
 
 // ========== INITIALIZATION ==========
 
+
+async function syncFromJSON() {
+  try {
+    const response = await fetch(AUTO_JSON_PATH);
+    if (!response.ok) {
+      console.log('No JSON file found (normal for standalone use)');
+      return false;
+    }
+    
+    const data = await response.json();
+    let dataWasMerged = false;
+    
+    // Check if this JSON is newer than our last sync
+    const lastSync = localStorage.getItem(STORAGE_KEY_LAST_SYNC);
+    const jsonTimestamp = data.exportDate || new Date().toISOString();
+    
+    if (!lastSync || jsonTimestamp > lastSync) {
+      // Merge history (JSON history is merged into existing, preserving both)
+      if (data.history && Object.keys(data.history).length > 0) {
+        AppState.history = { ...data.history, ...AppState.history };
+        dataWasMerged = true;
+      }
+      
+      // Update config (new config replaces old, but preserve deletion tracking)
+      if (data.config) {
+        const deletedIds = AppState.config._deletedIds || [];
+        AppState.config = data.config;
+        if (deletedIds.length > 0) {
+          AppState.config._deletedIds = deletedIds;
+          if (AppState.config.activities) {
+            AppState.config.activities = AppState.config.activities.filter(a => !deletedIds.includes(a.id));
+          }
+          if (AppState.config.studies) {
+            AppState.config.studies = AppState.config.studies.filter(s => !deletedIds.includes(s.id));
+          }
+        }
+        dataWasMerged = true;
+      }
+      
+      // Merge other data
+      if (data.goals) {
+        AppState.goals = data.goals;
+        dataWasMerged = true;
+      }
+      if (data.objectives) {
+        AppState.objectives = data.objectives;
+        dataWasMerged = true;
+      }
+      if (data.calendarEvents) {
+        AppState.calendarEvents = data.calendarEvents;
+        dataWasMerged = true;
+      }
+      if (data.trackers) {
+        AppState.trackers = data.trackers;
+        dataWasMerged = true;
+      }
+      if (data.schedules) {
+        AppState.schedules = data.schedules;
+        dataWasMerged = true;
+      }
+      if (data.pomodoroConfig) {
+        AppState.pomodoroConfig = data.pomodoroConfig;
+        dataWasMerged = true;
+      }
+      if (data.pomodoroHistory) {
+        AppState.pomodoroHistory = data.pomodoroHistory;
+        dataWasMerged = true;
+      }
+      if (data.habits) {
+        AppState.habits = data.habits;
+        dataWasMerged = true;
+      }
+      if (data.habitsLog && Object.keys(data.habitsLog).length > 0) {
+        AppState.habitsLog = { ...data.habitsLog, ...AppState.habitsLog };
+        dataWasMerged = true;
+      }
+      
+      if (dataWasMerged) {
+        // Save the synced data and update last sync timestamp
+        saveToLocalStorage();
+        localStorage.setItem(STORAGE_KEY_LAST_SYNC, jsonTimestamp);
+        console.log('Data synced from ' + AUTO_JSON_PATH);
+        showToast('Data synchronized from life_dashboard.json', 'info');
+        return true;
+      }
+    }
+    return false;
+  } catch (e) {
+    console.log('JSON sync failed (this is normal for standalone use):', e.message);
+    return false;
+  }
+}
+
+async function forceSyncFromJSON() {
+  try {
+    const response = await fetch(AUTO_JSON_PATH);
+    if (!response.ok) {
+      showToast('life_dashboard.json file not found', 'error');
+      return false;
+    }
+    
+    const data = await response.json();
+    
+    // Force merge all data
+    if (data.history) {
+      AppState.history = { ...data.history, ...AppState.history };
+    }
+    if (data.config) {
+      const deletedIds = AppState.config._deletedIds || [];
+      AppState.config = data.config;
+      if (deletedIds.length > 0) {
+        AppState.config._deletedIds = deletedIds;
+        if (AppState.config.activities) {
+          AppState.config.activities = AppState.config.activities.filter(a => !deletedIds.includes(a.id));
+        }
+        if (AppState.config.studies) {
+          AppState.config.studies = AppState.config.studies.filter(s => !deletedIds.includes(s.id));
+        }
+      }
+    }
+    if (data.goals) AppState.goals = data.goals;
+    if (data.objectives) AppState.objectives = data.objectives;
+    if (data.calendarEvents) AppState.calendarEvents = data.calendarEvents;
+    if (data.trackers) AppState.trackers = data.trackers;
+    if (data.schedules) AppState.schedules = data.schedules;
+    if (data.pomodoroConfig) AppState.pomodoroConfig = data.pomodoroConfig;
+    if (data.pomodoroHistory) AppState.pomodoroHistory = data.pomodoroHistory;
+    if (data.habits) AppState.habits = data.habits;
+    if (data.habitsLog) {
+      AppState.habitsLog = { ...data.habitsLog, ...AppState.habitsLog };
+    }
+    
+    saveToLocalStorage();
+    localStorage.setItem(STORAGE_KEY_LAST_SYNC, data.exportDate || new Date().toISOString());
+    showToast('Data force-synced from life_dashboard.json', 'success');
+    renderPage(AppState.currentPage);
+    return true;
+  } catch (e) {
+    console.error('Force sync error:', e);
+    showToast('Force sync failed: ' + e.message, 'error');
+    return false;
+  }
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
   // Load from localStorage first — returns true if data was found
   const hasLocalData = loadFromLocalStorage();
@@ -5328,10 +5483,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Initialize config
   initConfig();
   
-  // Only auto-load from JSON if localStorage is empty (first-time setup or cleared storage)
-  if (!hasLocalData) {
-    await tryAutoLoadJSON();
-  }
+  // Always try to sync from JSON file (checks for updates)
+  await syncFromJSON();
   
   // Ensure config is applied
   applyConfig();
