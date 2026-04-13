@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-13T18:24:07.793Z",
+  "exportDate": "2026-04-13T19:46:27.042Z",
   "config": {
     "activities": [
       {
@@ -2364,7 +2364,44 @@
       ]
     }
   ],
-  "calendarEvents": [],
+  "calendarEvents": [
+    {
+      "id": "evt_mnxli8u9ltmmz",
+      "title": "English Class",
+      "date": "2026-04-14",
+      "category": "",
+      "description": "",
+      "notifyDays": 3,
+      "createdAt": "2026-04-13"
+    },
+    {
+      "id": "evt_mnxlq1a09okl0",
+      "title": "Philosophy",
+      "date": "2026-04-15",
+      "category": "",
+      "description": "",
+      "notifyDays": 3,
+      "createdAt": "2026-04-13"
+    },
+    {
+      "id": "evt_mnxlqvzdveixz",
+      "title": "Sentence Mining",
+      "date": "2026-04-13",
+      "category": "",
+      "description": "",
+      "notifyDays": 3,
+      "createdAt": "2026-04-13"
+    },
+    {
+      "id": "evt_mnxlro3t520aj",
+      "title": "Coding",
+      "date": "2026-04-13",
+      "category": "",
+      "description": "",
+      "notifyDays": 3,
+      "createdAt": "2026-04-13"
+    }
+  ],
   "trackers": [
     {
       "id": "trk_mmeyics2mz8z3",
