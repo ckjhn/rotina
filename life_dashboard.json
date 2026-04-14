@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-13T20:58:41.951Z",
+  "exportDate": "2026-04-14T11:03:46.419Z",
   "config": {
     "activities": [
       {
@@ -2156,7 +2156,7 @@
         },
         "hobby": {
           "done": true,
-          "detail": "Reading"
+          "detail": "Movie"
         },
         "social": {
           "done": true,
@@ -2165,6 +2165,10 @@
         "scientia_momentum": {
           "done": false,
           "detail": ""
+        },
+        "physical_training": {
+          "done": true,
+          "detail": "Gym [Legs]"
         }
       },
       "studies": {
@@ -2380,7 +2384,7 @@
     {
       "id": "evt_mnxli8u9ltmmz",
       "title": "English Class",
-      "date": "2026-04-14",
+      "date": "2026-04-16",
       "category": "",
       "description": "",
       "notifyDays": 3,
