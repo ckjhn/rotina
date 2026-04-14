@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-14T11:27:46.008Z",
+  "exportDate": "2026-04-14T18:27:44.819Z",
   "config": {
     "activities": [
       {
@@ -2211,12 +2211,32 @@
         "anki": {
           "done": true,
           "detail": "72"
+        },
+        "scientia_momentum": {
+          "done": true,
+          "detail": "Scientia Momentum"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "Just bad movies, help me"
         }
       },
       "studies": {
         "college": {
           "done": true,
           "detail": "end of the semester"
+        },
+        "course": {
+          "done": true,
+          "detail": "Python OOP - Practice"
+        },
+        "linguistics": {
+          "done": true,
+          "detail": "English"
+        },
+        "coding": {
+          "done": true,
+          "detail": "Python OOP - Practice"
         }
       }
     }
@@ -2292,7 +2312,7 @@
       "createdAt": "2026-03-03",
       "archived": false,
       "targetValue": 180,
-      "currentValue": 98,
+      "currentValue": 122,
       "unit": "words",
       "valueHistory": [
         {
@@ -2330,6 +2350,10 @@
         {
           "date": "2026-03-30",
           "amount": 11
+        },
+        {
+          "date": "2026-04-13",
+          "amount": 24
         }
       ]
     },
