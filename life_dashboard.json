@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-14T18:28:11.282Z",
+  "exportDate": "2026-04-14T19:32:54.416Z",
   "config": {
     "activities": [
       {
@@ -2470,6 +2470,105 @@
       "description": "",
       "notifyDays": 3,
       "createdAt": "2026-04-13"
+    },
+    {
+      "id": "evt_mnz0ljd8jdypp",
+      "title": "Fisioterapia",
+      "date": "2026-04-20",
+      "category": "",
+      "description": "7:30",
+      "notifyDays": 3,
+      "createdAt": "2026-04-14"
+    },
+    {
+      "id": "evt_mnz0lyh19q2md",
+      "title": "Fisioterapia",
+      "date": "2026-04-22",
+      "category": "",
+      "description": "7:30",
+      "notifyDays": 3,
+      "createdAt": "2026-04-14"
+    },
+    {
+      "id": "evt_mnz0mdx10eb28",
+      "title": "Fisioterapia",
+      "date": "2026-04-27",
+      "category": "",
+      "description": "7:30",
+      "notifyDays": 3,
+      "createdAt": "2026-04-14"
+    },
+    {
+      "id": "evt_mnz0mlcltpfi7",
+      "title": "Fisioterapia",
+      "date": "2026-04-29",
+      "category": "",
+      "description": "7:30",
+      "notifyDays": 3,
+      "createdAt": "2026-04-14"
+    },
+    {
+      "id": "evt_mnz0ozd38pbfr",
+      "title": "Fisioterapia",
+      "date": "2026-05-04",
+      "category": "",
+      "description": "7:30",
+      "notifyDays": 3,
+      "createdAt": "2026-04-14"
+    },
+    {
+      "id": "evt_mnz0p6rzxs4mq",
+      "title": "Fisioterapia",
+      "date": "2026-05-06",
+      "category": "",
+      "description": "7:30",
+      "notifyDays": 3,
+      "createdAt": "2026-04-14"
+    },
+    {
+      "id": "evt_mnz0pfh42fol1",
+      "title": "Fisioterapia",
+      "date": "2026-05-11",
+      "category": "",
+      "description": "7:30",
+      "notifyDays": 3,
+      "createdAt": "2026-04-14"
+    },
+    {
+      "id": "evt_mnz0pl7kqlucd",
+      "title": "Fisioterapia",
+      "date": "2026-05-13",
+      "category": "",
+      "description": "7:30",
+      "notifyDays": 3,
+      "createdAt": "2026-04-14"
+    },
+    {
+      "id": "evt_mnz0pt0oijs01",
+      "title": "Fisioterapia",
+      "date": "2026-05-18",
+      "category": "",
+      "description": "7:30",
+      "notifyDays": 3,
+      "createdAt": "2026-04-14"
+    },
+    {
+      "id": "evt_mnz0q23swluqm",
+      "title": "Fisioterapia",
+      "date": "0001-05-20",
+      "category": "",
+      "description": "7:30",
+      "notifyDays": 3,
+      "createdAt": "2026-04-14"
+    },
+    {
+      "id": "evt_mnz0qq68e9kqp",
+      "title": "Fisioterapia",
+      "date": "2026-05-20",
+      "category": "",
+      "description": "7:30",
+      "notifyDays": 3,
+      "createdAt": "2026-04-14"
     }
   ],
   "trackers": [
