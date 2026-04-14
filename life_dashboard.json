@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-14T19:33:06.376Z",
+  "exportDate": "2026-04-14T20:48:09.316Z",
   "config": {
     "activities": [
       {
@@ -2237,6 +2237,10 @@
         "coding": {
           "done": true,
           "detail": "Python OOP - Practice"
+        },
+        "reading_writing": {
+          "done": false,
+          "detail": ""
         }
       }
     }
