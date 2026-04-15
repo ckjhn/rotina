@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-15T11:30:41.859Z",
+  "exportDate": "2026-04-15T13:21:05.975Z",
   "config": {
     "activities": [
       {
@@ -2265,6 +2265,10 @@
         "philosophy_practice": {
           "done": true,
           "detail": "Stoicism"
+        },
+        "hobby": {
+          "done": true,
+          "detail": "Movie"
         }
       },
       "studies": {
