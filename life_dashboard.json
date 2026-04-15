@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-15T13:27:33.360Z",
+  "exportDate": "2026-04-15T13:28:03.246Z",
   "config": {
     "activities": [
       {
@@ -3091,6 +3091,12 @@
       }
     },
     "2026-04-15": {
+      "habit_pornography_1773148521833": {
+        "failed": false,
+        "note": ""
+      }
+    },
+    "2026-04-14": {
       "habit_pornography_1773148521833": {
         "failed": true,
         "note": "Porn"
