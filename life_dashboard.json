@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-15T13:28:03.246Z",
+  "exportDate": "2026-04-15T14:35:47.621Z",
   "config": {
     "activities": [
       {
@@ -2490,27 +2490,71 @@
           "doneDate": null
         }
       ]
+    },
+    {
+      "id": "obj_mo05irxmy6b4h",
+      "name": "Hacking Syllabus",
+      "description": "",
+      "type": "list",
+      "createdAt": "2026-04-15",
+      "archived": false,
+      "steps": [
+        {
+          "id": "s0",
+          "text": "Order what I need to study (syllabus)",
+          "done": false,
+          "doneDate": null
+        },
+        {
+          "id": "s1",
+          "text": "See a good day every week for this",
+          "done": false,
+          "doneDate": null
+        }
+      ]
+    },
+    {
+      "id": "obj_mo05kkvxz1v5b",
+      "name": "Gym x Calisthenics",
+      "description": "tip: use the previously train I had",
+      "type": "list",
+      "createdAt": "2026-04-15",
+      "archived": false,
+      "steps": [
+        {
+          "id": "s0",
+          "text": "Can we train both?",
+          "done": false,
+          "doneDate": null
+        },
+        {
+          "id": "s1",
+          "text": "Seek for a plain on how to train both of them efficiently",
+          "done": false,
+          "doneDate": null
+        },
+        {
+          "id": "s2",
+          "text": "Progressions",
+          "done": false,
+          "doneDate": null
+        },
+        {
+          "id": "s3",
+          "text": "Calendar training and deloaded weeks",
+          "done": false,
+          "doneDate": null
+        },
+        {
+          "id": "s4",
+          "text": "Isometric holds",
+          "done": false,
+          "doneDate": null
+        }
+      ]
     }
   ],
   "calendarEvents": [
-    {
-      "id": "evt_mnxli8u9ltmmz",
-      "title": "English Class",
-      "date": "2026-04-16",
-      "category": "",
-      "description": "",
-      "notifyDays": 3,
-      "createdAt": "2026-04-13"
-    },
-    {
-      "id": "evt_mnxlq1a09okl0",
-      "title": "Philosophy",
-      "date": "2026-04-15",
-      "category": "",
-      "description": "",
-      "notifyDays": 3,
-      "createdAt": "2026-04-13"
-    },
     {
       "id": "evt_mnxlqvzdveixz",
       "title": "Sentence Mining",
@@ -2530,99 +2574,9 @@
       "createdAt": "2026-04-13"
     },
     {
-      "id": "evt_mnz0ljd8jdypp",
-      "title": "Fisioterapia",
-      "date": "2026-04-20",
-      "category": "",
-      "description": "7:30",
-      "notifyDays": 3,
-      "createdAt": "2026-04-14"
-    },
-    {
-      "id": "evt_mnz0lyh19q2md",
-      "title": "Fisioterapia",
-      "date": "2026-04-22",
-      "category": "",
-      "description": "7:30",
-      "notifyDays": 3,
-      "createdAt": "2026-04-14"
-    },
-    {
-      "id": "evt_mnz0mdx10eb28",
-      "title": "Fisioterapia",
-      "date": "2026-04-27",
-      "category": "",
-      "description": "7:30",
-      "notifyDays": 3,
-      "createdAt": "2026-04-14"
-    },
-    {
-      "id": "evt_mnz0mlcltpfi7",
-      "title": "Fisioterapia",
-      "date": "2026-04-29",
-      "category": "",
-      "description": "7:30",
-      "notifyDays": 3,
-      "createdAt": "2026-04-14"
-    },
-    {
-      "id": "evt_mnz0ozd38pbfr",
-      "title": "Fisioterapia",
-      "date": "2026-05-04",
-      "category": "",
-      "description": "7:30",
-      "notifyDays": 3,
-      "createdAt": "2026-04-14"
-    },
-    {
-      "id": "evt_mnz0p6rzxs4mq",
-      "title": "Fisioterapia",
-      "date": "2026-05-06",
-      "category": "",
-      "description": "7:30",
-      "notifyDays": 3,
-      "createdAt": "2026-04-14"
-    },
-    {
-      "id": "evt_mnz0pfh42fol1",
-      "title": "Fisioterapia",
-      "date": "2026-05-11",
-      "category": "",
-      "description": "7:30",
-      "notifyDays": 3,
-      "createdAt": "2026-04-14"
-    },
-    {
-      "id": "evt_mnz0pl7kqlucd",
-      "title": "Fisioterapia",
-      "date": "2026-05-13",
-      "category": "",
-      "description": "7:30",
-      "notifyDays": 3,
-      "createdAt": "2026-04-14"
-    },
-    {
-      "id": "evt_mnz0pt0oijs01",
-      "title": "Fisioterapia",
-      "date": "2026-05-18",
-      "category": "",
-      "description": "7:30",
-      "notifyDays": 3,
-      "createdAt": "2026-04-14"
-    },
-    {
       "id": "evt_mnz0q23swluqm",
       "title": "Fisioterapia",
       "date": "0001-05-20",
-      "category": "",
-      "description": "7:30",
-      "notifyDays": 3,
-      "createdAt": "2026-04-14"
-    },
-    {
-      "id": "evt_mnz0qq68e9kqp",
-      "title": "Fisioterapia",
-      "date": "2026-05-20",
       "category": "",
       "description": "7:30",
       "notifyDays": 3,
