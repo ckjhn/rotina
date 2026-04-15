@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-15T15:54:05.634Z",
+  "exportDate": "2026-04-15T15:56:32.347Z",
   "config": {
     "activities": [
       {
@@ -2548,6 +2548,22 @@
         {
           "id": "s4",
           "text": "Isometric holds",
+          "done": false,
+          "doneDate": null
+        }
+      ]
+    },
+    {
+      "id": "obj_mo08gfp8pcehn",
+      "name": "Software Engeeneering Syllabus",
+      "description": "",
+      "type": "list",
+      "createdAt": "2026-04-15",
+      "archived": false,
+      "steps": [
+        {
+          "id": "s0",
+          "text": "syllabus complete reseach",
           "done": false,
           "doneDate": null
         }
