@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-16T12:28:32.171Z",
+  "exportDate": "2026-04-16T12:31:40.018Z",
   "config": {
     "activities": [
       {
@@ -2307,6 +2307,36 @@
         "linguistics": {
           "done": true,
           "detail": "English"
+        }
+      }
+    },
+    "2026-04-16": {
+      "activities": {
+        "work": {
+          "done": true,
+          "detail": "Prolagos [Programador I]"
+        },
+        "hobby": {
+          "done": true,
+          "detail": "Home"
+        },
+        "social": {
+          "done": true,
+          "detail": "Family"
+        },
+        "philosophy_practice": {
+          "done": true,
+          "detail": "Stoicism"
+        },
+        "anki": {
+          "done": true,
+          "detail": "20"
+        }
+      },
+      "studies": {
+        "college": {
+          "done": true,
+          "detail": "end of the semester"
         }
       }
     }
