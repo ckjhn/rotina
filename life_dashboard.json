@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-16T22:04:02.727Z",
+  "exportDate": "2026-04-16T23:54:23.559Z",
   "config": {
     "activities": [
       {
@@ -2257,6 +2257,10 @@
         "reading_writing": {
           "done": true,
           "detail": "Three Body Problem"
+        },
+        "philosophy_study": {
+          "done": true,
+          "detail": ""
         }
       }
     },
@@ -2289,6 +2293,10 @@
         "language_immersion": {
           "done": true,
           "detail": "The Vampire Diaries"
+        },
+        "reading": {
+          "done": false,
+          "detail": ""
         }
       },
       "studies": {
@@ -2307,6 +2315,10 @@
         "linguistics": {
           "done": true,
           "detail": "English"
+        },
+        "philosophy_study": {
+          "done": false,
+          "detail": ""
         }
       }
     },
@@ -2339,6 +2351,10 @@
         "scientia_momentum": {
           "done": true,
           "detail": "Scientia Momentum"
+        },
+        "reading": {
+          "done": true,
+          "detail": "Three Body Problem"
         }
       },
       "studies": {
@@ -2357,6 +2373,14 @@
         "coding": {
           "done": true,
           "detail": "Python Exercises"
+        },
+        "philosophy_study": {
+          "done": false,
+          "detail": ""
+        },
+        "reading_writing": {
+          "done": true,
+          "detail": "Reading"
         }
       }
     }
