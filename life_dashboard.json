@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-16T13:30:33.230Z",
+  "exportDate": "2026-04-16T19:02:11.579Z",
   "config": {
     "activities": [
       {
@@ -2331,12 +2331,32 @@
         "anki": {
           "done": true,
           "detail": "20"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "A lot"
+        },
+        "scientia_momentum": {
+          "done": true,
+          "detail": "Scientia Momentum"
         }
       },
       "studies": {
         "college": {
           "done": true,
           "detail": "end of the semester"
+        },
+        "linguistics": {
+          "done": true,
+          "detail": "English"
+        },
+        "course": {
+          "done": true,
+          "detail": "Python Exercises"
+        },
+        "coding": {
+          "done": true,
+          "detail": "Python Exercises"
         }
       }
     }
@@ -2654,6 +2674,15 @@
       "description": "7:30",
       "notifyDays": 3,
       "createdAt": "2026-04-14"
+    },
+    {
+      "id": "evt_mo1uidw5m0eni",
+      "title": "English Class",
+      "date": "2026-04-17",
+      "category": "",
+      "description": "",
+      "notifyDays": 3,
+      "createdAt": "2026-04-16"
     }
   ],
   "trackers": [
