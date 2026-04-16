@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-16T12:31:40.018Z",
+  "exportDate": "2026-04-16T12:51:29.163Z",
   "config": {
     "activities": [
       {
@@ -2367,6 +2367,21 @@
         }
       ],
       "createdAt": "2026-03-30",
+      "archived": false
+    },
+    {
+      "id": "goal_mo1habifotolh",
+      "name": "Interchange / Scholarship / Exterior Job / Emigration",
+      "description": "",
+      "steps": [
+        {
+          "id": "s0",
+          "text": "Search",
+          "done": false,
+          "doneDate": null
+        }
+      ],
+      "createdAt": "2026-04-16",
       "archived": false
     }
   ],
