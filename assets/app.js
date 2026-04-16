@@ -965,26 +965,54 @@ function renderTodayPage() {
 }
 
 function renderChecklist(items, date, category) {
-  const dayOfWeek = new Date(date + 'T12:00:00').getDay(); // 0=Sun
+  const dayOfWeek = new Date(date + 'T12:00:00').getDay(); // 0=Sun, 6=Sat
+  const referenceDate = new Date(date + 'T12:00:00');
+  
   return items.map(item => {
     const status = getItemStatus(date, category, item.id);
     const freqMeta = FREQUENCY_META[item.frequency];
     const schedule = AppState.schedules[item.id];
+    
+    // ===== CHECK 1: Schedule-based off-day =====
+    let isScheduleOffDay = false;
     let scheduleTag = '';
-    let isOffDay = false;
     if (schedule && schedule.days && schedule.days.length > 0 && schedule.days.length < 7) {
-      isOffDay = !schedule.days.includes(dayOfWeek);
-      if (isOffDay) {
+      isScheduleOffDay = !schedule.days.includes(dayOfWeek);
+      if (isScheduleOffDay) {
         scheduleTag = '<span class="schedule-off-tag">Off day</span>';
       }
     }
+    
+    // ===== CHECK 2: Frequency-cycle off-day =====
+    let isFrequencyOffDay = isTaskInOffDayState(item.id, category, referenceDate);
+    
+    // ===== DETERMINE FINAL OFF-DAY STATE =====
+    let shouldShowOffDay = false;
+    
+    if (isFrequencyOffDay && status.done) {
+      shouldShowOffDay = true;
+    } else if (isScheduleOffDay && !status.done) {
+      shouldShowOffDay = true;
+    }
+    
+    // Build additional context tag for frequency completion
+    let frequencyTag = '';
+    if (isFrequencyOffDay && status.done && !isScheduleOffDay) {
+      frequencyTag = `<span class="cycle-complete-tag">${freqMeta.label} ✓</span>`;
+    }
+    
     return `
-      <div class="activity-item ${status.done ? 'completed' : ''} ${isOffDay ? 'off-day' : ''}" data-id="${item.id}" data-category="${category}">
+      <div class="activity-item ${status.done ? 'completed' : ''} ${shouldShowOffDay ? 'off-day' : ''}" 
+           data-id="${item.id}" 
+           data-category="${category}"
+           data-frequency="${item.frequency}"
+           title="${isFrequencyOffDay && status.done ? `Completed within ${freqMeta.label.toLowerCase()} cycle` : ''}">
         <div class="check-box" onclick="toggleItem('${date}','${category}','${item.id}')">✓</div>
         <div class="activity-info">
           <span class="activity-name">${item.name}</span>
           <span class="activity-tag ${freqMeta.tagClass}">${freqMeta.label}</span>
           ${scheduleTag}
+          ${frequencyTag}
         </div>
         <input type="text" class="activity-detail-input" placeholder="${item.placeholder}"
           value="${escapeHtml(status.detail)}"
@@ -5473,6 +5501,129 @@ async function forceSyncFromJSON() {
     showToast('Force sync failed: ' + e.message, 'error');
     return false;
   }
+}
+
+// ========================================
+// FREQUENCY-AWARE COMPLETION CYCLE SYSTEM
+// ========================================
+
+/**
+ * Determines if a task is in its "off-day" state based on frequency cycles
+ * A task is "off-day" if it was completed within its current frequency cycle
+ */
+function isTaskInOffDayState(taskId, category, referenceDate = new Date()) {
+  const itemConfig = getItemConfig(taskId, category);
+  if (!itemConfig) return false;
+  
+  if (itemConfig.frequency === 'optional') return false;
+  
+  const frequencyDays = FREQUENCY_META[itemConfig.frequency]?.days;
+  if (!frequencyDays || frequencyDays === null) return false;
+  
+  const lastCompletionDate = getLastCompletionDate(taskId, category);
+  if (!lastCompletionDate) return false;
+  
+  // Special handling for daily tasks
+  if (itemConfig.frequency === 'daily') {
+    const todayStr = toDateString(referenceDate);
+    return lastCompletionDate === todayStr;
+  }
+  
+  // For longer frequency cycles
+  const refDate = new Date(referenceDate);
+  refDate.setHours(0, 0, 0, 0);
+  
+  const lastCompDate = new Date(lastCompletionDate + 'T00:00:00');
+  const daysElapsed = Math.floor((refDate - lastCompDate) / (1000 * 60 * 60 * 24));
+  
+  return daysElapsed < frequencyDays;
+}
+
+/**
+ * Gets the most recent completion date for a task
+ */
+function getLastCompletionDate(taskId, category) {
+  const dates = Object.keys(AppState.history).sort().reverse();
+  
+  for (const date of dates) {
+    const record = AppState.history[date];
+    const categoryData = record[category] || {};
+    
+    if (categoryData[taskId]?.done === true) {
+      return date;
+    }
+  }
+  
+  return null;
+}
+
+/**
+ * Gets the item configuration from the active task lists
+ */
+function getItemConfig(taskId, category) {
+  if (category === 'activities') {
+    return AppState.config.activities?.find(a => a.id === taskId) || null;
+  } else if (category === 'studies') {
+    return AppState.config.studies?.find(s => s.id === taskId) || null;
+  }
+  return null;
+}
+
+/**
+ * Converts a Date object to YYYY-MM-DD string format
+ */
+function toDateString(date) {
+  const d = new Date(date);
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
+/**
+ * Calculates days remaining in the current frequency cycle for a task
+ */
+function getDaysRemainingInCycle(taskId, category) {
+  const itemConfig = getItemConfig(taskId, category);
+  if (!itemConfig || itemConfig.frequency === 'optional') return null;
+  
+  const frequencyDays = FREQUENCY_META[itemConfig.frequency]?.days;
+  if (!frequencyDays) return null;
+  
+  const lastCompletionDate = getLastCompletionDate(taskId, category);
+  
+  if (!lastCompletionDate) return frequencyDays;
+  
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  
+  const lastCompDate = new Date(lastCompletionDate + 'T00:00:00');
+  const daysElapsed = Math.floor((today - lastCompDate) / (1000 * 60 * 60 * 24));
+  
+  return frequencyDays - daysElapsed;
+}
+
+/**
+ * Gets completion percentage for a frequency cycle
+ */
+function getCycleCompletionPercentage(taskId, category) {
+  const itemConfig = getItemConfig(taskId, category);
+  if (!itemConfig || itemConfig.frequency === 'optional') return 0;
+  
+  const frequencyDays = FREQUENCY_META[itemConfig.frequency]?.days;
+  if (!frequencyDays) return 0;
+  
+  const lastCompletionDate = getLastCompletionDate(taskId, category);
+  if (!lastCompletionDate) return 0;
+  
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  
+  const lastCompDate = new Date(lastCompletionDate + 'T00:00:00');
+  const daysElapsed = Math.floor((today - lastCompDate) / (1000 * 60 * 60 * 24));
+  
+  const percentage = Math.min(100, Math.floor((daysElapsed / frequencyDays) * 100));
+  return percentage;
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
