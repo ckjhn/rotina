@@ -996,9 +996,9 @@ function renderChecklist(items, date, category) {
     }
     
     // Build additional context tag for frequency completion
-    // Only show for non-daily items to avoid duplicate tags
+    // Shows in ALL days of the cycle, not just the completion day
     let frequencyTag = '';
-    if (isFrequencyOffDay && status.done && !isScheduleOffDay && item.frequency !== 'daily') {
+    if (isFrequencyOffDay && !isScheduleOffDay && item.frequency !== 'daily') {
       frequencyTag = `<span class="cycle-complete-tag">${freqMeta.label} ✓</span>`;
     }
     
@@ -1049,8 +1049,9 @@ function renderStudiesChecklist(date) {
       let isFrequencyOffDay = isTaskInOffDayState(item.id, 'studies', referenceDate);
       
       // Build frequency completion tag for non-daily studies
+      // Shows in ALL days of the cycle, not just the completion day
       let frequencyTag = '';
-      if (isFrequencyOffDay && status.done && item.frequency !== 'daily') {
+      if (isFrequencyOffDay && item.frequency !== 'daily') {
         frequencyTag = `<span class="cycle-complete-tag">${freqMeta.label} ✓</span>`;
       }
       
@@ -1059,11 +1060,11 @@ function renderStudiesChecklist(date) {
         note = '<span style="font-size:0.7rem;color:var(--text-muted);margin-left:4px">(at least one required)</span>';
       }
       html += `
-        <div class="activity-item ${status.done ? 'completed' : ''} ${isFrequencyOffDay && status.done ? 'off-day' : ''}" 
+        <div class="activity-item ${status.done ? 'completed' : ''} ${isFrequencyOffDay ? 'off-day' : ''}" 
              data-id="${item.id}" 
              data-category="studies"
              data-frequency="${item.frequency}"
-             title="${isFrequencyOffDay && status.done ? `Completed within ${freqMeta.label.toLowerCase()} cycle` : ''}">
+             title="${isFrequencyOffDay ? `Completed within ${freqMeta.label.toLowerCase()} cycle` : ''}">
           <div class="check-box" onclick="toggleItem('${date}','studies','${item.id}')">✓</div>
           <div class="activity-info">
             <span class="activity-name">${item.name}${note}</span>
