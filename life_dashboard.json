@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-16T23:54:23.559Z",
+  "exportDate": "2026-04-17T11:57:05.378Z",
   "config": {
     "activities": [
       {
@@ -1936,13 +1936,9 @@
           "done": true,
           "detail": "22"
         },
-        "language_immersion": {
-          "done": true,
-          "detail": "Something Very Bad is Going to Happen"
-        },
         "physical_training": {
           "done": true,
-          "detail": "Gym [Chest and Triceps]"
+          "detail": "Gym [Chest x Triceps] x Running"
         }
       },
       "studies": {
@@ -1953,10 +1949,6 @@
         "philosophy_study": {
           "done": true,
           "detail": "Ancient Philosophy by Anne Jules"
-        },
-        "linguistics": {
-          "done": true,
-          "detail": "Immersion"
         },
         "reading_writing": {
           "done": true,
@@ -1970,6 +1962,14 @@
           "done": true,
           "detail": "Prolagos [Programador I]"
         },
+        "reading": {
+          "done": true,
+          "detail": "Ancient Philosophy"
+        },
+        "hobby": {
+          "done": true,
+          "detail": "Gaming"
+        },
         "scientia_momentum": {
           "done": true,
           "detail": "Scientia Momentum"
@@ -1977,72 +1977,6 @@
         "social": {
           "done": true,
           "detail": "Family"
-        },
-        "hobby": {
-          "done": true,
-          "detail": "Gaming"
-        },
-        "reading": {
-          "done": true,
-          "detail": "Ancient Philosophy by Julia Annas"
-        },
-        "language_immersion": {
-          "done": true,
-          "detail": "Ancient Philosophy by Julia Annas"
-        },
-        "philosophy_practice": {
-          "done": true,
-          "detail": "Stoicism"
-        },
-        "anki": {
-          "done": true,
-          "detail": "19"
-        }
-      },
-      "studies": {
-        "college": {
-          "done": true,
-          "detail": "end of the semester"
-        },
-        "course": {
-          "done": true,
-          "detail": "Python OOP"
-        },
-        "coding": {
-          "done": true,
-          "detail": "Python OOP"
-        },
-        "linguistics": {
-          "done": true,
-          "detail": "English"
-        },
-        "reading_writing": {
-          "done": true,
-          "detail": "Reading"
-        },
-        "philosophy_study": {
-          "done": true,
-          "detail": "Ancient Philosophy by Julia Annas"
-        }
-      }
-    },
-    "2026-04-10": {
-      "activities": {
-        "work": {
-          "done": true,
-          "detail": "Prolagos [Programador I]"
-        },
-        "hobby": {
-          "done": true,
-          "detail": "Gaming"
-        },
-        "scientia_momentum": {
-          "done": true,
-          "detail": "Scientia Momentum"
-        },
-        "social": {
-          "done": true,
-          "detail": "Work"
         },
         "philosophy_practice": {
           "done": true,
@@ -2054,14 +1988,64 @@
         },
         "language_immersion": {
           "done": true,
-          "detail": "Something Very Bad is Gonna Happen"
+          "detail": "Ancient Philosophy"
         }
       },
       "studies": {
-        "interchange_scholarship_exterior_job_emigration": {
+        "reading_writing": {
           "done": true,
-          "detail": "Wise"
+          "detail": "Reading"
         },
+        "linguistics": {
+          "done": true,
+          "detail": "English"
+        },
+        "course": {
+          "done": true,
+          "detail": "Python OOP"
+        },
+        "college": {
+          "done": true,
+          "detail": "end of the semester"
+        },
+        "philosophy_study": {
+          "done": true,
+          "detail": "Ancient Philosophy by Julia Annas"
+        },
+        "coding": {
+          "done": true,
+          "detail": "Python OOP"
+        }
+      }
+    },
+    "2026-04-10": {
+      "activities": {
+        "work": {
+          "done": true,
+          "detail": "Prolagos [Programador I]"
+        },
+        "social": {
+          "done": true,
+          "detail": "Work"
+        },
+        "hobby": {
+          "done": true,
+          "detail": "Gaming"
+        },
+        "philosophy_practice": {
+          "done": true,
+          "detail": "Stoicism"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "Something Very Bad Is Gonna Happen"
+        },
+        "anki": {
+          "done": true,
+          "detail": "22"
+        }
+      },
+      "studies": {
         "college": {
           "done": true,
           "detail": "end of the semester"
@@ -2070,9 +2054,9 @@
           "done": true,
           "detail": "English"
         },
-        "reading_writing": {
-          "done": false,
-          "detail": ""
+        "interchange_scholarship_exterior_job_emigration": {
+          "done": true,
+          "detail": "Wise"
         }
       }
     },
@@ -2172,7 +2156,7 @@
         },
         "hobby": {
           "done": true,
-          "detail": "Reading"
+          "detail": "Movie"
         },
         "social": {
           "done": true,
@@ -2181,6 +2165,10 @@
         "scientia_momentum": {
           "done": false,
           "detail": ""
+        },
+        "physical_training": {
+          "done": true,
+          "detail": "Gym [Legs]"
         }
       },
       "studies": {
@@ -2257,10 +2245,6 @@
         "reading_writing": {
           "done": true,
           "detail": "Three Body Problem"
-        },
-        "philosophy_study": {
-          "done": true,
-          "detail": ""
         }
       }
     },
@@ -2293,10 +2277,6 @@
         "language_immersion": {
           "done": true,
           "detail": "The Vampire Diaries"
-        },
-        "reading": {
-          "done": false,
-          "detail": ""
         }
       },
       "studies": {
@@ -2315,10 +2295,6 @@
         "linguistics": {
           "done": true,
           "detail": "English"
-        },
-        "philosophy_study": {
-          "done": false,
-          "detail": ""
         }
       }
     },
@@ -2381,6 +2357,40 @@
         "reading_writing": {
           "done": true,
           "detail": "Reading"
+        }
+      }
+    },
+    "2026-04-17": {
+      "activities": {
+        "work": {
+          "done": true,
+          "detail": "Prolagos [Programador I]"
+        },
+        "hobby": {
+          "done": true,
+          "detail": "Gaming"
+        },
+        "social": {
+          "done": true,
+          "detail": "Work"
+        },
+        "philosophy_practice": {
+          "done": true,
+          "detail": "Stoicism"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "Vampire Diaries"
+        }
+      },
+      "studies": {
+        "college": {
+          "done": true,
+          "detail": "end of the semester"
+        },
+        "linguistics": {
+          "done": true,
+          "detail": "English"
         }
       }
     }
@@ -3155,25 +3165,25 @@
     "2026-04-12": {
       "habit_doce_1773148558872": {
         "failed": true,
-        "note": ""
+        "note": "Barra de chocolate"
       }
     },
     "2026-04-11": {
       "habit_doce_1773148558872": {
         "failed": true,
-        "note": ""
+        "note": "Ovo de pascoa"
       }
     },
     "2026-04-10": {
       "habit_doce_1773148558872": {
         "failed": true,
-        "note": ""
+        "note": "algum doce ai"
       }
     },
     "2026-04-15": {
       "habit_pornography_1773148521833": {
-        "failed": true,
-        "note": "Porn"
+        "failed": false,
+        "note": ""
       }
     },
     "2026-04-14": {
