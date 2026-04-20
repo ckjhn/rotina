@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-20T12:54:21.678Z",
+  "exportDate": "2026-04-20T12:55:36.454Z",
   "config": {
     "activities": [
       {
@@ -2450,9 +2450,22 @@
         "social": {
           "done": true,
           "detail": "Job"
+        },
+        "hobby": {
+          "done": true,
+          "detail": "Movie"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "Vampire Diaries"
         }
       },
-      "studies": {}
+      "studies": {
+        "linguistics": {
+          "done": true,
+          "detail": "English"
+        }
+      }
     }
   },
   "goals": [
