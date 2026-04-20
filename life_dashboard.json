@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-20T11:55:03.467Z",
+  "exportDate": "2026-04-20T12:52:19.058Z",
   "config": {
     "activities": [
       {
@@ -2381,6 +2381,10 @@
         "language_immersion": {
           "done": true,
           "detail": "Vampire Diaries"
+        },
+        "anki": {
+          "done": true,
+          "detail": "10"
         }
       },
       "studies": {
@@ -2393,6 +2397,54 @@
           "detail": "English"
         }
       }
+    },
+    "2026-04-18": {
+      "activities": {
+        "hobby": {
+          "done": true,
+          "detail": "Gaming"
+        },
+        "social": {
+          "done": true,
+          "detail": "Friends"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "Vampire Diaries"
+        }
+      },
+      "studies": {
+        "linguistics": {
+          "done": true,
+          "detail": "English"
+        }
+      }
+    },
+    "2026-04-19": {
+      "activities": {
+        "social": {
+          "done": true,
+          "detail": "Friends"
+        },
+        "hobby": {
+          "done": true,
+          "detail": "Gaming"
+        }
+      },
+      "studies": {}
+    },
+    "2026-04-20": {
+      "activities": {
+        "work": {
+          "done": true,
+          "detail": "Prolagos [Programador I]"
+        },
+        "philosophy_practice": {
+          "done": true,
+          "detail": "Stoicism"
+        }
+      },
+      "studies": {}
     }
   },
   "goals": [
