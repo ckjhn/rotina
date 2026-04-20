@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-20T12:55:36.454Z",
+  "exportDate": "2026-04-20T12:55:51.784Z",
   "config": {
     "activities": [
       {
@@ -115,7 +115,7 @@
         "id": "coding",
         "name": "Coding / Programming",
         "placeholder": "content / topic",
-        "frequency": "biweekly",
+        "frequency": "weekly",
         "category": "studies",
         "group": "mandatory"
       },
