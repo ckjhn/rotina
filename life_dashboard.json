@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-20T12:57:19.243Z",
+  "exportDate": "2026-04-24T13:42:56.183Z",
   "config": {
     "activities": [
       {
@@ -2466,6 +2466,15 @@
           "detail": "English"
         }
       }
+    },
+    "2026-04-24": {
+      "activities": {
+        "work": {
+          "done": true,
+          "detail": "Prolagos [Programador I]"
+        }
+      },
+      "studies": {}
     }
   },
   "goals": [
@@ -3336,6 +3345,68 @@
       },
       "habit_gordura_1773148570817": {
         "failed": true,
+        "note": ""
+      }
+    },
+    "2026-04-20": {
+      "habit_pornography_1773148521833": {
+        "failed": true,
+        "note": ""
+      },
+      "habit_doce_1773148558872": {
+        "failed": true,
+        "note": ""
+      },
+      "habit_gordura_1773148570817": {
+        "failed": true,
+        "note": ""
+      }
+    },
+    "2026-04-21": {
+      "habit_pornography_1773148521833": {
+        "failed": true,
+        "note": ""
+      },
+      "habit_doce_1773148558872": {
+        "failed": true,
+        "note": ""
+      },
+      "habit_gordura_1773148570817": {
+        "failed": true,
+        "note": ""
+      }
+    },
+    "2026-04-22": {
+      "habit_pornography_1773148521833": {
+        "failed": true,
+        "note": ""
+      },
+      "habit_doce_1773148558872": {
+        "failed": true,
+        "note": ""
+      },
+      "habit_gordura_1773148570817": {
+        "failed": true,
+        "note": ""
+      }
+    },
+    "2026-04-23": {
+      "habit_pornography_1773148521833": {
+        "failed": true,
+        "note": ""
+      },
+      "habit_doce_1773148558872": {
+        "failed": true,
+        "note": ""
+      },
+      "habit_gordura_1773148570817": {
+        "failed": true,
+        "note": ""
+      }
+    },
+    "2026-04-24": {
+      "habit_pornography_1773148521833": {
+        "failed": false,
         "note": ""
       }
     }
