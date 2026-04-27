@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-27T11:15:39.378Z",
+  "exportDate": "2026-04-27T11:16:04.218Z",
   "config": {
     "activities": [
       {
@@ -2511,6 +2511,10 @@
         "coding": {
           "done": true,
           "detail": "Python OOP"
+        },
+        "college": {
+          "done": true,
+          "detail": "waiting to pay"
         }
       }
     }
