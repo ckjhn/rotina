@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-27T11:16:04.218Z",
+  "exportDate": "2026-04-27T11:16:41.395Z",
   "config": {
     "activities": [
       {
@@ -2501,6 +2501,10 @@
         "work": {
           "done": true,
           "detail": "Prolagos [Programador I]"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "Vampire Diaries"
         }
       },
       "studies": {
@@ -2515,6 +2519,10 @@
         "college": {
           "done": true,
           "detail": "waiting to pay"
+        },
+        "linguistics": {
+          "done": true,
+          "detail": "English"
         }
       }
     }
