@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-28T11:38:22.407Z",
+  "exportDate": "2026-04-28T11:38:36.864Z",
   "config": {
     "activities": [
       {
@@ -2561,6 +2561,10 @@
         "coding": {
           "done": true,
           "detail": "Python Lists and Tuples"
+        },
+        "college": {
+          "done": true,
+          "detail": "waiting for payment"
         }
       }
     }
