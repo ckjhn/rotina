@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-28T11:38:36.864Z",
+  "exportDate": "2026-04-28T12:07:59.684Z",
   "config": {
     "activities": [
       {
@@ -2565,6 +2565,10 @@
         "college": {
           "done": true,
           "detail": "waiting for payment"
+        },
+        "interchange_scholarship_exterior_job_emigration": {
+          "done": true,
+          "detail": "Immigration"
         }
       }
     }
