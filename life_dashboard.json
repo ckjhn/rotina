@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-28T12:07:59.684Z",
+  "exportDate": "2026-04-28T15:54:13.814Z",
   "config": {
     "activities": [
       {
@@ -2551,6 +2551,10 @@
         "philosophy_practice": {
           "done": true,
           "detail": "Stoicism"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "Vampire Diaries"
         }
       },
       "studies": {
@@ -2569,6 +2573,18 @@
         "interchange_scholarship_exterior_job_emigration": {
           "done": true,
           "detail": "Immigration"
+        },
+        "language_class": {
+          "done": false,
+          "detail": ""
+        },
+        "reading_writing": {
+          "done": false,
+          "detail": ""
+        },
+        "linguistics": {
+          "done": true,
+          "detail": "English"
         }
       }
     }
