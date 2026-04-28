@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-27T11:16:41.395Z",
+  "exportDate": "2026-04-28T11:04:59.768Z",
   "config": {
     "activities": [
       {
@@ -2510,11 +2510,11 @@
       "studies": {
         "course": {
           "done": true,
-          "detail": "Python OOP"
+          "detail": "Python Lists and Tuples"
         },
         "coding": {
           "done": true,
-          "detail": "Python OOP"
+          "detail": "Python Lists and Tuples"
         },
         "college": {
           "done": true,
@@ -2523,6 +2523,32 @@
         "linguistics": {
           "done": true,
           "detail": "English"
+        }
+      }
+    },
+    "2026-04-28": {
+      "activities": {
+        "work": {
+          "done": true,
+          "detail": "Prolagos [Programador I]"
+        },
+        "social": {
+          "done": true,
+          "detail": "Work"
+        },
+        "scientia_momentum": {
+          "done": true,
+          "detail": "Scientia Momentum"
+        }
+      },
+      "studies": {
+        "course": {
+          "done": true,
+          "detail": "Python Lists and Tuples"
+        },
+        "coding": {
+          "done": true,
+          "detail": "Python Lists and Tuples"
         }
       }
     }
