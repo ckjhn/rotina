@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-30T12:04:38.802Z",
+  "exportDate": "2026-04-30T13:32:51.055Z",
   "config": {
     "activities": [
       {
@@ -2687,12 +2687,24 @@
         "anki": {
           "done": true,
           "detail": "18"
+        },
+        "scientia_momentum": {
+          "done": true,
+          "detail": "Scientia Momentum"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "Vampire Diaries"
         }
       },
       "studies": {
         "college": {
           "done": true,
           "detail": "awaiting renovation"
+        },
+        "philosophy_study": {
+          "done": true,
+          "detail": "Stoicism FAQ - Introduction"
         }
       }
     }
