@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-30T13:33:04.648Z",
+  "exportDate": "2026-04-30T13:33:56.448Z",
   "config": {
     "activities": [
       {
@@ -2695,6 +2695,10 @@
         "language_immersion": {
           "done": true,
           "detail": "Vampire Diaries"
+        },
+        "reading": {
+          "done": true,
+          "detail": "Philosophy FAQ"
         }
       },
       "studies": {
@@ -2705,6 +2709,10 @@
         "philosophy_study": {
           "done": true,
           "detail": "Stoicism FAQ - Introduction"
+        },
+        "reading_writing": {
+          "done": true,
+          "detail": "Reading"
         }
       }
     }
