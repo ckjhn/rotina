@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-30T13:33:56.448Z",
+  "exportDate": "2026-04-30T19:17:08.204Z",
   "config": {
     "activities": [
       {
@@ -2713,6 +2713,10 @@
         "reading_writing": {
           "done": true,
           "detail": "Reading"
+        },
+        "linguistics": {
+          "done": true,
+          "detail": "English"
         }
       }
     }
