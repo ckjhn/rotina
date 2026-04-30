@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-29T12:44:33.207Z",
+  "exportDate": "2026-04-30T11:56:37.245Z",
   "config": {
     "activities": [
       {
@@ -2629,6 +2629,18 @@
         "anki": {
           "done": true,
           "detail": "23"
+        },
+        "reading": {
+          "done": true,
+          "detail": "The Three Body Problem"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "Vampire Diaries"
+        },
+        "physical_training": {
+          "done": true,
+          "detail": "Pull, Back & Biceps"
         }
       },
       "studies": {
@@ -2643,6 +2655,14 @@
         "coding": {
           "done": true,
           "detail": "Python OOP"
+        },
+        "linguistics": {
+          "done": true,
+          "detail": "English"
+        },
+        "reading_writing": {
+          "done": true,
+          "detail": "Reading"
         }
       }
     }
