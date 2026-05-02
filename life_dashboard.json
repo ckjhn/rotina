@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-04-30T19:17:08.204Z",
+  "exportDate": "2026-05-02T07:29:48.160Z",
   "config": {
     "activities": [
       {
@@ -2719,6 +2719,40 @@
           "detail": "English"
         }
       }
+    },
+    "2026-05-01": {
+      "activities": {
+        "hobby": {
+          "done": true,
+          "detail": "Gaming"
+        },
+        "social": {
+          "done": true,
+          "detail": "Family"
+        },
+        "anki": {
+          "done": true,
+          "detail": "37"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "Youtube, Gaming, Songs"
+        },
+        "scientia_momentum": {
+          "done": false,
+          "detail": ""
+        }
+      },
+      "studies": {
+        "linguistics": {
+          "done": true,
+          "detail": "English"
+        },
+        "course": {
+          "done": true,
+          "detail": "Course"
+        }
+      }
     }
   },
   "goals": [
@@ -3666,6 +3700,30 @@
         "note": ""
       },
       "habit_gordura_1773148570817": {
+        "failed": true,
+        "note": ""
+      }
+    },
+    "2026-04-30": {
+      "habit_doce_1773148558872": {
+        "failed": true,
+        "note": ""
+      },
+      "habit_pornography_1773148521833": {
+        "failed": true,
+        "note": ""
+      },
+      "habit_gordura_1773148570817": {
+        "failed": true,
+        "note": ""
+      }
+    },
+    "2026-05-01": {
+      "habit_doce_1773148558872": {
+        "failed": true,
+        "note": ""
+      },
+      "habit_pornography_1773148521833": {
         "failed": true,
         "note": ""
       }
