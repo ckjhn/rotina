@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-02T07:29:48.160Z",
+  "exportDate": "2026-05-03T19:50:43.683Z",
   "config": {
     "activities": [
       {
@@ -2753,6 +2753,48 @@
           "detail": "Course"
         }
       }
+    },
+    "2026-05-02": {
+      "activities": {
+        "social": {
+          "done": true,
+          "detail": "Friends"
+        },
+        "hobby": {
+          "done": true,
+          "detail": "Gaming"
+        },
+        "language_immersion": {
+          "done": false,
+          "detail": ""
+        },
+        "anki": {
+          "done": true,
+          "detail": "13"
+        }
+      },
+      "studies": {}
+    },
+    "2026-05-03": {
+      "activities": {
+        "hobby": {
+          "done": true,
+          "detail": "Sleeping"
+        },
+        "social": {
+          "done": true,
+          "detail": "Family"
+        },
+        "philosophy_practice": {
+          "done": true,
+          "detail": "Stoicism"
+        },
+        "anki": {
+          "done": true,
+          "detail": "16"
+        }
+      },
+      "studies": {}
     }
   },
   "goals": [
