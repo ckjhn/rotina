@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-03T19:50:43.683Z",
+  "exportDate": "2026-05-03T19:51:16.822Z",
   "config": {
     "activities": [
       {
@@ -3763,11 +3763,15 @@
     "2026-05-01": {
       "habit_doce_1773148558872": {
         "failed": true,
-        "note": ""
+        "note": "Everything"
       },
       "habit_pornography_1773148521833": {
         "failed": true,
-        "note": ""
+        "note": "Porn"
+      },
+      "habit_gordura_1773148570817": {
+        "failed": true,
+        "note": "Potato, HotPocket"
       }
     }
   }
