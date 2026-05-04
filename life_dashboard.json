@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-03T19:51:16.822Z",
+  "exportDate": "2026-05-04T11:37:28.558Z",
   "config": {
     "activities": [
       {
@@ -3763,7 +3763,7 @@
     "2026-05-01": {
       "habit_doce_1773148558872": {
         "failed": true,
-        "note": "Everything"
+        "note": ""
       },
       "habit_pornography_1773148521833": {
         "failed": true,
@@ -3771,7 +3771,35 @@
       },
       "habit_gordura_1773148570817": {
         "failed": true,
+        "note": ""
+      }
+    },
+    "2026-05-02": {
+      "habit_pornography_1773148521833": {
+        "failed": true,
+        "note": "Porn"
+      },
+      "habit_doce_1773148558872": {
+        "failed": true,
+        "note": "Everything"
+      },
+      "habit_gordura_1773148570817": {
+        "failed": true,
         "note": "Potato, HotPocket"
+      }
+    },
+    "2026-05-03": {
+      "habit_pornography_1773148521833": {
+        "failed": true,
+        "note": "Porn"
+      },
+      "habit_doce_1773148558872": {
+        "failed": true,
+        "note": "Doce"
+      },
+      "habit_gordura_1773148570817": {
+        "failed": true,
+        "note": "Hamburguer"
       }
     }
   }
