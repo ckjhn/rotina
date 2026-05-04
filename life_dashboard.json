@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-04T19:02:21.784Z",
+  "exportDate": "2026-05-04T20:29:48.441Z",
   "config": {
     "activities": [
       {
@@ -2829,8 +2829,8 @@
       },
       "studies": {
         "sentence_mining": {
-          "done": false,
-          "detail": ""
+          "done": true,
+          "detail": "11"
         },
         "language_class": {
           "done": true,
@@ -2929,7 +2929,7 @@
       "createdAt": "2026-03-03",
       "archived": false,
       "targetValue": 180,
-      "currentValue": 122,
+      "currentValue": 133,
       "unit": "words",
       "valueHistory": [
         {
@@ -2971,6 +2971,10 @@
         {
           "date": "2026-04-13",
           "amount": 24
+        },
+        {
+          "date": "2026-05-04",
+          "amount": 11
         }
       ]
     },
