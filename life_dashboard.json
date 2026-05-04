@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-04T12:31:41.365Z",
+  "exportDate": "2026-05-04T18:20:31.173Z",
   "config": {
     "activities": [
       {
@@ -2817,9 +2817,22 @@
         "philosophy_practice": {
           "done": true,
           "detail": "Stoicism"
+        },
+        "scientia_momentum": {
+          "done": true,
+          "detail": "Scientia Momentum"
         }
       },
-      "studies": {}
+      "studies": {
+        "sentence_mining": {
+          "done": false,
+          "detail": ""
+        },
+        "language_class": {
+          "done": true,
+          "detail": "Etapa 04 → Módulo 31 → aula 2"
+        }
+      }
     }
   },
   "goals": [
@@ -3825,6 +3838,12 @@
       "habit_gordura_1773148570817": {
         "failed": true,
         "note": "Hamburguer"
+      }
+    },
+    "2026-05-04": {
+      "habit_pornography_1773148521833": {
+        "failed": true,
+        "note": "porn"
       }
     }
   }
