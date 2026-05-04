@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-04T18:20:31.173Z",
+  "exportDate": "2026-05-04T19:02:21.784Z",
   "config": {
     "activities": [
       {
@@ -2821,6 +2821,10 @@
         "scientia_momentum": {
           "done": true,
           "detail": "Scientia Momentum"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "New Evidence We are Entering AMOC Collapse"
         }
       },
       "studies": {
@@ -2831,6 +2835,10 @@
         "language_class": {
           "done": true,
           "detail": "Etapa 04 → Módulo 31 → aula 2"
+        },
+        "linguistics": {
+          "done": true,
+          "detail": "English"
         }
       }
     }
