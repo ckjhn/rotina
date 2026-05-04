@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-04T21:02:06.203Z",
+  "exportDate": "2026-05-04T21:03:38.971Z",
   "config": {
     "activities": [
       {
@@ -2903,32 +2903,12 @@
       "type": "value",
       "createdAt": "2026-03-03",
       "archived": false,
-      "targetValue": 20,
-      "currentValue": 6,
+      "targetValue": 17,
+      "currentValue": 1,
       "unit": "",
       "valueHistory": [
         {
           "date": "2026-03-09",
-          "amount": 1
-        },
-        {
-          "date": "2026-03-12",
-          "amount": 1
-        },
-        {
-          "date": "2026-03-16",
-          "amount": 1
-        },
-        {
-          "date": "2026-03-17",
-          "amount": 1
-        },
-        {
-          "date": "2026-03-23",
-          "amount": 1
-        },
-        {
-          "date": "2026-05-04",
           "amount": 1
         }
       ]
