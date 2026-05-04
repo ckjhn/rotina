@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-04T20:44:19.755Z",
+  "exportDate": "2026-05-04T21:01:34.698Z",
   "config": {
     "activities": [
       {
@@ -2825,6 +2825,10 @@
         "language_immersion": {
           "done": true,
           "detail": "New Evidence We are Entering AMOC Collapse"
+        },
+        "physical_training": {
+          "done": false,
+          "detail": "i'm sick"
         }
       },
       "studies": {
