@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-05T19:15:10.703Z",
+  "exportDate": "2026-05-05T19:16:13.753Z",
   "config": {
     "activities": [
       {
@@ -2891,12 +2891,28 @@
         "language_immersion": {
           "done": true,
           "detail": "Vampire Diaries"
+        },
+        "scientia_momentum": {
+          "done": true,
+          "detail": "Scientia Momentum"
+        },
+        "reading": {
+          "done": true,
+          "detail": "The Three Body Problem"
         }
       },
       "studies": {
         "linguistics": {
           "done": true,
           "detail": "English"
+        },
+        "college": {
+          "done": true,
+          "detail": "Content Organization"
+        },
+        "reading_writing": {
+          "done": true,
+          "detail": "Reading"
         }
       }
     }
