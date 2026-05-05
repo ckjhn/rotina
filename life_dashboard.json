@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-05T13:23:44.451Z",
+  "exportDate": "2026-05-05T13:29:58.010Z",
   "config": {
     "activities": [
       {
@@ -2879,6 +2879,10 @@
         "physical_training": {
           "done": false,
           "detail": "I'm sick"
+        },
+        "hobby": {
+          "done": true,
+          "detail": "Gaming"
         }
       },
       "studies": {}
