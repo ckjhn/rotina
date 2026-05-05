@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-04T22:36:05.586Z",
+  "exportDate": "2026-05-05T00:09:34.201Z",
   "config": {
     "activities": [
       {
@@ -2829,6 +2829,10 @@
         "physical_training": {
           "done": false,
           "detail": "i'm sick"
+        },
+        "reading": {
+          "done": true,
+          "detail": "Three Body Problem"
         }
       },
       "studies": {
@@ -2847,6 +2851,10 @@
         "college": {
           "done": true,
           "detail": "Organization"
+        },
+        "reading_writing": {
+          "done": true,
+          "detail": "Reading"
         }
       }
     }
