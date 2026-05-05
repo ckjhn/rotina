@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-05T18:28:06.908Z",
+  "exportDate": "2026-05-05T19:15:10.703Z",
   "config": {
     "activities": [
       {
@@ -3067,8 +3067,8 @@
         {
           "id": "s6",
           "text": "Desenvolvimento Web em Html5, Css, JavaScript e php",
-          "done": false,
-          "doneDate": null
+          "done": true,
+          "doneDate": "2026-05-05"
         },
         {
           "id": "s7",
@@ -3091,84 +3091,6 @@
         {
           "id": "s10",
           "text": "Sistema da Informação",
-          "done": false,
-          "doneDate": null
-        }
-      ]
-    },
-    {
-      "id": "obj_mo05irxmy6b4h",
-      "name": "Hacking Syllabus",
-      "description": "",
-      "type": "list",
-      "createdAt": "2026-04-15",
-      "archived": false,
-      "steps": [
-        {
-          "id": "s0",
-          "text": "Order what I need to study (syllabus)",
-          "done": false,
-          "doneDate": null
-        },
-        {
-          "id": "s1",
-          "text": "See a good day every week for this",
-          "done": false,
-          "doneDate": null
-        }
-      ]
-    },
-    {
-      "id": "obj_mo05kkvxz1v5b",
-      "name": "Gym x Calisthenics",
-      "description": "tip: use the previously train I had",
-      "type": "list",
-      "createdAt": "2026-04-15",
-      "archived": false,
-      "steps": [
-        {
-          "id": "s0",
-          "text": "Can we train both?",
-          "done": false,
-          "doneDate": null
-        },
-        {
-          "id": "s1",
-          "text": "Seek for a plain on how to train both of them efficiently",
-          "done": false,
-          "doneDate": null
-        },
-        {
-          "id": "s2",
-          "text": "Progressions",
-          "done": false,
-          "doneDate": null
-        },
-        {
-          "id": "s3",
-          "text": "Calendar training and deloaded weeks",
-          "done": false,
-          "doneDate": null
-        },
-        {
-          "id": "s4",
-          "text": "Isometric holds",
-          "done": false,
-          "doneDate": null
-        }
-      ]
-    },
-    {
-      "id": "obj_mo08gfp8pcehn",
-      "name": "Software Engeeneering Syllabus",
-      "description": "",
-      "type": "list",
-      "createdAt": "2026-04-15",
-      "archived": false,
-      "steps": [
-        {
-          "id": "s0",
-          "text": "syllabus complete reseach",
           "done": false,
           "doneDate": null
         }
