@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-05T00:09:34.201Z",
+  "exportDate": "2026-05-05T13:23:44.451Z",
   "config": {
     "activities": [
       {
@@ -2855,8 +2855,33 @@
         "reading_writing": {
           "done": true,
           "detail": "Reading"
+        },
+        "course": {
+          "done": true,
+          "detail": "Python OOP"
         }
       }
+    },
+    "2026-05-05": {
+      "activities": {
+        "work": {
+          "done": true,
+          "detail": "Prolagos [Programador I]"
+        },
+        "social": {
+          "done": true,
+          "detail": "WOrk"
+        },
+        "philosophy_practice": {
+          "done": true,
+          "detail": "Stoicism"
+        },
+        "physical_training": {
+          "done": false,
+          "detail": "I'm sick"
+        }
+      },
+      "studies": {}
     }
   },
   "goals": [
