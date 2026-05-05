@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-05T19:16:13.753Z",
+  "exportDate": "2026-05-05T19:22:05.239Z",
   "config": {
     "activities": [
       {
@@ -3101,8 +3101,8 @@
         {
           "id": "s9",
           "text": "Matemática e Lógica",
-          "done": false,
-          "doneDate": null
+          "done": true,
+          "doneDate": "2026-05-05"
         },
         {
           "id": "s10",
