@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-05T19:22:05.239Z",
+  "exportDate": "2026-05-05T19:44:12.346Z",
   "config": {
     "activities": [
       {
@@ -3089,8 +3089,8 @@
         {
           "id": "s7",
           "text": "Fundamentos de Redes de Computadores",
-          "done": false,
-          "doneDate": null
+          "done": true,
+          "doneDate": "2026-05-05"
         },
         {
           "id": "s8",
