@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-05T13:30:20.610Z",
+  "exportDate": "2026-05-05T18:28:06.908Z",
   "config": {
     "activities": [
       {
@@ -2883,9 +2883,22 @@
         "hobby": {
           "done": true,
           "detail": "Organization of my things"
+        },
+        "anki": {
+          "done": true,
+          "detail": "37"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "Vampire Diaries"
         }
       },
-      "studies": {}
+      "studies": {
+        "linguistics": {
+          "done": true,
+          "detail": "English"
+        }
+      }
     }
   },
   "goals": [
