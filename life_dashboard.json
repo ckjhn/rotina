@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-06T12:28:54.978Z",
+  "exportDate": "2026-05-06T13:34:18.118Z",
   "config": {
     "activities": [
       {
@@ -2949,9 +2949,38 @@
         "anki": {
           "done": true,
           "detail": "22"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "Vampire Diaries"
+        },
+        "reading": {
+          "done": true,
+          "detail": "The Three Body Problem"
+        },
+        "scientia_momentum": {
+          "done": true,
+          "detail": "Scientia Momentum"
         }
       },
-      "studies": {}
+      "studies": {
+        "linguistics": {
+          "done": true,
+          "detail": "English"
+        },
+        "reading_writing": {
+          "done": true,
+          "detail": "Reading"
+        },
+        "college": {
+          "done": true,
+          "detail": "Organization"
+        },
+        "course": {
+          "done": true,
+          "detail": "Python OOP"
+        }
+      }
     }
   },
   "goals": [
