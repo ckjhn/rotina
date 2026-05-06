@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-06T13:34:18.118Z",
+  "exportDate": "2026-05-06T16:18:13.444Z",
   "config": {
     "activities": [
       {
@@ -2961,6 +2961,10 @@
         "scientia_momentum": {
           "done": true,
           "detail": "Scientia Momentum"
+        },
+        "physical_training": {
+          "done": false,
+          "detail": "I'm sick"
         }
       },
       "studies": {
