@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-06T16:18:13.444Z",
+  "exportDate": "2026-05-06T20:42:33.452Z",
   "config": {
     "activities": [
       {
@@ -3165,8 +3165,8 @@
         {
           "id": "s8",
           "text": "Requisitos de Sistemas",
-          "done": false,
-          "doneDate": null
+          "done": true,
+          "doneDate": "2026-05-06"
         },
         {
           "id": "s9",
@@ -3177,8 +3177,8 @@
         {
           "id": "s10",
           "text": "Sistema da Informação",
-          "done": false,
-          "doneDate": null
+          "done": true,
+          "doneDate": "2026-05-06"
         }
       ]
     }
