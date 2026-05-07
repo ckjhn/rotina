@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-07T16:50:20.643Z",
+  "exportDate": "2026-05-07T16:50:40.675Z",
   "config": {
     "activities": [
       {
@@ -3015,12 +3015,20 @@
         "language_immersion": {
           "done": true,
           "detail": "The Vampire Diaries"
+        },
+        "reading": {
+          "done": true,
+          "detail": "The Three Body Problem"
         }
       },
       "studies": {
         "linguistics": {
           "done": true,
           "detail": "English"
+        },
+        "reading_writing": {
+          "done": true,
+          "detail": "Reading"
         }
       }
     }
