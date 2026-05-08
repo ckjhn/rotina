@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-08T11:04:00.449Z",
+  "exportDate": "2026-05-08T17:16:55.825Z",
   "config": {
     "activities": [
       {
@@ -3069,9 +3069,18 @@
         "anki": {
           "done": true,
           "detail": "19"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "Benjamin Button"
         }
       },
-      "studies": {}
+      "studies": {
+        "linguistics": {
+          "done": true,
+          "detail": "English"
+        }
+      }
     }
   },
   "goals": [
