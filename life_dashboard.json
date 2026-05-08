@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-08T18:35:43.976Z",
+  "exportDate": "2026-05-08T19:13:02.718Z",
   "config": {
     "activities": [
       {
@@ -3245,8 +3245,8 @@
         {
           "id": "s4",
           "text": "Introdução à Segurança da Informação",
-          "done": false,
-          "doneDate": null
+          "done": true,
+          "doneDate": "2026-05-08"
         },
         {
           "id": "s5",
