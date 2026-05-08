@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-08T17:25:16.854Z",
+  "exportDate": "2026-05-08T18:35:43.976Z",
   "config": {
     "activities": [
       {
@@ -3073,12 +3073,20 @@
         "language_immersion": {
           "done": true,
           "detail": "Benjamin Button"
+        },
+        "scientia_momentum": {
+          "done": true,
+          "detail": "Scientia Momentum"
         }
       },
       "studies": {
         "linguistics": {
           "done": true,
           "detail": "English"
+        },
+        "college": {
+          "done": true,
+          "detail": "Organization"
         }
       }
     }
