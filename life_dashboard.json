@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-11T17:37:48.274Z",
+  "exportDate": "2026-05-11T17:38:04.433Z",
   "config": {
     "activities": [
       {
@@ -3111,6 +3111,10 @@
         "language_immersion": {
           "done": true,
           "detail": "The Vampire Diaries"
+        },
+        "physical_training": {
+          "done": false,
+          "detail": "Still sick"
         }
       },
       "studies": {
