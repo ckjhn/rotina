@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-12T12:04:50.512Z",
+  "exportDate": "2026-05-12T13:09:32.115Z",
   "config": {
     "activities": [
       {
@@ -3327,8 +3327,8 @@
         {
           "id": "s1",
           "text": "Arquitetura de Computadores",
-          "done": false,
-          "doneDate": null
+          "done": true,
+          "doneDate": "2026-05-12"
         },
         {
           "id": "s2",
