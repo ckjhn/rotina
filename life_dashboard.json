@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-12T18:20:25.594Z",
+  "exportDate": "2026-05-12T20:00:54.076Z",
   "config": {
     "activities": [
       {
@@ -3371,8 +3371,8 @@
         {
           "id": "s5",
           "text": "Processos de Desenvolvimento de Software",
-          "done": false,
-          "doneDate": null
+          "done": true,
+          "doneDate": "2026-05-12"
         },
         {
           "id": "s6",
