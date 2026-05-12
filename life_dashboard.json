@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-12T14:25:12.159Z",
+  "exportDate": "2026-05-12T17:57:06.533Z",
   "config": {
     "activities": [
       {
@@ -3177,12 +3177,32 @@
         "anki": {
           "done": true,
           "detail": "33"
+        },
+        "scientia_momentum": {
+          "done": true,
+          "detail": "Scientia Momentum"
+        },
+        "reading": {
+          "done": true,
+          "detail": "The Three Body Problem"
+        },
+        "physical_training": {
+          "done": false,
+          "detail": "Still sick >:("
         }
       },
       "studies": {
         "linguistics": {
           "done": true,
           "detail": "English"
+        },
+        "reading_writing": {
+          "done": true,
+          "detail": "The Three Body Problem"
+        },
+        "college": {
+          "done": true,
+          "detail": "Organization"
         }
       }
     }
