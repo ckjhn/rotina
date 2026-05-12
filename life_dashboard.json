@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-12T11:45:34.108Z",
+  "exportDate": "2026-05-12T11:47:26.426Z",
   "config": {
     "activities": [
       {
@@ -3149,6 +3149,36 @@
         "sentence_mining": {
           "done": true,
           "detail": "9"
+        }
+      }
+    },
+    "2026-05-12": {
+      "activities": {
+        "work": {
+          "done": true,
+          "detail": "Prolagos [Programador I]"
+        },
+        "hobby": {
+          "done": true,
+          "detail": "Serie"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "The Vampire Diaries"
+        },
+        "social": {
+          "done": true,
+          "detail": "Work"
+        },
+        "philosophy_practice": {
+          "done": true,
+          "detail": "Stoicism"
+        }
+      },
+      "studies": {
+        "linguistics": {
+          "done": true,
+          "detail": "English"
         }
       }
     }
