@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-12T17:57:06.533Z",
+  "exportDate": "2026-05-12T18:20:25.594Z",
   "config": {
     "activities": [
       {
@@ -3359,8 +3359,8 @@
         {
           "id": "s3",
           "text": "Pensamento Computacional",
-          "done": false,
-          "doneDate": null
+          "done": true,
+          "doneDate": "2026-05-12"
         },
         {
           "id": "s4",
