@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-11T23:48:53.232Z",
+  "exportDate": "2026-05-12T00:11:27.866Z",
   "config": {
     "activities": [
       {
@@ -3119,6 +3119,10 @@
         "scientia_momentum": {
           "done": true,
           "detail": "Scientia Momentum"
+        },
+        "reading": {
+          "done": true,
+          "detail": "The Three Body Problem"
         }
       },
       "studies": {
@@ -3133,6 +3137,14 @@
         "coding": {
           "done": true,
           "detail": "Python OOP"
+        },
+        "reading_writing": {
+          "done": true,
+          "detail": "Reading"
+        },
+        "sentence_mining": {
+          "done": true,
+          "detail": "9"
         }
       }
     }
@@ -3207,7 +3219,7 @@
       "createdAt": "2026-03-03",
       "archived": false,
       "targetValue": 180,
-      "currentValue": 133,
+      "currentValue": 142,
       "unit": "words",
       "valueHistory": [
         {
@@ -3253,6 +3265,10 @@
         {
           "date": "2026-05-04",
           "amount": 11
+        },
+        {
+          "date": "2026-05-11",
+          "amount": 9
         }
       ]
     },
@@ -4110,6 +4126,16 @@
       "habit_gordura_1773148570817": {
         "failed": true,
         "note": ""
+      }
+    },
+    "2026-05-11": {
+      "habit_gordura_1773148570817": {
+        "failed": false,
+        "note": "2 cookies"
+      },
+      "habit_doce_1773148558872": {
+        "failed": false,
+        "note": "2 cookies"
       }
     }
   }
