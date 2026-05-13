@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-13T12:43:50.131Z",
+  "exportDate": "2026-05-13T12:44:21.234Z",
   "config": {
     "activities": [
       {
@@ -3218,7 +3218,7 @@
         },
         "hobby": {
           "done": true,
-          "detail": ""
+          "detail": "Watch Serie"
         },
         "social": {
           "done": true,
