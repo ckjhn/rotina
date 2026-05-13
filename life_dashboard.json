@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-12T20:01:07.748Z",
+  "exportDate": "2026-05-13T03:21:09.509Z",
   "config": {
     "activities": [
       {
@@ -2815,8 +2815,8 @@
           "detail": "Family"
         },
         "philosophy_practice": {
-          "done": false,
-          "detail": ""
+          "done": true,
+          "detail": "Stoicism"
         },
         "scientia_momentum": {
           "done": true,
@@ -2855,14 +2855,6 @@
         "reading_writing": {
           "done": true,
           "detail": "Reading"
-        },
-        "course": {
-          "done": true,
-          "detail": "Python OOP"
-        },
-        "coding": {
-          "done": true,
-          "detail": "Python OOP"
         }
       }
     },
@@ -2874,7 +2866,7 @@
         },
         "social": {
           "done": true,
-          "detail": "Work"
+          "detail": "WOrk"
         },
         "philosophy_practice": {
           "done": true,
@@ -2921,10 +2913,6 @@
         "course": {
           "done": true,
           "detail": "Python OOP"
-        },
-        "coding": {
-          "done": true,
-          "detail": "Python OOP"
         }
       }
     },
@@ -2943,8 +2931,8 @@
           "detail": "Work"
         },
         "philosophy_practice": {
-          "done": false,
-          "detail": ""
+          "done": true,
+          "detail": "Stoicism"
         },
         "anki": {
           "done": true,
@@ -2960,7 +2948,7 @@
         },
         "scientia_momentum": {
           "done": true,
-          "detail": "College"
+          "detail": "Scientia Momentum"
         },
         "physical_training": {
           "done": false,
@@ -2981,8 +2969,8 @@
           "detail": "Organization"
         },
         "course": {
-          "done": false,
-          "detail": ""
+          "done": true,
+          "detail": "Python OOP"
         }
       }
     },
@@ -3034,13 +3022,13 @@
           "done": true,
           "detail": "Reading"
         },
-        "philosophy_study": {
-          "done": true,
-          "detail": "Facing the Cease of existence"
-        },
         "interchange_scholarship_exterior_job_emigration": {
           "done": true,
-          "detail": "Organized"
+          "detail": "Organization"
+        },
+        "philosophy_study": {
+          "done": true,
+          "detail": "Death"
         }
       }
     },
@@ -3087,6 +3075,14 @@
         "college": {
           "done": true,
           "detail": "Organization"
+        },
+        "course": {
+          "done": true,
+          "detail": "Python OOP"
+        },
+        "coding": {
+          "done": true,
+          "detail": "Python OOP"
         }
       }
     },
@@ -3120,13 +3116,13 @@
           "done": true,
           "detail": "61"
         },
-        "reading": {
-          "done": true,
-          "detail": "The Three Body Problem"
-        },
         "scientia_momentum": {
           "done": true,
           "detail": "Scientia Momentum"
+        },
+        "reading": {
+          "done": true,
+          "detail": "The Three Body Problem"
         }
       },
       "studies": {
@@ -3138,13 +3134,13 @@
           "done": true,
           "detail": "Python OOP"
         },
-        "reading_writing": {
-          "done": true,
-          "detail": "Reading"
-        },
         "coding": {
           "done": true,
           "detail": "Python OOP"
+        },
+        "reading_writing": {
+          "done": true,
+          "detail": "Reading"
         },
         "sentence_mining": {
           "done": true,
@@ -3203,6 +3199,10 @@
         "college": {
           "done": true,
           "detail": "Organization"
+        },
+        "course": {
+          "done": true,
+          "detail": "Python"
         }
       }
     }
@@ -4134,10 +4134,6 @@
       "habit_gordura_1773148570817": {
         "failed": true,
         "note": "potato"
-      },
-      "habit_doce_1773148558872": {
-        "failed": true,
-        "note": "Barra de chocolate"
       }
     },
     "2026-05-05": {
@@ -4160,10 +4156,6 @@
       "habit_doce_1773148558872": {
         "failed": true,
         "note": "pastel"
-      },
-      "habit_gordura_1773148570817": {
-        "failed": true,
-        "note": ""
       }
     },
     "2026-05-10": {
@@ -4202,6 +4194,12 @@
       "habit_doce_1773148558872": {
         "failed": false,
         "note": "2 cookies"
+      }
+    },
+    "2026-05-12": {
+      "habit_pornography_1773148521833": {
+        "failed": true,
+        "note": "porn"
       }
     }
   }
