@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-13T11:37:31.850Z",
+  "exportDate": "2026-05-13T12:43:50.131Z",
   "config": {
     "activities": [
       {
@@ -3235,12 +3235,20 @@
         "anki": {
           "done": true,
           "detail": "24"
+        },
+        "scientia_momentum": {
+          "done": true,
+          "detail": "Scientia Momentum"
         }
       },
       "studies": {
         "linguistics": {
           "done": true,
           "detail": "English"
+        },
+        "language_class": {
+          "done": true,
+          "detail": "Etapa 04 → Módulo 31 → aula 3 and 4"
         }
       }
     }
