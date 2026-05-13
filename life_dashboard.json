@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-13T11:26:56.232Z",
+  "exportDate": "2026-05-13T11:37:31.850Z",
   "config": {
     "activities": [
       {
@@ -3231,6 +3231,10 @@
         "language_immersion": {
           "done": true,
           "detail": "The Vampire Diaries"
+        },
+        "anki": {
+          "done": true,
+          "detail": "24"
         }
       },
       "studies": {
