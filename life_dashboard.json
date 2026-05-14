@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-14T00:10:28.033Z",
+  "exportDate": "2026-05-14T17:55:59.170Z",
   "config": {
     "activities": [
       {
@@ -179,7 +179,8 @@
     "_deletedIds": [
       "exterior_job",
       "interchange",
-      "philosophy"
+      "philosophy",
+      "minera_o_de_senten_as"
     ]
   },
   "history": {
@@ -2942,8 +2943,8 @@
           "detail": "Work"
         },
         "philosophy_practice": {
-          "done": true,
-          "detail": "Stoicism"
+          "done": false,
+          "detail": ""
         },
         "anki": {
           "done": true,
@@ -2959,7 +2960,7 @@
         },
         "scientia_momentum": {
           "done": true,
-          "detail": "Scientia Momentum"
+          "detail": "College"
         },
         "physical_training": {
           "done": false,
@@ -2980,8 +2981,8 @@
           "detail": "Organization"
         },
         "course": {
-          "done": true,
-          "detail": "Python OOP"
+          "done": false,
+          "detail": ""
         }
       }
     },
@@ -3240,22 +3241,26 @@
           "detail": "Scientia Momentum"
         },
         "reading": {
-          "done": true,
-          "detail": "The Three Body Problem"
+          "done": false,
+          "detail": ""
         }
       },
       "studies": {
         "linguistics": {
-          "done": true,
-          "detail": "English"
+          "done": false,
+          "detail": ""
         },
         "language_class": {
           "done": true,
-          "detail": "Etapa 04 → Módulo 31 → aula 3"
+          "detail": "Etapa 04 → Módulo 31 → aula 3 and 4"
+        },
+        "course": {
+          "done": false,
+          "detail": "python"
         },
         "reading_writing": {
-          "done": true,
-          "detail": "Reading"
+          "done": false,
+          "detail": ""
         }
       }
     }
