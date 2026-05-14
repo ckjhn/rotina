@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-14T17:55:59.170Z",
+  "exportDate": "2026-05-14T18:20:53.646Z",
   "config": {
     "activities": [
       {
@@ -3261,6 +3261,44 @@
         "reading_writing": {
           "done": false,
           "detail": ""
+        }
+      }
+    },
+    "2026-05-14": {
+      "activities": {
+        "work": {
+          "done": true,
+          "detail": "Prolagos [Programador I]"
+        },
+        "hobby": {
+          "done": true,
+          "detail": "Gaming"
+        },
+        "social": {
+          "done": true,
+          "detail": "Work"
+        },
+        "scientia_momentum": {
+          "done": true,
+          "detail": "Scientia Momentum"
+        },
+        "philosophy_practice": {
+          "done": true,
+          "detail": "Stoicism"
+        },
+        "language_immersion": {
+          "done": true,
+          "detail": "The Vampire Diaries"
+        }
+      },
+      "studies": {
+        "reading_writing": {
+          "done": false,
+          "detail": ""
+        },
+        "linguistics": {
+          "done": true,
+          "detail": "Reading"
         }
       }
     }
