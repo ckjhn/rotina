@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-13T12:44:21.234Z",
+  "exportDate": "2026-05-14T00:10:28.033Z",
   "config": {
     "activities": [
       {
@@ -179,8 +179,7 @@
     "_deletedIds": [
       "exterior_job",
       "interchange",
-      "philosophy",
-      "minera_o_de_senten_as"
+      "philosophy"
     ]
   },
   "history": {
@@ -2943,8 +2942,8 @@
           "detail": "Work"
         },
         "philosophy_practice": {
-          "done": false,
-          "detail": ""
+          "done": true,
+          "detail": "Stoicism"
         },
         "anki": {
           "done": true,
@@ -2960,7 +2959,7 @@
         },
         "scientia_momentum": {
           "done": true,
-          "detail": "College"
+          "detail": "Scientia Momentum"
         },
         "physical_training": {
           "done": false,
@@ -2981,8 +2980,8 @@
           "detail": "Organization"
         },
         "course": {
-          "done": false,
-          "detail": ""
+          "done": true,
+          "detail": "Python OOP"
         }
       }
     },
@@ -3239,6 +3238,10 @@
         "scientia_momentum": {
           "done": true,
           "detail": "Scientia Momentum"
+        },
+        "reading": {
+          "done": true,
+          "detail": "The Three Body Problem"
         }
       },
       "studies": {
@@ -3248,7 +3251,11 @@
         },
         "language_class": {
           "done": true,
-          "detail": "Etapa 04 → Módulo 31 → aula 3 and 4"
+          "detail": "Etapa 04 → Módulo 31 → aula 3"
+        },
+        "reading_writing": {
+          "done": true,
+          "detail": "Reading"
         }
       }
     }
@@ -4251,6 +4258,12 @@
       }
     },
     "2026-05-12": {
+      "habit_pornography_1773148521833": {
+        "failed": true,
+        "note": "porn"
+      }
+    },
+    "2026-05-13": {
       "habit_pornography_1773148521833": {
         "failed": true,
         "note": "porn"
