@@ -191,6 +191,8 @@ async function saveToGitHub() {
     }
 
     showToast('Saved to GitHub successfully!', 'success');
+    // Mark last sync so syncFromJSON on next load doesn't re-merge this same file back
+    localStorage.setItem(STORAGE_KEY_LAST_SYNC, data.exportDate);
   } catch (err) {
     console.error('GitHub save error:', err);
     showToast(`GitHub save failed: ${err.message}`, 'error');
@@ -5309,12 +5311,15 @@ function toggleScheduleDay(itemId, dayIndex) {
 
 async function tryAutoLoadJSON() {
   try {
-    const response = await fetch(AUTO_JSON_PATH);
+    const response = await fetch(`${AUTO_JSON_PATH}?t=${Date.now()}`, { cache: 'no-store' });
     if (response.ok) {
       const data = await response.json();
       if (data.history) {
-        // localStorage wins — JSON only fills in dates not already in localStorage
-        AppState.history = { ...data.history, ...AppState.history };
+        // GitHub wins for past dates; preserve today's local work-in-progress
+        const today = todayStr();
+        const todayLocal = AppState.history[today];
+        AppState.history = { ...AppState.history, ...data.history };
+        if (todayLocal) AppState.history[today] = todayLocal;
       }
       if (data.config) {
         // Preserve deletion tracking from current config
@@ -5380,7 +5385,10 @@ function toggleSidebar() {
 
 async function syncFromJSON() {
   try {
-    const response = await fetch(AUTO_JSON_PATH);
+    // Bust the browser/proxy cache — same technique used in saveToGitHub's SHA fetch.
+    // Without this, corporate VPNs and aggressive browser caches serve a stale copy
+    // of the file, so pushes made on another machine are never actually received.
+    const response = await fetch(`${AUTO_JSON_PATH}?t=${Date.now()}`, { cache: 'no-store' });
     if (!response.ok) {
       console.log('No JSON file found (normal for standalone use)');
       return false;
@@ -5394,9 +5402,13 @@ async function syncFromJSON() {
     const jsonTimestamp = data.exportDate || new Date().toISOString();
     
     if (!lastSync || jsonTimestamp > lastSync) {
-      // Merge history (JSON history is merged into existing, preserving both)
+      // Merge history: GitHub wins for past dates (it has the authoritative pushed state),
+      // but local wins for TODAY so mid-session work-in-progress is never overwritten.
       if (data.history && Object.keys(data.history).length > 0) {
-        AppState.history = { ...data.history, ...AppState.history };
+        const today = todayStr();
+        const todayLocal = AppState.history[today]; // preserve current session's today
+        AppState.history = { ...AppState.history, ...data.history }; // GitHub wins for all dates
+        if (todayLocal) AppState.history[today] = todayLocal;        // restore local today
         dataWasMerged = true;
       }
       
@@ -5472,7 +5484,7 @@ async function syncFromJSON() {
 
 async function forceSyncFromJSON() {
   try {
-    const response = await fetch(AUTO_JSON_PATH);
+    const response = await fetch(`${AUTO_JSON_PATH}?t=${Date.now()}`, { cache: 'no-store' });
     if (!response.ok) {
       showToast('life_dashboard.json file not found', 'error');
       return false;
@@ -5480,9 +5492,9 @@ async function forceSyncFromJSON() {
     
     const data = await response.json();
     
-    // Force merge all data
+    // Force sync: GitHub wins unconditionally — that is the purpose of a force sync.
     if (data.history) {
-      AppState.history = { ...data.history, ...AppState.history };
+      AppState.history = { ...AppState.history, ...data.history };
     }
     if (data.config) {
       const deletedIds = AppState.config._deletedIds || [];
