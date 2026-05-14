@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-14T18:20:53.646Z",
+  "exportDate": "2026-05-14T20:09:24.829Z",
   "config": {
     "activities": [
       {
@@ -3252,7 +3252,7 @@
         },
         "language_class": {
           "done": true,
-          "detail": "Etapa 04 → Módulo 31 → aula 3 and 4"
+          "detail": "Etapa 04 → Módulo 31 → aula 3"
         },
         "course": {
           "done": false,
@@ -3299,6 +3299,14 @@
         "linguistics": {
           "done": true,
           "detail": "Reading"
+        },
+        "language_class": {
+          "done": true,
+          "detail": "Etapa 04 → Módulo 31 → aula 4"
+        },
+        "interchange_scholarship_exterior_job_emigration": {
+          "done": true,
+          "detail": "Passport research"
         }
       }
     }
