@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-15T00:39:46.656Z",
+  "exportDate": "2026-05-17T01:12:35.973Z",
   "config": {
     "activities": [
       {
@@ -4246,10 +4246,6 @@
       "habit_gordura_1773148570817": {
         "failed": true,
         "note": "potato"
-      },
-      "habit_doce_1773148558872": {
-        "failed": true,
-        "note": "Barra de chocolate"
       }
     },
     "2026-05-05": {
@@ -4272,10 +4268,6 @@
       "habit_doce_1773148558872": {
         "failed": true,
         "note": "pastel"
-      },
-      "habit_gordura_1773148570817": {
-        "failed": true,
-        "note": ""
       }
     },
     "2026-05-10": {
@@ -4326,6 +4318,46 @@
       "habit_pornography_1773148521833": {
         "failed": true,
         "note": "porn"
+      }
+    },
+    "2026-05-14": {
+      "habit_pornography_1773148521833": {
+        "failed": true,
+        "note": "porn"
+      }
+    },
+    "2026-05-16": {
+      "habit_doce_1773148558872": {
+        "failed": true,
+        "note": ""
+      },
+      "habit_pornography_1773148521833": {
+        "failed": true,
+        "note": ""
+      },
+      "habit_gordura_1773148570817": {
+        "failed": true,
+        "note": ""
+      }
+    },
+    "2026-05-15": {
+      "habit_pornography_1773148521833": {
+        "failed": true,
+        "note": ""
+      }
+    },
+    "2026-05-17": {
+      "habit_pornography_1773148521833": {
+        "failed": true,
+        "note": ""
+      },
+      "habit_doce_1773148558872": {
+        "failed": true,
+        "note": ""
+      },
+      "habit_gordura_1773148570817": {
+        "failed": true,
+        "note": ""
       }
     }
   }
