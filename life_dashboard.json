@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-18T14:00:11.457Z",
+  "exportDate": "2026-05-18T16:59:40.303Z",
   "config": {
     "activities": [
       {
@@ -3325,7 +3325,7 @@
           "detail": "Prolagos [Programador I]"
         },
         "hobby": {
-          "done": false,
+          "done": true,
           "detail": "Watching Serie"
         },
         "social": {
@@ -3337,7 +3337,7 @@
           "detail": "Stoicism"
         },
         "language_immersion": {
-          "done": false,
+          "done": true,
           "detail": "The Vampire Diaries"
         },
         "reading": {
@@ -3351,7 +3351,7 @@
       },
       "studies": {
         "linguistics": {
-          "done": false,
+          "done": true,
           "detail": "English"
         },
         "reading_writing": {
