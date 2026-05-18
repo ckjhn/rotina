@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-18T13:38:19.399Z",
+  "exportDate": "2026-05-18T14:00:11.457Z",
   "config": {
     "activities": [
       {
@@ -3343,6 +3343,10 @@
         "reading": {
           "done": false,
           "detail": "The Three Body Problem"
+        },
+        "anki": {
+          "done": true,
+          "detail": "69"
         }
       },
       "studies": {
