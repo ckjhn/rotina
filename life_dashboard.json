@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-18T12:39:06.972Z",
+  "exportDate": "2026-05-18T13:38:19.399Z",
   "config": {
     "activities": [
       {
@@ -3326,7 +3326,7 @@
         },
         "hobby": {
           "done": false,
-          "detail": ""
+          "detail": "Watching Serie"
         },
         "social": {
           "done": true,
@@ -3335,9 +3335,26 @@
         "philosophy_practice": {
           "done": true,
           "detail": "Stoicism"
+        },
+        "language_immersion": {
+          "done": false,
+          "detail": "The Vampire Diaries"
+        },
+        "reading": {
+          "done": false,
+          "detail": "The Three Body Problem"
         }
       },
-      "studies": {}
+      "studies": {
+        "linguistics": {
+          "done": false,
+          "detail": "English"
+        },
+        "reading_writing": {
+          "done": false,
+          "detail": "Reading"
+        }
+      }
     }
   },
   "goals": [
