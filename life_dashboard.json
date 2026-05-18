@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-17T01:12:35.973Z",
+  "exportDate": "2026-05-18T12:39:06.972Z",
   "config": {
     "activities": [
       {
@@ -3317,6 +3317,27 @@
           "detail": ""
         }
       }
+    },
+    "2026-05-18": {
+      "activities": {
+        "work": {
+          "done": true,
+          "detail": "Prolagos [Programador I]"
+        },
+        "hobby": {
+          "done": false,
+          "detail": ""
+        },
+        "social": {
+          "done": true,
+          "detail": "Work"
+        },
+        "philosophy_practice": {
+          "done": true,
+          "detail": "Stoicism"
+        }
+      },
+      "studies": {}
     }
   },
   "goals": [
@@ -4246,6 +4267,10 @@
       "habit_gordura_1773148570817": {
         "failed": true,
         "note": "potato"
+      },
+      "habit_doce_1773148558872": {
+        "failed": true,
+        "note": "Barra de chocolate"
       }
     },
     "2026-05-05": {
@@ -4268,6 +4293,10 @@
       "habit_doce_1773148558872": {
         "failed": true,
         "note": "pastel"
+      },
+      "habit_gordura_1773148570817": {
+        "failed": true,
+        "note": ""
       }
     },
     "2026-05-10": {
