@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-19T11:11:00.900Z",
+  "exportDate": "2026-05-19T15:44:21.959Z",
   "config": {
     "activities": [
       {
@@ -3367,26 +3367,34 @@
           "detail": "Prolagos [Programador I]"
         },
         "hobby": {
-          "done": false,
+          "done": true,
           "detail": "Watch Series"
         },
         "language_immersion": {
-          "done": false,
+          "done": true,
           "detail": "The Vampire DIaries"
         },
         "social": {
-          "done": false,
+          "done": true,
           "detail": "Work"
         },
         "reading": {
           "done": false,
           "detail": "The Three Body Problem"
+        },
+        "philosophy_practice": {
+          "done": true,
+          "detail": "Stoicism"
         }
       },
       "studies": {
         "reading_writing": {
           "done": false,
           "detail": "Reading"
+        },
+        "linguistics": {
+          "done": true,
+          "detail": "English"
         }
       }
     }
