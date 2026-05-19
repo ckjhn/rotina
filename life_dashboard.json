@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-18T20:59:17.231Z",
+  "exportDate": "2026-05-19T01:00:03.590Z",
   "config": {
     "activities": [
       {
@@ -3333,7 +3333,7 @@
           "detail": "Work"
         },
         "philosophy_practice": {
-          "done": true,
+          "done": false,
           "detail": "Stoicism"
         },
         "language_immersion": {
@@ -4288,10 +4288,6 @@
       "habit_gordura_1773148570817": {
         "failed": true,
         "note": "potato"
-      },
-      "habit_doce_1773148558872": {
-        "failed": true,
-        "note": "Barra de chocolate"
       }
     },
     "2026-05-05": {
@@ -4314,10 +4310,6 @@
       "habit_doce_1773148558872": {
         "failed": true,
         "note": "pastel"
-      },
-      "habit_gordura_1773148570817": {
-        "failed": true,
-        "note": ""
       }
     },
     "2026-05-10": {
