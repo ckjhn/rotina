@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-19T01:00:03.590Z",
+  "exportDate": "2026-05-19T01:00:16.028Z",
   "config": {
     "activities": [
       {
@@ -4389,6 +4389,30 @@
       }
     },
     "2026-05-17": {
+      "habit_pornography_1773148521833": {
+        "failed": true,
+        "note": ""
+      },
+      "habit_doce_1773148558872": {
+        "failed": true,
+        "note": ""
+      },
+      "habit_gordura_1773148570817": {
+        "failed": true,
+        "note": ""
+      }
+    },
+    "2026-05-19": {
+      "habit_pornography_1773148521833": {
+        "failed": false,
+        "note": ""
+      },
+      "habit_doce_1773148558872": {
+        "failed": false,
+        "note": ""
+      }
+    },
+    "2026-05-18": {
       "habit_pornography_1773148521833": {
         "failed": true,
         "note": ""
