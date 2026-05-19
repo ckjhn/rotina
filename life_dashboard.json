@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-19T19:47:04.602Z",
+  "exportDate": "2026-05-19T20:58:42.389Z",
   "config": {
     "activities": [
       {
@@ -3391,7 +3391,7 @@
           "detail": "17"
         },
         "scientia_momentum": {
-          "done": false,
+          "done": true,
           "detail": "Scientia Momentum"
         }
       },
