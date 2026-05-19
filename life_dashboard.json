@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-19T01:02:43.609Z",
+  "exportDate": "2026-05-19T11:11:00.900Z",
   "config": {
     "activities": [
       {
@@ -3359,6 +3359,36 @@
           "detail": "Reading"
         }
       }
+    },
+    "2026-05-19": {
+      "activities": {
+        "work": {
+          "done": true,
+          "detail": "Prolagos [Programador I]"
+        },
+        "hobby": {
+          "done": false,
+          "detail": "Watch Series"
+        },
+        "language_immersion": {
+          "done": false,
+          "detail": "The Vampire DIaries"
+        },
+        "social": {
+          "done": false,
+          "detail": "Work"
+        },
+        "reading": {
+          "done": false,
+          "detail": "The Three Body Problem"
+        }
+      },
+      "studies": {
+        "reading_writing": {
+          "done": false,
+          "detail": "Reading"
+        }
+      }
     }
   },
   "goals": [
@@ -4288,6 +4318,10 @@
       "habit_gordura_1773148570817": {
         "failed": true,
         "note": "potato"
+      },
+      "habit_doce_1773148558872": {
+        "failed": true,
+        "note": "Barra de chocolate"
       }
     },
     "2026-05-05": {
@@ -4310,6 +4344,10 @@
       "habit_doce_1773148558872": {
         "failed": true,
         "note": "pastel"
+      },
+      "habit_gordura_1773148570817": {
+        "failed": true,
+        "note": ""
       }
     },
     "2026-05-10": {
