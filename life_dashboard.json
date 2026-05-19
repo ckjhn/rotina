@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-19T15:44:21.959Z",
+  "exportDate": "2026-05-19T16:25:28.519Z",
   "config": {
     "activities": [
       {
@@ -3385,6 +3385,10 @@
         "philosophy_practice": {
           "done": true,
           "detail": "Stoicism"
+        },
+        "anki": {
+          "done": true,
+          "detail": "17"
         }
       },
       "studies": {
@@ -3395,6 +3399,10 @@
         "linguistics": {
           "done": true,
           "detail": "English"
+        },
+        "sentence_mining": {
+          "done": true,
+          "detail": "21"
         }
       }
     }
@@ -3452,11 +3460,15 @@
       "createdAt": "2026-03-03",
       "archived": false,
       "targetValue": 17,
-      "currentValue": 1,
+      "currentValue": 2,
       "unit": "",
       "valueHistory": [
         {
           "date": "2026-03-09",
+          "amount": 1
+        },
+        {
+          "date": "2026-05-19",
           "amount": 1
         }
       ]
@@ -3469,7 +3481,7 @@
       "createdAt": "2026-03-03",
       "archived": false,
       "targetValue": 180,
-      "currentValue": 142,
+      "currentValue": 163,
       "unit": "words",
       "valueHistory": [
         {
@@ -3519,6 +3531,10 @@
         {
           "date": "2026-05-11",
           "amount": 9
+        },
+        {
+          "date": "2026-05-19",
+          "amount": 21
         }
       ]
     },
