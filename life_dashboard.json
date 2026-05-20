@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-19T20:58:42.389Z",
+  "exportDate": "2026-05-20T02:53:34.454Z",
   "config": {
     "activities": [
       {
@@ -3379,8 +3379,8 @@
           "detail": "Work"
         },
         "reading": {
-          "done": false,
-          "detail": "The Three Body Problem"
+          "done": true,
+          "detail": "Ancient Philosophy - by Julia Annas"
         },
         "philosophy_practice": {
           "done": true,
@@ -3397,7 +3397,7 @@
       },
       "studies": {
         "reading_writing": {
-          "done": false,
+          "done": true,
           "detail": "Reading"
         },
         "linguistics": {
@@ -4350,10 +4350,6 @@
       "habit_gordura_1773148570817": {
         "failed": true,
         "note": "potato"
-      },
-      "habit_doce_1773148558872": {
-        "failed": true,
-        "note": "Barra de chocolate"
       }
     },
     "2026-05-05": {
@@ -4376,10 +4372,6 @@
       "habit_doce_1773148558872": {
         "failed": true,
         "note": "pastel"
-      },
-      "habit_gordura_1773148570817": {
-        "failed": true,
-        "note": ""
       }
     },
     "2026-05-10": {
