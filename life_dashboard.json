@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "exportDate": "2026-05-20T02:53:34.454Z",
+  "exportDate": "2026-05-20T12:05:12.241Z",
   "config": {
     "activities": [
       {
@@ -3413,6 +3413,48 @@
           "detail": "Content Oganization and Progress"
         }
       }
+    },
+    "2026-05-20": {
+      "activities": {
+        "work": {
+          "done": true,
+          "detail": "Prolagos [Programador I]"
+        },
+        "hobby": {
+          "done": true,
+          "detail": "Watching Series"
+        },
+        "social": {
+          "done": true,
+          "detail": "Work"
+        },
+        "philosophy_practice": {
+          "done": true,
+          "detail": "Stoicism"
+        },
+        "language_immersion": {
+          "done": false,
+          "detail": "The Vampire Diaries"
+        },
+        "reading": {
+          "done": false,
+          "detail": "Ancient Philosophy by Julia Annas"
+        },
+        "scientia_momentum": {
+          "done": false,
+          "detail": "Scientia Momentum"
+        }
+      },
+      "studies": {
+        "reading_writing": {
+          "done": false,
+          "detail": "Reading"
+        },
+        "linguistics": {
+          "done": false,
+          "detail": "English"
+        }
+      }
     }
   },
   "goals": [
@@ -4350,6 +4392,10 @@
       "habit_gordura_1773148570817": {
         "failed": true,
         "note": "potato"
+      },
+      "habit_doce_1773148558872": {
+        "failed": true,
+        "note": "Barra de chocolate"
       }
     },
     "2026-05-05": {
@@ -4372,6 +4418,10 @@
       "habit_doce_1773148558872": {
         "failed": true,
         "note": "pastel"
+      },
+      "habit_gordura_1773148570817": {
+        "failed": true,
+        "note": ""
       }
     },
     "2026-05-10": {
