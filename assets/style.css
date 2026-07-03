@@ -15,20 +15,20 @@
   --bg-input: #0e1118;
 
   /* Accent Colors */
-  --accent-primary: #4ecdc4;
-  --accent-primary-dim: rgba(78, 205, 196, 0.15);
-  --accent-secondary: #ff6b6b;
-  --accent-secondary-dim: rgba(255, 107, 107, 0.15);
-  --accent-warning: #ffd93d;
-  --accent-warning-dim: rgba(255, 217, 61, 0.15);
-  --accent-blue: #6c9fff;
-  --accent-blue-dim: rgba(108, 159, 255, 0.15);
-  --accent-purple: #a78bfa;
-  --accent-purple-dim: rgba(167, 139, 250, 0.15);
-  --accent-green: #34d399;
-  --accent-green-dim: rgba(52, 211, 153, 0.15);
-  --accent-orange: #fb923c;
-  --accent-orange-dim: rgba(251, 146, 60, 0.15);
+  --accent-primary: #E5B04C;
+  --accent-primary-dim: rgba(229, 176, 76, 0.15);
+  --accent-secondary: #E5695B;
+  --accent-secondary-dim: rgba(229, 105, 91, 0.15);
+  --accent-warning: #EFD07C;
+  --accent-warning-dim: rgba(239, 208, 124, 0.15);
+  --accent-blue: #7FA8F0;
+  --accent-blue-dim: rgba(127, 168, 240, 0.15);
+  --accent-purple: #9F8FFF;
+  --accent-purple-dim: rgba(159, 143, 255, 0.15);
+  --accent-green: #7FC08B;
+  --accent-green-dim: rgba(127, 192, 139, 0.15);
+  --accent-orange: #E88B4E;
+  --accent-orange-dim: rgba(232, 139, 78, 0.15);
 
   /* Text */
   --text-primary: #e8eaf0;
@@ -38,13 +38,13 @@
 
   /* Borders */
   --border-primary: rgba(255, 255, 255, 0.06);
-  --border-active: rgba(78, 205, 196, 0.3);
+  --border-active: rgba(229, 176, 76, 0.3);
 
   /* Shadows */
   --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
   --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
   --shadow-lg: 0 8px 30px rgba(0,0,0,0.5);
-  --shadow-glow: 0 0 20px rgba(78, 205, 196, 0.1);
+  --shadow-glow: 0 0 20px rgba(229, 176, 76, 0.1);
 
   /* Spacing */
   --radius-sm: 6px;
@@ -82,8 +82,8 @@ body::before {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
   background:
-    radial-gradient(ellipse at 20% 0%, rgba(78, 205, 196, 0.03) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 100%, rgba(108, 159, 255, 0.03) 0%, transparent 50%);
+    radial-gradient(ellipse at 20% 0%, rgba(229, 176, 76, 0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 100%, rgba(127, 168, 240, 0.03) 0%, transparent 50%);
   pointer-events: none;
   z-index: 0;
 }
@@ -180,7 +180,7 @@ body::before {
 .nav-item.active {
   background: var(--accent-primary-dim);
   color: var(--accent-primary);
-  border-color: rgba(78, 205, 196, 0.15);
+  border-color: rgba(229, 176, 76, 0.15);
 }
 
 .nav-item .nav-icon {
@@ -301,19 +301,19 @@ body::before {
 }
 
 .btn-primary:hover {
-  background: #3dbdb5;
-  border-color: #3dbdb5;
-  box-shadow: 0 0 16px rgba(78, 205, 196, 0.3);
+  background: #d19a35;
+  border-color: #d19a35;
+  box-shadow: 0 0 16px rgba(229, 176, 76, 0.3);
 }
 
 .btn-danger {
   background: var(--accent-secondary-dim);
   color: var(--accent-secondary);
-  border-color: rgba(255, 107, 107, 0.2);
+  border-color: rgba(229, 105, 91, 0.2);
 }
 
 .btn-danger:hover {
-  background: rgba(255, 107, 107, 0.25);
+  background: rgba(229, 105, 91, 0.25);
 }
 
 .btn-sm {
@@ -449,8 +449,8 @@ body::before {
 }
 
 .activity-item.completed {
-  border-color: rgba(52, 211, 153, 0.2);
-  background: rgba(52, 211, 153, 0.04);
+  border-color: rgba(127, 192, 139, 0.2);
+  background: rgba(127, 192, 139, 0.04);
 }
 
 .activity-item.completed .activity-name {
@@ -549,8 +549,8 @@ body::before {
 
 /* ---- AI INSIGHTS ---- */
 .ai-panel {
-  background: linear-gradient(135deg, rgba(78, 205, 196, 0.05), rgba(108, 159, 255, 0.05));
-  border: 1px solid rgba(78, 205, 196, 0.15);
+  background: linear-gradient(135deg, rgba(229, 176, 76, 0.05), rgba(127, 168, 240, 0.05));
+  border: 1px solid rgba(229, 176, 76, 0.15);
   border-radius: var(--radius-lg);
   padding: 24px;
   position: relative;
@@ -1195,10 +1195,10 @@ body::before {
   outline: 1px solid var(--text-muted);
 }
 
-.heatmap-cell.level-1 { background: rgba(78, 205, 196, 0.15); }
-.heatmap-cell.level-2 { background: rgba(78, 205, 196, 0.3); }
-.heatmap-cell.level-3 { background: rgba(78, 205, 196, 0.5); }
-.heatmap-cell.level-4 { background: rgba(78, 205, 196, 0.75); }
+.heatmap-cell.level-1 { background: rgba(229, 176, 76, 0.15); }
+.heatmap-cell.level-2 { background: rgba(229, 176, 76, 0.3); }
+.heatmap-cell.level-3 { background: rgba(229, 176, 76, 0.5); }
+.heatmap-cell.level-4 { background: rgba(229, 176, 76, 0.75); }
 .heatmap-cell.level-5 { background: var(--accent-primary); }
 
 .heatmap-legend {
@@ -1364,7 +1364,7 @@ body::before {
 }
 
 .obs-entry:hover {
-  background: rgba(78, 205, 196, 0.04);
+  background: rgba(229, 176, 76, 0.04);
 }
 
 .obs-entry-date {
@@ -1600,8 +1600,8 @@ body::before {
 }
 
 .go-step.done {
-  border-color: rgba(52, 211, 153, 0.15);
-  background: rgba(52, 211, 153, 0.04);
+  border-color: rgba(127, 192, 139, 0.15);
+  background: rgba(127, 192, 139, 0.04);
 }
 
 .go-step.done .go-step-text {
@@ -1702,8 +1702,8 @@ body::before {
 }
 
 .go-value-add-btn:hover {
-  background: #3dbdb5;
-  box-shadow: 0 0 12px rgba(78, 205, 196, 0.3);
+  background: #d19a35;
+  box-shadow: 0 0 12px rgba(229, 176, 76, 0.3);
 }
 
 /* Mini progress bar for daily tracker */
@@ -2045,38 +2045,38 @@ body::before {
 
 .activity-item.off-day.completed {
   opacity: 0.8;
-  background: rgba(52, 211, 153, 0.06);
-  border-color: rgba(52, 211, 153, 0.18);
+  background: rgba(127, 192, 139, 0.06);
+  border-color: rgba(127, 192, 139, 0.18);
 }
 
 .activity-item.off-day.completed:hover {
   opacity: 0.9;
-  background: rgba(52, 211, 153, 0.08);
-  border-color: rgba(52, 211, 153, 0.25);
+  background: rgba(127, 192, 139, 0.08);
+  border-color: rgba(127, 192, 139, 0.25);
 }
 
 .activity-item.off-day.completed .activity-name {
-  color: rgba(52, 211, 153, 0.75);
+  color: rgba(127, 192, 139, 0.75);
   text-decoration: line-through;
-  text-decoration-color: rgba(52, 211, 153, 0.6);
+  text-decoration-color: rgba(127, 192, 139, 0.6);
 }
 
 .activity-item.off-day.completed .check-box {
-  background: rgba(52, 211, 153, 0.45);
-  border-color: rgba(52, 211, 153, 0.5);
+  background: rgba(127, 192, 139, 0.45);
+  border-color: rgba(127, 192, 139, 0.5);
   color: var(--bg-primary);
   opacity: 0.85;
 }
 
 .activity-item.off-day.completed .activity-detail-input {
   opacity: 0.65;
-  color: rgba(52, 211, 153, 0.7);
-  background: rgba(52, 211, 153, 0.03);
-  border-color: rgba(52, 211, 153, 0.1);
+  color: rgba(127, 192, 139, 0.7);
+  background: rgba(127, 192, 139, 0.03);
+  border-color: rgba(127, 192, 139, 0.1);
 }
 
 .activity-item.off-day.completed .activity-detail-input::placeholder {
-  color: rgba(52, 211, 153, 0.4);
+  color: rgba(127, 192, 139, 0.4);
 }
 
 /* ===== CYCLE COMPLETE TAG STYLING ===== */
@@ -2090,9 +2090,9 @@ body::before {
   text-transform: uppercase;
   letter-spacing: 0.8px;
   margin-left: 6px;
-  background: rgba(52, 211, 153, 0.12);
-  color: rgba(52, 211, 153, 0.75);
-  border: 1px solid rgba(52, 211, 153, 0.24);
+  background: rgba(127, 192, 139, 0.12);
+  color: rgba(127, 192, 139, 0.75);
+  border: 1px solid rgba(127, 192, 139, 0.24);
   animation: slideInFade 0.3s ease;
   font-weight: 600;
 }
@@ -2109,27 +2109,27 @@ body::before {
 }
 
 .cycle-complete-tag:hover {
-  background: rgba(52, 211, 153, 0.15);
-  color: rgba(52, 211, 153, 0.85);
-  border-color: rgba(52, 211, 153, 0.35);
+  background: rgba(127, 192, 139, 0.15);
+  color: rgba(127, 192, 139, 0.85);
+  border-color: rgba(127, 192, 139, 0.35);
 }
 
 .activity-item[data-frequency="daily"] .cycle-complete-tag {
-  border-color: rgba(78, 205, 196, 0.24);
-  background: rgba(78, 205, 196, 0.12);
-  color: rgba(78, 205, 196, 0.75);
+  border-color: rgba(229, 176, 76, 0.24);
+  background: rgba(229, 176, 76, 0.12);
+  color: rgba(229, 176, 76, 0.75);
 }
 
 .activity-item[data-frequency="weekly"] .cycle-complete-tag {
-  border-color: rgba(108, 159, 255, 0.24);
-  background: rgba(108, 159, 255, 0.12);
-  color: rgba(108, 159, 255, 0.75);
+  border-color: rgba(127, 168, 240, 0.24);
+  background: rgba(127, 168, 240, 0.12);
+  color: rgba(127, 168, 240, 0.75);
 }
 
 .activity-item[data-frequency="biweekly"] .cycle-complete-tag {
-  border-color: rgba(167, 139, 250, 0.24);
-  background: rgba(167, 139, 250, 0.12);
-  color: rgba(167, 139, 250, 0.75);
+  border-color: rgba(159, 143, 255, 0.24);
+  background: rgba(159, 143, 255, 0.12);
+  color: rgba(159, 143, 255, 0.75);
 }
 
 .activity-item[data-frequency="triweekly"] .cycle-complete-tag {
@@ -2139,9 +2139,9 @@ body::before {
 }
 
 .activity-item[data-frequency="monthly"] .cycle-complete-tag {
-  border-color: rgba(251, 146, 60, 0.24);
-  background: rgba(251, 146, 60, 0.12);
-  color: rgba(251, 146, 60, 0.75);
+  border-color: rgba(232, 139, 78, 0.24);
+  background: rgba(232, 139, 78, 0.12);
+  color: rgba(232, 139, 78, 0.75);
 }
 
 .activity-item.off-day:not(.completed) .schedule-off-tag {
@@ -2158,9 +2158,9 @@ body::before {
   text-transform: uppercase;
   letter-spacing: 0.7px;
   margin-left: 6px;
-  background: rgba(255, 217, 61, 0.1);
-  color: rgba(255, 217, 61, 0.7);
-  border: 1px solid rgba(255, 217, 61, 0.2);
+  background: rgba(239, 208, 124, 0.1);
+  color: rgba(239, 208, 124, 0.7);
+  border: 1px solid rgba(239, 208, 124, 0.2);
   font-weight: 500;
 }
 
@@ -2636,7 +2636,7 @@ body::before {
 
 .habit-today-item.failed {
   border-left-color: var(--accent-secondary);
-  background: rgba(255, 107, 107, 0.05);
+  background: rgba(229, 105, 91, 0.05);
 }
 
 .habit-today-left {
@@ -2659,14 +2659,14 @@ body::before {
 .habit-btn-clean {
   background: var(--accent-green-dim) !important;
   color: var(--accent-green) !important;
-  border-color: rgba(52, 211, 153, 0.2) !important;
+  border-color: rgba(127, 192, 139, 0.2) !important;
   font-size: 0.78rem !important;
 }
 
 .habit-btn-failed {
   background: var(--accent-secondary-dim) !important;
   color: var(--accent-secondary) !important;
-  border-color: rgba(255, 107, 107, 0.2) !important;
+  border-color: rgba(229, 105, 91, 0.2) !important;
   font-size: 0.78rem !important;
 }
 
@@ -2679,19 +2679,19 @@ body::before {
 
 /* Calendar habit colors */
 .mini-cal-cell.habit-clean {
-  background: rgba(52, 211, 153, 0.15);
+  background: rgba(127, 192, 139, 0.15);
   color: var(--accent-green);
   font-weight: 600;
 }
 
 .mini-cal-cell.habit-partial {
-  background: rgba(251, 146, 60, 0.15);
+  background: rgba(232, 139, 78, 0.15);
   color: var(--accent-orange);
   font-weight: 600;
 }
 
 .mini-cal-cell.habit-fail {
-  background: rgba(255, 107, 107, 0.2);
+  background: rgba(229, 105, 91, 0.2);
   color: var(--accent-secondary);
   font-weight: 600;
 }
@@ -2709,9 +2709,9 @@ body::before {
   vertical-align: middle;
 }
 
-.habit-legend-dot.clean-dot { background: rgba(52, 211, 153, 0.5); }
-.habit-legend-dot.fail-dot { background: rgba(255, 107, 107, 0.5); }
-.habit-legend-dot.partial-dot { background: rgba(251, 146, 60, 0.5); }
+.habit-legend-dot.clean-dot { background: rgba(127, 192, 139, 0.5); }
+.habit-legend-dot.fail-dot { background: rgba(229, 105, 91, 0.5); }
+.habit-legend-dot.partial-dot { background: rgba(232, 139, 78, 0.5); }
 
 .habits-manage-list {
   display: flex;

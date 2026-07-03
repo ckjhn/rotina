@@ -40,11 +40,11 @@ const FREQUENCY_OPTIONS = [
 ];
 
 const FREQUENCY_META = {
-  daily: { label: 'Daily', tagClass: 'tag-daily', color: '#4ecdc4', days: 1 },
-  weekly: { label: 'Weekly', tagClass: 'tag-weekly', color: '#6c9fff', days: 7 },
-  biweekly: { label: 'Biweekly', tagClass: 'tag-biweekly', color: '#a78bfa', days: 14 },
+  daily: { label: 'Daily', tagClass: 'tag-daily', color: '#E5B04C', days: 1 },
+  weekly: { label: 'Weekly', tagClass: 'tag-weekly', color: '#7FA8F0', days: 7 },
+  biweekly: { label: 'Biweekly', tagClass: 'tag-biweekly', color: '#9F8FFF', days: 14 },
   triweekly: { label: '3 Weeks', tagClass: 'tag-biweekly', color: '#c084fc', days: 21 },
-  monthly: { label: 'Monthly', tagClass: 'tag-monthly', color: '#fb923c', days: 28 },
+  monthly: { label: 'Monthly', tagClass: 'tag-monthly', color: '#E88B4E', days: 28 },
   optional: { label: 'Optional', tagClass: 'tag-optional', color: '#555d75', days: null },
 };
 
@@ -1252,7 +1252,7 @@ function renderWeeklyChart(canvasId, category) {
     return dt.toLocaleDateString('en-US', { weekday: 'short' });
   });
   const data = dates.map(d => calcDayCompletion(d, category));
-  const color = category === 'activities' ? '#4ecdc4' : '#6c9fff';
+  const color = category === 'activities' ? '#E5B04C' : '#7FA8F0';
 
   createChart(canvasId, {
     type: 'bar',
@@ -1261,8 +1261,8 @@ function renderWeeklyChart(canvasId, category) {
       datasets: [{
         label: 'Completion %',
         data,
-        backgroundColor: data.map(v => v >= 80 ? `${color}99` : v >= 50 ? '#ffd93d66' : '#ff6b6b66'),
-        borderColor: data.map(v => v >= 80 ? color : v >= 50 ? '#ffd93d' : '#ff6b6b'),
+        backgroundColor: data.map(v => v >= 80 ? `${color}99` : v >= 50 ? '#EFD07C66' : '#E5695B66'),
+        borderColor: data.map(v => v >= 80 ? color : v >= 50 ? '#EFD07C' : '#E5695B'),
         borderWidth: 1,
         borderRadius: 4,
       }]
@@ -1287,7 +1287,7 @@ function renderMonthlyChart(canvasId, category) {
   const dates = getDatesInRange(month.start, month.end);
   const labels = dates.map(d => new Date(d + 'T12:00:00').getDate().toString());
   const data = dates.map(d => calcDayCompletion(d, category));
-  const color = category === 'activities' ? '#4ecdc4' : '#6c9fff';
+  const color = category === 'activities' ? '#E5B04C' : '#7FA8F0';
 
   createChart(canvasId, {
     type: 'line',
@@ -1339,8 +1339,8 @@ function renderDoughnutChart(canvasId, category) {
   if (itemDone.length === 0) return;
 
   const colors = [
-    '#4ecdc4', '#6c9fff', '#a78bfa', '#fb923c', '#34d399',
-    '#ff6b6b', '#ffd93d', '#c084fc', '#38bdf8', '#f472b6',
+    '#E5B04C', '#7FA8F0', '#9F8FFF', '#E88B4E', '#7FC08B',
+    '#E5695B', '#EFD07C', '#c084fc', '#38bdf8', '#f472b6',
     '#4ade80', '#e879f9', '#facc15', '#22d3ee',
   ];
 
@@ -1522,8 +1522,8 @@ function renderComparisonChart(canvasId, category, rangeA, rangeB, labelA, label
     return Math.round((done / Math.max(1, datesB.length)) * 100);
   });
 
-  const colorA = category === 'activities' ? '#4ecdc4' : '#6c9fff';
-  const colorB = '#a78bfa';
+  const colorA = category === 'activities' ? '#E5B04C' : '#7FA8F0';
+  const colorB = '#9F8FFF';
 
   createChart(canvasId, {
     type: 'bar',
@@ -1714,8 +1714,8 @@ function renderInsightsFreqChart() {
       datasets: [{
         label: 'Times completed (30d)',
         data: itemCounts.map(i => i.count),
-        backgroundColor: itemCounts.map(i => i.category === 'activities' ? '#4ecdc466' : '#6c9fff66'),
-        borderColor: itemCounts.map(i => i.category === 'activities' ? '#4ecdc4' : '#6c9fff'),
+        backgroundColor: itemCounts.map(i => i.category === 'activities' ? '#E5B04C66' : '#7FA8F066'),
+        borderColor: itemCounts.map(i => i.category === 'activities' ? '#E5B04C' : '#7FA8F0'),
         borderWidth: 1,
         borderRadius: 4,
       }]
@@ -2140,8 +2140,8 @@ function renderObsRateChart(docRateData) {
   if (docRateData.length === 0) return;
   const labels = docRateData.map(d => d.name);
   const data = docRateData.map(d => d.rate);
-  const colors = docRateData.map(d => d.category === 'activities' ? '#4ecdc488' : '#6c9fff88');
-  const borders = docRateData.map(d => d.category === 'activities' ? '#4ecdc4' : '#6c9fff');
+  const colors = docRateData.map(d => d.category === 'activities' ? '#E5B04C88' : '#7FA8F088');
+  const borders = docRateData.map(d => d.category === 'activities' ? '#E5B04C' : '#7FA8F0');
 
   createChart('chart-obs-rate', {
     type: 'bar',
@@ -2185,18 +2185,18 @@ function renderObsRadarChart(docRateData) {
         {
           label: 'Observations',
           data: top.map(d => d.obsCount),
-          borderColor: '#4ecdc4',
-          backgroundColor: 'rgba(78, 205, 196, 0.15)',
-          pointBackgroundColor: '#4ecdc4',
+          borderColor: '#E5B04C',
+          backgroundColor: 'rgba(229, 176, 76, 0.15)',
+          pointBackgroundColor: '#E5B04C',
           pointBorderWidth: 0,
           pointRadius: 4,
         },
         {
           label: 'Completions',
           data: top.map(d => d.doneCount),
-          borderColor: '#a78bfa',
-          backgroundColor: 'rgba(167, 139, 250, 0.1)',
-          pointBackgroundColor: '#a78bfa',
+          borderColor: '#9F8FFF',
+          backgroundColor: 'rgba(159, 143, 255, 0.1)',
+          pointBackgroundColor: '#9F8FFF',
           pointBorderWidth: 0,
           pointRadius: 4,
         }
@@ -2251,12 +2251,12 @@ function renderObsTimelineChart(observations) {
       datasets: [{
         label: 'Observations per week',
         data,
-        borderColor: '#4ecdc4',
-        backgroundColor: 'rgba(78, 205, 196, 0.12)',
+        borderColor: '#E5B04C',
+        backgroundColor: 'rgba(229, 176, 76, 0.12)',
         fill: true,
         tension: 0.4,
         pointRadius: 5,
-        pointBackgroundColor: '#4ecdc4',
+        pointBackgroundColor: '#E5B04C',
         pointBorderWidth: 0,
         pointHoverRadius: 8,
       }]
