@@ -389,14 +389,14 @@ function renderOverviewPage() {
           ${activeGoals.map(g => {
             const p = getGoalProgress(g);
             return `<div class="ov-goal"><div class="ov-goal-name">${escapeHtml(g.name)}</div>
-              <div class="go-mini-progress"><div class="go-mini-progress-fill" style="width:${p}%; background: var(--accent-purple)"></div></div>
-              <div class="ov-goal-pct">${p}%</div></div>`;
+              <div class="go-mini-progress"><div class="go-mini-progress-fill" style="width:${p.pct}%; background: var(--accent-purple)"></div></div>
+              <div class="ov-goal-pct">${p.pct}%</div></div>`;
           }).join('')}
           ${activeObjs.map(o => {
             const p = getObjectiveProgress(o);
             return `<div class="ov-goal"><div class="ov-goal-name">${escapeHtml(o.name)}</div>
-              <div class="go-mini-progress"><div class="go-mini-progress-fill" style="width:${p}%; background: var(--accent-blue)"></div></div>
-              <div class="ov-goal-pct">${p}%</div></div>`;
+              <div class="go-mini-progress"><div class="go-mini-progress-fill" style="width:${p.pct}%; background: var(--accent-blue)"></div></div>
+              <div class="ov-goal-pct">${p.pct}%</div></div>`;
           }).join('')}
         ` : `<div class="empty-state"><div class="empty-state-icon">◌</div><div class="empty-state-text">Nothing here yet. Set a goal to see it tracked.</div></div>`}
       </div>
